@@ -60,9 +60,9 @@ CREATE TABLE Recette (
   TypeRecetteid int NOT NULL,
   Nom           varchar(255) NOT NULL,
   Personnes     int NOT NULL, 
-  TempsPrep     float(255) NULL, 
-  TempsCuisson  float(255) NULL, 
-  TempsPause    float(255) NULL, 
+  TempsPrep     float NULL, 
+  TempsCuisson  float NULL, 
+  TempsPause    float NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Salle (
   id         int NOT NULL, 
