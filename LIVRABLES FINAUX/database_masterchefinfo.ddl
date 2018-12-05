@@ -2,7 +2,7 @@ CREATE TABLE Appareil (
   Id       int NOT NULL, 
   Nom      varchar(255) NOT NULL, 
   Quantite int NOT NULL, 
-  Capacite int NULL, 
+  TempsNettoyage int NULL, 
   PRIMARY KEY (Id));
 CREATE TABLE Assiettes (
   id               int NOT NULL, 
