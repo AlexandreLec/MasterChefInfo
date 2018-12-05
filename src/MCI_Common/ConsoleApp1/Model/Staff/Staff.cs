@@ -37,5 +37,15 @@ namespace Room.Model.Staff
         /// Type of staff
         /// </summary>
         //private StaffType Type { get; set; }
+
+        /// <summary>
+        /// Move to a position
+        /// </summary>
+        /// <param name="pos"></param>
+        /* public void MoveTo(Position pos)
+        {
+            
+        }
+        */
     }
 }
