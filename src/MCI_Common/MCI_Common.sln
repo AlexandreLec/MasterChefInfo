@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCI_Common", "MCI_Common\MC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingClassLib", "TestingClassLib\TestingClassLib.csproj", "{4C3EC532-62DB-4700-ACA6-2367E276B146}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "ConsoleApp1\Room.csproj", "{DDC2B659-4607-4368-A735-A42409CCE228}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "Room\Room.csproj", "{DDC2B659-4607-4368-A735-A42409CCE228}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
