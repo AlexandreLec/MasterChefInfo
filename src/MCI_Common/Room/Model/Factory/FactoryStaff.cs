@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Factory
 {
-    class FactoryStaff
+    public class FactoryStaff
     {
+        public static IFactoryServer CreateServer()
+        {
+            return new Staff.Server();
+        }
+
+        public static IFactoryRoomMaster CreateRoomMaster()
+        {
+            return new Staff.RoomMaster();
+        }
+
+        public static IFactoryRankChief CreateRankChief()
+        {
+            return new Staff.RankChief();
+        }
     }
 }

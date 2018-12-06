@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Factory
 {
-    class FactoryRoomMaster
+    public interface IFactoryServer
     {
+        void CreateServer();
     }
 }

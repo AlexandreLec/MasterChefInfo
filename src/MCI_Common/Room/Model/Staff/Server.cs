@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class Server
+    public class Server : Factory.IFactoryServer
     {
         /// <summary>
         /// Square in the room
@@ -47,5 +47,10 @@ namespace Room.Model.Staff
             
         }
         */
+
+        public void CreateServer()
+        {
+
+        }
     }
 }
