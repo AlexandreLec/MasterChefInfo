@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RoomMaster
+    class RoomMaster : Factory.IFactoryRoomMaster
     {
         /// <summary>
         /// Sprite of the room master
@@ -32,5 +32,10 @@ namespace Room.Model.Staff
             
         }
         */
+
+        public void CreateRoomMaster()
+        {
+
+        }
     }
 }

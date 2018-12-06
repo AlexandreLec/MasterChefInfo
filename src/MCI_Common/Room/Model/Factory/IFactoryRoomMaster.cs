@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Factory
 {
-    class FactoryRankChief
+    public interface IFactoryRoomMaster
     {
+        void CreateRoomMaster();
     }
 }

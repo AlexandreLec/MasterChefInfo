@@ -45,14 +45,13 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
-    <Compile Include="Model\Client\Client.cs" />
-    <Compile Include="Model\Client\ClientGroup.cs" />
-    <Compile Include="Model\Client\ClientPool.cs" />
-    <Compile Include="Model\Factory\FactoryRankChief.cs" />
-    <Compile Include="Model\Factory\FactoryRoomMaster.cs" />
-    <Compile Include="Model\Factory\FactoryServer.cs" />
+    <Compile Include="Model\Factory\IFactoryRankChief.cs" />
+    <Compile Include="Model\Factory\IFactoryRoomMaster.cs" />
+    <Compile Include="Model\Factory\IFactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
+    <Compile Include="Model\Restaurant\CounterDirty.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
+    <Compile Include="Model\Restaurant\Restaurant.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
     <Compile Include="Model\Staff\RoomMaster.cs" />
     <Compile Include="Model\Staff\Server.cs" />
@@ -66,6 +65,7 @@
   <ItemGroup>
     <Folder Include="Controller\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Model\Client\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
