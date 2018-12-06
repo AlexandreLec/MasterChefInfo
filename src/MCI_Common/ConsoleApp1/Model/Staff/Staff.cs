@@ -11,17 +11,17 @@ namespace Room.Model.Staff
         /// <summary>
         /// Name of the staff
         /// </summary>
-        private string Name { get; set; }
+        private string Name;
 
         /// <summary>
         /// ID of the staff
         /// </summary>
-        private int Id { get; set; }
+        private int Id;
 
         /// <summary>
         /// Position of the staff
         /// </summary>
-        //private Position Pos { get; set; }
+        //private Position Pos;
 
         /// <summary>
         /// Movement of the staff
@@ -31,12 +31,12 @@ namespace Room.Model.Staff
         /// <summary>
         /// Availability of the staff
         /// </summary>
-        private Boolean Available { get; set; }
+        private Boolean Available;
 
         /// <summary>
         /// Type of staff
         /// </summary>
-        //private StaffType Type { get; set; }
+        //private StaffType Type;
 
         /// <summary>
         /// Move to a position

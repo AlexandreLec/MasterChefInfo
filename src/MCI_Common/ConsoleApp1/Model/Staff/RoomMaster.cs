@@ -11,7 +11,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Sprite of the room master
         /// </summary>
-        private string Sprite { get; set; }
+        private string Sprite;
 
         /// <summary>
         /// Check the reservation of a group of clients
