@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Recipes
 {
-    enum RecipeType
+    public enum RecipeType
     {
         STARTER,
         MAIN,
-        DESSERT
+        DESSERT,
+        UNKNOW
     }
 }

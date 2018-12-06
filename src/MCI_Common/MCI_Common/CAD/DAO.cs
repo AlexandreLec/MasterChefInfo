@@ -46,7 +46,7 @@ namespace MCI_Common
         /// </summary>
         private DAO()
         {
-            this.cnx = @"Data Source=10.162.128.230;Initial Catalog=masterchef;User ID=masterchef;Password=exia";
+            this.cnx = @"Data Source=lecomte-net.synology.me;Initial Catalog=masterchef;User ID=masterchef;Password=exia";
             this.bddConnexion = new SqlConnection(this.cnx);
             this.adapter = new SqlDataAdapter();
             this.cmd = new SqlCommand();

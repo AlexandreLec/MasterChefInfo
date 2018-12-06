@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Tools
 {
-    class TB_Tool
+    public class TB_Tool
     {
         /// <summary>
         /// Tool to use
@@ -28,7 +28,16 @@ namespace MCI_Common.Tools
         }
 
         /// <summary>
-        /// Get a device by Id
+        /// Get all tools for a given step
+        /// </summary>
+        /// <returns>SQL request</returns>
+        public string GetAllByStep(int id)
+        {
+            return "SELECT * FROM UstensileParEtape WHERE Etapesid = "+id+";";
+        }
+
+        /// <summary>
+        /// Get a tool by Id
         /// </summary>
         /// <returns>SQL request</returns>
         public string GetById()
@@ -37,7 +46,7 @@ namespace MCI_Common.Tools
         }
 
         /// <summary>
-        /// Get a device by Name
+        /// Get a tool by Name
         /// </summary>
         /// <returns>SQL request</returns>
         public string GetByName()

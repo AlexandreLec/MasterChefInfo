@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Ingredients
 {
-    enum ConservationType
+    public enum ConservationType
     {
         AMBIANT,
         COLD,

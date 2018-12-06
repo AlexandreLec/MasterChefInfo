@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Tools
 {
-    class Tool
+    public class Tool
     {
         /// <summary>
         /// Name of the tool
