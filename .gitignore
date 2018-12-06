@@ -3,3 +3,16 @@
 ################################################################################
 
 /src/MCI_Common/.vs/MCI_Common/v15/Server/sqlite3/db.lock
+src/MCI_Common/MCI_Common/obj/Debug/MCI_Common.csproj.CoreCompileInputs.cache
+src/MCI_Common/ConsoleApp1/obj/Debug/Room.csproj.CoreCompileInputs.cache
+src/MCI_Common/.vs/MCI_Common/v15/Server/sqlite3/storage.ide-wal
+src/MCI_Common/.vs/MCI_Common/v15/Server/sqlite3/storage.ide-shm
+src/MCI_Common/.vs/MCI_Common/v15/Server/sqlite3/storage.ide
+src/MCI_Common/.vs/MCI_Common/v15/.suo
+src/MCI_Common/MCI_Common/obj/Debug/MCI_Common.csproj.CoreCompileInputs.cache
+src/MCI_Common/ConsoleApp1/obj/Debug/Room.csproj.CoreCompileInputs.cache
+src/MCI_Common/.vs/MCI_Common/v15/Server/sqlite3/storage.ide-wal
+*.ide-shm
+*.ide
+src/MCI_Common/.vs/MCI_Common/v15/.suo
+src/MCI_Common/MCI_Common/obj/Debug/MCI_Common.csproj.CoreCompileInputs.cache
