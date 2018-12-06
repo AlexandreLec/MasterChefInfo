@@ -21,7 +21,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Position of the staff
         /// </summary>
-        private Behaviour.Position Pos { get; set; }
+        //private Behaviour.Position Pos { get; set; }
 
         /// <summary>
         /// Movement of the staff

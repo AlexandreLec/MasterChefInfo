@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCI_Common.Recipes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Room.Main
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(new RecipeProcess().GetAll().Count());
         }
     }
 }
