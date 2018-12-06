@@ -211,6 +211,12 @@ PublishScripts/
 *.nuget.props
 *.nuget.targets
 
+# Ignore other intermediate files that NuGet might create. project.lock.json is used in conjunction
+# with project.json (NuGet v3); project.assets.json is used in conjunction with the PackageReference
+# format (NuGet v4 and .NET Core).
+project.lock.json
+project.assets.json
+
 # Microsoft Azure Build Output
 csx/
 *.build.csdef
