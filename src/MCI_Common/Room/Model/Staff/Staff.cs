@@ -21,7 +21,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Position of the staff
         /// </summary>
-        //private Position Pos { get; set; }
+        private Behaviour.Position Pos { get; set; }
 
         /// <summary>
         /// Movement of the staff
@@ -32,11 +32,6 @@ namespace Room.Model.Staff
         /// Availability of the staff
         /// </summary>
         private bool Available { get; set; }
-
-        /// <summary>
-        /// Type of staff
-        /// </summary>
-        //private StaffType Type { get; set; }
 
         /// <summary>
         /// Move to a position
