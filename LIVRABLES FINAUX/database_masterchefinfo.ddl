@@ -2,7 +2,7 @@ CREATE TABLE Appareil (
   Id       int NOT NULL, 
   Nom      varchar(255) NOT NULL, 
   Quantite int NOT NULL, 
-  Capacite int NULL, 
+  TempsNettoyage int NULL, 
   PRIMARY KEY (Id));
 CREATE TABLE Assiettes (
   id               int NOT NULL, 
@@ -58,11 +58,11 @@ CREATE TABLE Rangs (
 CREATE TABLE Recette (
   id            int NOT NULL, 
   TypeRecetteid int NOT NULL,
-  Nom		varchar(255) NOT NULL UNIQUE, 
+  Nom           varchar(255) NOT NULL,
   Personnes     int NOT NULL, 
-  TempsPrep     float(10) NULL, 
-  TempsCuisson  float(10) NULL, 
-  TempsPause    float(10) NULL, 
+  TempsPrep     float NULL, 
+  TempsCuisson  float NULL, 
+  TempsPause    float NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Salle (
   id         int NOT NULL, 
