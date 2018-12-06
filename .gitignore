@@ -358,3 +358,5 @@ ASALocalRun/
 
 .vs
 src\MCI_Common\.vs
+*.cache
+src/MCI_Common/.vs/MCI_Common/v15/.suo
