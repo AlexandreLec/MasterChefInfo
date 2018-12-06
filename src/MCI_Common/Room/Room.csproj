@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
+    <Compile Include="Model\Behaviour\Position.cs" />
     <Compile Include="Model\Client\Client.cs" />
     <Compile Include="Model\Client\ClientGroup.cs" />
     <Compile Include="Model\Client\ClientPool.cs" />
