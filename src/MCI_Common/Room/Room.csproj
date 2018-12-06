@@ -70,5 +70,11 @@
     <Folder Include="Interfaces\" />
     <Folder Include="View\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
+      <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
+      <Name>MCI_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
