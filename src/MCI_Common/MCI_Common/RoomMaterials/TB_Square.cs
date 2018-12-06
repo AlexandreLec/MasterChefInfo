@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.RoomMaterials
 {
-    public abstract class TB_RoomMaterial
+    public class TB_Square
     {
         /// <summary>
-        /// RoomMaterial to use
+        /// Ingredient use to interact with database (get and set)
         /// </summary>
-        public RoomMaterial CurrentRoomMaterial { get; set; }
+        public Square CurrentSquare{ get; set; }
 
         /// <summary>
         /// Name of the table in database
         /// </summary>
-        public string DataTable { get; set; }
+        private static string DataTable = "Carres";
 
         /// <summary>
         /// Get all rows in table
@@ -27,10 +27,5 @@ namespace MCI_Common.RoomMaterials
             return "SELECT * FROM " + DataTable + ";";
         }
 
-        /// <summary>
-        /// Get materials by type
-        /// </summary>
-        /// <returns>SQL request</returns>
-        abstract public string GetByType(int idType);
     }
 }

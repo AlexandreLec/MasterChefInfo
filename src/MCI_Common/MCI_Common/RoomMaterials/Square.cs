@@ -6,21 +6,16 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.RoomMaterials
 {
-    public abstract class RoomMaterial
+    public class Square
     {
         /// <summary>
-        /// Id of the material
+        /// Id of the table
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of the material
+        /// Tables containing in this square
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Qunatity available for this material
-        /// </summary>
-        public int Quantity { get; set; }
+        public List<Table> Tables { get; set; }
     }
 }
