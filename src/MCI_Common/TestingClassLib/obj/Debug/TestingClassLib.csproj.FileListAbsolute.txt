@@ -8,3 +8,13 @@ C:\Users\alexandre\source\repos\MCI_Common\TestingClassLib\obj\Debug\TestingClas
 C:\Users\alexandre\source\repos\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csproj.CopyComplete
 C:\Users\alexandre\source\repos\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.exe
 C:\Users\alexandre\source\repos\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.pdb
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.exe.config
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.exe
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.pdb
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\bin\Debug\MCI_Common.dll
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\bin\Debug\MCI_Common.pdb
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csprojAssemblyReference.cache
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csproj.CoreCompileInputs.cache
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csproj.CopyComplete
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.exe
+C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.pdb

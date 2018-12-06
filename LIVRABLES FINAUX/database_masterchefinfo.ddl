@@ -57,7 +57,8 @@ CREATE TABLE Rangs (
   PRIMARY KEY (id));
 CREATE TABLE Recette (
   id            int NOT NULL, 
-  TypeRecetteid int NOT NULL, 
+  TypeRecetteid int NOT NULL,
+  Nom		varchar(255) NOT NULL UNIQUE, 
   Personnes     int NOT NULL, 
   TempsPrep     float(10) NULL, 
   TempsCuisson  float(10) NULL, 

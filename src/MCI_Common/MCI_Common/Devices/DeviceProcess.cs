@@ -40,10 +40,25 @@ namespace MCI_Common.Devices
         }
 
         /// <summary>
+        /// Build a device from datarow
+        /// </summary>
+        /// <param name="row">DataRow from dataset</param>
+        /// <returns>a device</returns>
+        private Device CreateDevice(DataRow row)
+        {
+            Device device = new Device();
+            device.Name = row["Nom"].ToString();
+            device.Quantity = int.Parse(row["Quantite"].ToString());
+            device.Id = int.Parse(row["Id"].ToString());
+            device.Capacity = int.Parse(row["Capacite"].ToString());
+            return device;
+        }
+
+        /// <summary>
         /// List all devices available in database
         /// </summary>
         /// <returns>A list of all devices</returns>
-        public List<Device> ListAllDevices()
+        public List<Device> ListAll()
         {
             this.Datas.Clear();
             this.Request = this.MapTable.GetAll();
@@ -53,12 +68,30 @@ namespace MCI_Common.Devices
 
             foreach (DataRow item in this.Datas.Tables["Devices"].Rows)
             {
-                Device device = new Device();
-                device.Name = item["Nom"].ToString();
-                device.Quantity = int.Parse(item["Quantite"].ToString());
-                device.Id = int.Parse(item["Id"].ToString());
-                device.Capacity = int.Parse(item["Capacite"].ToString());
+                Device device = this.CreateDevice(item);
 
+                results.Add(device);
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Get a specific devices list for a step
+        /// </summary>
+        /// <param name="id">id of the step</param>
+        /// <returns>A specific devices list</returns>
+        public List<Device> ListAllByStep(int id)
+        {
+            this.Datas.Clear();
+            this.Request = this.MapTable.GetAllByStep(id);
+            this.Datas = this.Bdd.getRows(this.Request, "Device");
+
+            List<Device> results = new List<Device>();
+
+            foreach (DataRow item in this.Datas.Tables["Device"].Rows)
+            {
+                Device device = this.CreateDevice(item);
                 results.Add(device);
             }
 
@@ -70,7 +103,7 @@ namespace MCI_Common.Devices
         /// </summary>
         /// <param name="id">id of the device to get</param>
         /// <returns>A specific device</returns>
-        public Device GetOneDevice(int id)
+        public Device GetOne(int id)
         {
             this.Datas.Clear();
             this.MapTable.CurrentDevice = new Device();
@@ -78,15 +111,7 @@ namespace MCI_Common.Devices
             this.Request = this.MapTable.GetById();
             this.Datas = this.Bdd.getRows(this.Request, "Devices");
 
-            Device result = new Device();
-
-            foreach (DataRow item in this.Datas.Tables["Devices"].Rows)
-            {
-                result.Name = item["Nom"].ToString();
-                result.Quantity = int.Parse(item["Quantite"].ToString());
-                result.Id = int.Parse(item["Id"].ToString());
-                result.Capacity = int.Parse(item["Capacite"].ToString());
-            }
+            Device result = this.CreateDevice(this.Datas.Tables["Devices"].Rows[0]);
 
             return result;
         }
@@ -96,7 +121,7 @@ namespace MCI_Common.Devices
         /// </summary>
         /// <param name="name">Name of the device to get</param>
         /// <returns>A specific device</returns>
-        public Device GetOneDevice(string name)
+        public Device GetOne(string name)
         {
             this.Datas.Clear();
             this.MapTable.CurrentDevice = new Device();
@@ -104,15 +129,7 @@ namespace MCI_Common.Devices
             this.Request = this.MapTable.GetByName();
             this.Datas = this.Bdd.getRows(this.Request, "Devices");
 
-            Device result = new Device();
-
-            foreach (DataRow item in this.Datas.Tables["Devices"].Rows)
-            {
-                result.Name = item["Nom"].ToString();
-                result.Quantity = int.Parse(item["Quantite"].ToString());
-                result.Id = int.Parse(item["Id"].ToString());
-                result.Capacity = int.Parse(item["Capacite"].ToString());
-            }
+            Device result = this.CreateDevice(this.Datas.Tables["Devices"].Rows[0]);
 
             return result;
         }
