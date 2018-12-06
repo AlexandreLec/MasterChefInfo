@@ -13,7 +13,7 @@ namespace Room.Model.Restaurant
         private int nbGlasses { get; set; }
         private int nbSilverware { get; set; }
 
-        dfsd 
+        
 
 
     }
