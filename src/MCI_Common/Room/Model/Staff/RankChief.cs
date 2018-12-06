@@ -16,7 +16,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Sprite of the rank chief
         /// </summary>
-        private string Sprite { get; set; }
+        private string Sprite;
 
         /// <summary>
         /// Prepare a table
