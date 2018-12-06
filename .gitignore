@@ -355,3 +355,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+.vs
+src\MCI_Common\.vs
