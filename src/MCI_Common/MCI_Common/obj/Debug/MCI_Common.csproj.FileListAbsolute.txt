@@ -10,3 +10,8 @@ C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\MCI_Common\obj\Deb
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.csproj.CoreCompileInputs.cache
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.dll
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.pdb
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\MCI_Common\bin\Debug\MCI_Common.dll
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\MCI_Common\bin\Debug\MCI_Common.pdb
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.csprojResolveAssemblyReference.cache
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.dll
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\MCI_Common\obj\Debug\MCI_Common.pdb

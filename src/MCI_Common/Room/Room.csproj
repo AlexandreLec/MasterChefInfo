@@ -52,6 +52,7 @@
     <Compile Include="Model\Factory\IFactoryRoomMaster.cs" />
     <Compile Include="Model\Factory\IFactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
+    <Compile Include="Model\Order\Order.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
     <Compile Include="Model\Restaurant\Restaurant.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
@@ -68,6 +69,12 @@
     <Folder Include="Controller\" />
     <Folder Include="Interfaces\" />
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
+      <Project>{B7630D98-1259-40B3-B7D6-2FF40DC6F015}</Project>
+      <Name>MCI_Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
