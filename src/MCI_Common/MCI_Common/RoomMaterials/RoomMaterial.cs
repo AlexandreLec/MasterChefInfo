@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Room.Model.Factory
+namespace MCI_Common.RoomMaterials
 {
-    class FactoryStaff
+    abstract class RoomMaterial
     {
+
     }
 }
