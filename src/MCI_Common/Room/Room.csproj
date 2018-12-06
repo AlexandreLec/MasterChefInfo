@@ -52,7 +52,6 @@
     <Compile Include="Model\Factory\IFactoryRoomMaster.cs" />
     <Compile Include="Model\Factory\IFactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
-    <Compile Include="Model\Restaurant\CounterDirty.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
     <Compile Include="Model\Restaurant\Restaurant.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
@@ -68,7 +67,6 @@
   <ItemGroup>
     <Folder Include="Controller\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Model\Client\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
