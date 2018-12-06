@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Recipes
 {
-    class Recipe
+    public class Recipe
     {
         /// <summary>
         /// ID of the recipe
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Name of the recipe
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Number of persons can eat this recipe

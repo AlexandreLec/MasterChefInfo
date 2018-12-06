@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCI_Common;
 using MCI_Common.Devices;
+using MCI_Common.Recipes;
 
 namespace TestingClassLib
 {
@@ -12,9 +13,9 @@ namespace TestingClassLib
     {
         static void Main(string[] args)
         {
-            DeviceProcess deviceManagement = new DeviceProcess();
+            RecipeProcess RecipeManagement = new RecipeProcess();
 
-            Console.WriteLine(deviceManagement.GetOneDevice("Four").Capacity);
+            Console.WriteLine(RecipeManagement.GetOne("Feuilleté au crabe").Steps[1].Ingredients);
             
             Console.Read();
         }

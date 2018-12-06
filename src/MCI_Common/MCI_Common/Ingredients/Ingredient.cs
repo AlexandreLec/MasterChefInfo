@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Ingredients
 {
-    class Ingredient
+    public class Ingredient
     {
         /// <summary>
         /// Ingredient id

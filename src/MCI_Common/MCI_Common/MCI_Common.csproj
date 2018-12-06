@@ -47,10 +47,16 @@
     <Compile Include="Devices\TB_Device.cs" />
     <Compile Include="Ingredients\ConservationType.cs" />
     <Compile Include="Ingredients\Ingredient.cs" />
+    <Compile Include="Ingredients\IngredientProcess.cs" />
+    <Compile Include="Ingredients\TB_Ingredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipes\Recipe.cs" />
+    <Compile Include="Recipes\RecipeProcess.cs" />
     <Compile Include="Recipes\RecipeType.cs" />
     <Compile Include="Recipes\Step.cs" />
+    <Compile Include="Recipes\StepProcess.cs" />
+    <Compile Include="Recipes\TB_Recipe.cs" />
+    <Compile Include="Recipes\TB_Step.cs" />
     <Compile Include="Tools\TB_Tool.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\ToolProcess.cs" />

@@ -45,5 +45,14 @@ namespace MCI_Common.Devices
             return "SELECT * FROM " + DataTable + " WHERE Nom = '" + CurrentDevice.Name + "';";
         }
 
+        /// <summary>
+        /// Get all devices for a given step
+        /// </summary>
+        /// <returns>SQL request</returns>
+        public string GetAllByStep(int id)
+        {
+            return "SELECT * FROM AppareilParEtape WHERE Etapeid = " + id + ";";
+        }
+
     }
 }
