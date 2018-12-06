@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
+    <Compile Include="Model\Behaviour\Position.cs" />
     <Compile Include="Model\Client\Client.cs" />
     <Compile Include="Model\Client\ClientGroup.cs" />
     <Compile Include="Model\Client\ClientPool.cs" />
@@ -52,7 +53,6 @@
     <Compile Include="Model\Factory\IFactoryRoomMaster.cs" />
     <Compile Include="Model\Factory\IFactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
-    <Compile Include="Model\Order\Order.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
     <Compile Include="Model\Restaurant\Restaurant.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
-      <Project>{B7630D98-1259-40B3-B7D6-2FF40DC6F015}</Project>
+      <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
       <Name>MCI_Common</Name>
     </ProjectReference>
   </ItemGroup>

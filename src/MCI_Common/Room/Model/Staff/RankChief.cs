@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Room.Model.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Room.Model.Staff
         /// Prepare a table
         /// </summary>
         /// <param name="Table"></param>
-        /* public void PrepareTable(Table TableToPrep)
+        /*public void PrepareTable(Table TableToPrep)
         {
             
         }
@@ -42,11 +43,10 @@ namespace Room.Model.Staff
         /// Take the client's order
         /// </summary>
         /// <param name="clients"></param>
-        /* public void TakeOrder(ClientGroup clients)
+        public void TakeOrder(ClientGroup clients)
         {
             
         }
-        */
 
         public void CreateRankChief()
         {

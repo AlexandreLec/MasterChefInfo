@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Room.Model.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,30 +28,27 @@ namespace Room.Model.Staff
         /// Assign a rank chief to take the order
         /// </summary>
         /// <param name="clients"></param>
-        /* public void ReadyToOrder(ClientGroup clients)
+        public void ReadyToOrder(ClientGroup clients)
         {
             
         }
-        */
 
         /// <summary>
         /// Assign a server to clear and serve the meal
         /// </summary>
         /// <param name="clients"></param>
-        /* public void DishTerminated(ClientGroup clients)
+        public void DishTerminated(ClientGroup clients)
         {
             
         }
-        */
 
         /// <summary>
         /// Assign a room master to make payment
         /// </summary>
         /// <param name="clients"></param>
-        /* public void Payment(ClientGroup clients)
+        public void Payment(ClientGroup clients)
         {
             
         }
-        */
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MCI_Common;
 using MCI_Common.Devices;
 using MCI_Common.Recipes;
+using MCI_Common.RoomMaterials;
 
 namespace TestingClassLib
 {
@@ -13,9 +14,9 @@ namespace TestingClassLib
     {
         static void Main(string[] args)
         {
-            RecipeProcess RecipeManagement = new RecipeProcess();
+            SquareProcess PlateManagement = new SquareProcess();
 
-            Console.WriteLine(RecipeManagement.GetOne("Feuilleté au crabe").Steps[1].Ingredients);
+            Console.WriteLine(PlateManagement.GetAll()[0].Tables[0].Capacity);
             
             Console.Read();
         }
