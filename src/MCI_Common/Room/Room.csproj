@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
+    <Compile Include="Model\Behaviour\Position.cs" />
     <Compile Include="Model\Factory\IFactoryRankChief.cs" />
     <Compile Include="Model\Factory\IFactoryRoomMaster.cs" />
     <Compile Include="Model\Factory\IFactoryServer.cs" />
