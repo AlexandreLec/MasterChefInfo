@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
+    <Compile Include="Model\Restaurant\CounterDirty.cs" />
+    <Compile Include="Model\Restaurant\DirtyCounter.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
     <Compile Include="Model\Staff\RoomMaster.cs" />
     <Compile Include="Model\Staff\Server.cs" />
@@ -60,7 +62,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Model\Client\" />
     <Folder Include="Model\Factory\" />
-    <Folder Include="Model\Restaurant\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

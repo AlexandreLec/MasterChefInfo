@@ -57,6 +57,8 @@
     <Compile Include="Recipes\StepProcess.cs" />
     <Compile Include="Recipes\TB_Recipe.cs" />
     <Compile Include="Recipes\TB_Step.cs" />
+    <Compile Include="RoomMaterials\RoomMaterial.cs" />
+    <Compile Include="RoomMaterials\TB_RoomMaterial.cs" />
     <Compile Include="Tools\TB_Tool.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\ToolProcess.cs" />
