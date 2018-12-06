@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Room.Model.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class Server
+    public class Server : Factory.IFactoryServer
     {
         /// <summary>
         /// Square in the room
@@ -22,21 +23,19 @@ namespace Room.Model.Staff
         /// Serve the client's meal
         /// </summary>
         /// <param name="clients"></param>
-        /* public void ServeMeal(ClientGroup clients)
+        public void ServeMeal(ClientGroup clients)
         {
             
         }
-        */
 
         /// <summary>
         /// Clean the client's meal
         /// </summary>
         /// <param name="clients"></param>
-        /* public void ClearMeal(ClientGroup clients)
+        public void ClearMeal(ClientGroup clients)
         {
             
         }
-        */
 
         /// <summary>
         /// Add something on a table
@@ -47,5 +46,10 @@ namespace Room.Model.Staff
             
         }
         */
+
+        public void CreateServer()
+        {
+
+        }
     }
 }

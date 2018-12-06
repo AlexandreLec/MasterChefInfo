@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Room.Model.Factory
+namespace Room.Model.Client
 {
-    class FactoryRankChief
+    class ClientPool
     {
     }
 }
