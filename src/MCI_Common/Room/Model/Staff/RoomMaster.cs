@@ -1,4 +1,5 @@
 ﻿using Room.Model.Client;
+using MCI_Common.RoomMaterials;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,10 @@ namespace Room.Model.Staff
         /// <param name="groupClient"></param>
         public void AssignTable(ClientGroup groupClient)
         {
-            
+            // 
+            int WaitingClients = groupClient.ClientList.Count();
+
+
         }
 
         public void CreateRoomMaster()
