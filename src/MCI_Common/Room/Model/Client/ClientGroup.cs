@@ -31,9 +31,11 @@ namespace Room.Model.Client
         /// <param name="args"></param>
         public delegate void ReadyToPayEventHandler(object source, EventArgs args);
 
+        // TODO ajouter les envent handler au staff + abonnement
+
 
         private int Id;
-        public Client[] ClientList { get; set; }
+        public List<Client> ClientList;
         private Table TableSit;
         private Boolean Reserved;
         private Boolean IsHurry;
@@ -41,6 +43,7 @@ namespace Room.Model.Client
         private event DishFinishedEventHandler DishFinished;
         private event ReadyToPayEventHandler ReadyToPay;
         private string Sprite;
+        
 
 
         private void Eat(string CurrentDish)
