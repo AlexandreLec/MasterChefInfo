@@ -1,4 +1,5 @@
 ﻿using MCI_Common.Recipes;
+using Room.Model.Behaviour;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,32 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Client
 {
-    class Client
+    public class Client
     {
 
+        /// <summary>
+        /// If the client received its dish, false when
+        /// the waiter clears the table
+        /// </summary>
         private Boolean Served;
 
+        /// <summary>
+        /// List of the dishes ordered by the client
+        /// </summary>
+        public Recipe[] Order = new Recipe[3];
 
-        private void OrderMeal()
+        /// <summary>
+        /// The client orders in one or two times
+        /// </summary>
+        public OrderBehaviour OrderMethod;
+
+        
+        public void OrderMeal()
         {
-            //List<Recipe> recipes = new RecipeProcess().GetAll().Count();
-        }
+            OrderMethod.OrderMeal(this);
+        }        
 
+       
     }
 }
 

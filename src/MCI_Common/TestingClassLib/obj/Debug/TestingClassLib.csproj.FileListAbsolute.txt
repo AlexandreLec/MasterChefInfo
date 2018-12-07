@@ -18,3 +18,11 @@ C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\ob
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csproj.CopyComplete
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.exe
 C:\Users\alexandre\Source\Repos\MasterChefInfo\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.pdb
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.exe.config
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.exe
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.pdb
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\obj\Debug\TestingClassLib.csprojResolveAssemblyReference.cache
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.exe
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\bin\Debug\TestingClassLib.pdb
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\bin\Debug\MCI_Common.dll
+C:\Users\1699991\Source\Repos\MasterChefInfo2\src\MCI_Common\TestingClassLib\bin\Debug\MCI_Common.pdb

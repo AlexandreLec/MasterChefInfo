@@ -1,18 +1,15 @@
 ﻿using MCI_Common.Recipes;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Room.Main
+namespace Room.Model.Restaurant
 {
-    class Program
+    public class ReadyCounter
     {
-        static void Main(string[] args)
-        {
-           
-        }
+        public Recipe[] Menu = new Recipe[18];
+
     }
 }
