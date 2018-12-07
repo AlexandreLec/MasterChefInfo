@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\IMovable.cs" />
+    <Compile Include="Model\Behaviour\OrderAllOne.cs" />
+    <Compile Include="Model\Behaviour\OrderBehaviour.cs" />
+    <Compile Include="Model\Behaviour\OrderTwoStep.cs" />
     <Compile Include="Model\Behaviour\Position.cs" />
     <Compile Include="Model\Client\Client.cs" />
     <Compile Include="Model\Client\ClientGroup.cs" />

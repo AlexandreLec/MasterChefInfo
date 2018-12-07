@@ -14,10 +14,8 @@ namespace TestingClassLib
     {
         static void Main(string[] args)
         {
-            SquareProcess PlateManagement = new SquareProcess();
+            Console.WriteLine(new RecipeProcess().GetAll().Count());
 
-            Console.WriteLine(PlateManagement.GetAll()[0].Tables[0].Capacity);
-            
             Console.Read();
         }
     }
