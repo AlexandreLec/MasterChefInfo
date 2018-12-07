@@ -8,5 +8,19 @@ namespace Room.Model.Client
 {
     class ClientPool
     {
+
+        public 
+
+        public List<Client> GenerateClients(int nb)
+        {
+            List<Client> cltList = new List<Client>();
+
+            for (int i = 0; i < nb; i++)
+                cltList.Add(new Client());
+
+            return cltList;
+
+        }
+
     }
 }

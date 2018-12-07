@@ -7,7 +7,7 @@ using MCI_Common.Recipes;
 
 namespace Room.Model.Behaviour
 {
-    interface OrderBehaviour
+    public interface OrderBehaviour
     {
         void OrderMeal(Client.Client clt);
     }

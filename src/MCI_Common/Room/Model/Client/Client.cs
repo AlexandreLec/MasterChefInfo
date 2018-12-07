@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Client
 {
-    class Client
+    public class Client
     {
 
         /// <summary>
@@ -25,14 +25,13 @@ namespace Room.Model.Client
         /// <summary>
         /// The client orders in one or two times
         /// </summary>
-        private OrderBehaviour OrderMethod;
+        public OrderBehaviour OrderMethod;
 
-        private void Test()
+        
+        public void OrderMeal()
         {
             OrderMethod.OrderMeal(this);
-        }
-        
-        
+        }        
 
        
     }
