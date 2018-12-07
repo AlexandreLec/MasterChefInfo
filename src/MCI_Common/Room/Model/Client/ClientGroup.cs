@@ -33,7 +33,7 @@ namespace Room.Model.Client
 
 
         private int Id;
-        private Client[] ClientList;
+        public Client[] ClientList { get; set; }
         private Table TableSit;
         private Boolean Reserved;
         private Boolean IsHurry;

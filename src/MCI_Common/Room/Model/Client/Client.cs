@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Client
 {
-    class Client : OrderBehaviour
+    public class Client : OrderBehaviour
     {
 
         /// <summary>
@@ -62,6 +62,11 @@ namespace Room.Model.Client
         }
 
         void OrderBehaviour.OrderMeal(List<Recipe> Menu)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Recipe> OrderBehaviour.OrderMeal()
         {
             throw new NotImplementedException();
         }
