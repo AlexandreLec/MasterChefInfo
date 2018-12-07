@@ -47,6 +47,9 @@ namespace Room.Model.Staff
         }
         */
 
+        /// <summary>
+        /// creation of a server
+        /// </summary>
         public void CreateServer()
         {
 

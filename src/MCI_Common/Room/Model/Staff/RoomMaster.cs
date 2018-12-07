@@ -30,12 +30,31 @@ namespace Room.Model.Staff
         /// <param name="groupClient"></param>
         public void AssignTable(ClientGroup groupClient)
         {
-            // 
+            // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();
+            List<Table> ListTables = new List<Table>();
 
+            // List all the tables
+            foreach (var square in new SquareProcess().GetAll())
+            {
+                foreach (var table in square.Tables)
+                {
+                    ListTables.Add(table);
+                }
+            }
 
+            /* foreach (var AvailableTables in ListTables.Where(Table.Capacity()))
+            {
+
+            }
+            */
+            
+            
         }
 
+        /// <summary>
+        /// Creation of a room master
+        /// </summary>
         public void CreateRoomMaster()
         {
 

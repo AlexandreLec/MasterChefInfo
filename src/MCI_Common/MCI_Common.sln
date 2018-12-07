@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingClassLib", "TestingC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "Room\Room.csproj", "{DDC2B659-4607-4368-A735-A42409CCE228}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room.Tests", "Room.Tests\Room.Tests.csproj", "{779922F7-C919-4C61-B0E8-323D1CDE429C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DDC2B659-4607-4368-A735-A42409CCE228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDC2B659-4607-4368-A735-A42409CCE228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDC2B659-4607-4368-A735-A42409CCE228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779922F7-C919-4C61-B0E8-323D1CDE429C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779922F7-C919-4C61-B0E8-323D1CDE429C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779922F7-C919-4C61-B0E8-323D1CDE429C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779922F7-C919-4C61-B0E8-323D1CDE429C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

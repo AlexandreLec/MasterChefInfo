@@ -53,6 +53,9 @@ namespace Room.Model.Staff
             
         }
 
+        /// <summary>
+        /// Creation of a rank chief
+        /// </summary>
         public void CreateRankChief()
         {
             
