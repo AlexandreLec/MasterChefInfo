@@ -4,19 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.Recipes;
+using Room.Model.Client;
+using Room.Model.Staff;
 
 namespace Room.Model.Behaviour
 {
     class OrderTwoStep : OrderBehaviour
     {
-        public void OrderMeal()
+        /// <summary>
+        /// Order meal according to client's order method
+        /// </summary>
+        /// <param name="clt"></param>
+        void OrderBehaviour.OrderMeal(Client.Client clt)
         {
-            throw new NotImplementedException();
-        }
+            Random choice = new Random();
 
-        public void OrderMeal(List<Recipe> Menu)
-        {
-            throw new NotImplementedException();
+
+            if (clt.Order[0] != null && clt.Order[1] != null)
+                clt.Order[2] = RankChief.Counter.Menu[choice.Next(12, 18)];
+            else
+            {
+                clt.Order[0] = RankChief.Counter.Menu[choice.Next(0, 6)];
+                clt.Order[1] = RankChief.Counter.Menu[choice.Next(6, 12)];
+            }
         }
     }
 }

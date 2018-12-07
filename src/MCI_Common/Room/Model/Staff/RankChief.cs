@@ -1,4 +1,5 @@
 ﻿using Room.Model.Client;
+using Room.Model.Restaurant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace Room.Model.Staff
         /// Sprite of the rank chief
         /// </summary>
         private string Sprite;
+
+        public static ReadyCounter Counter { get; internal set; }
+
+
 
         /// <summary>
         /// Prepare a table

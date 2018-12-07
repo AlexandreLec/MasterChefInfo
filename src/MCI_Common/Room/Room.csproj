@@ -57,6 +57,7 @@
     <Compile Include="Model\Factory\IFactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
+    <Compile Include="Model\Restaurant\ReadyCounter.cs" />
     <Compile Include="Model\Restaurant\Restaurant.cs" />
     <Compile Include="Model\Staff\RankChief.cs" />
     <Compile Include="Model\Staff\RoomMaster.cs" />
