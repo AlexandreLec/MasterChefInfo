@@ -9,6 +9,6 @@ namespace Room.Model.Behaviour
 {
     interface OrderBehaviour
     {
-        List<Recipe> OrderMeal();
+        void OrderMeal(Client.Client clt);
     }
 }
