@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C3EC532-62DB-4700-ACA6-2367E276B146}</ProjectGuid>
+    <ProjectGuid>{B129E226-0402-4B20-9F1C-F853FEDB444E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestingClassLib</RootNamespace>
-    <AssemblyName>TestingClassLib</AssemblyName>
+    <RootNamespace>Kitchen</RootNamespace>
+    <AssemblyName>Kitchen</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,16 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Counter.cs" />
+    <Compile Include="Model\SocketCom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerSocket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
-      <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
+      <Project>{B7630D98-1259-40B3-B7D6-2FF40DC6F015}</Project>
       <Name>MCI_Common</Name>
     </ProjectReference>
   </ItemGroup>

@@ -15,11 +15,6 @@ namespace MCI_Common
         /// Connection string to database
         /// </summary>
         private string cnx;
-        
-        /// <summary>
-        /// SQL Instructions
-        /// </summary>
-        private string sqlRequest;
 
         /// <summary>
         /// Data adapter

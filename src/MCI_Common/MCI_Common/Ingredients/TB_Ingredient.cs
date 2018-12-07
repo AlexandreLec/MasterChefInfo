@@ -16,7 +16,7 @@ namespace MCI_Common.Ingredients
         /// <summary>
         /// Name of the table in database
         /// </summary>
-        private static string DataTable = "Ingredient";
+        private static string DataTable = "Denree";
 
         /// <summary>
         /// Get all rows in table

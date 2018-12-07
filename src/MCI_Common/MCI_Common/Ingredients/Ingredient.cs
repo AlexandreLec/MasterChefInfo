@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Ingredients
 {
+    [SerializableAttribute]
     public class Ingredient
     {
         /// <summary>

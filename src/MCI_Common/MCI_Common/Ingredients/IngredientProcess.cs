@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Ingredients
 {
-    class IngredientProcess
+    public class IngredientProcess
     {
         /// <summary>
         /// Table mapped for build request SQL
@@ -120,7 +120,7 @@ namespace MCI_Common.Ingredients
             this.MapTable.CurrentIngredient = new Ingredient();
             this.MapTable.CurrentIngredient.Id = id;
             this.Request = this.MapTable.GetById();
-            this.Datas = this.Bdd.getRows(this.Request, "Ingredients");
+            this.Datas = this.Bdd.getRows(this.Request, "Ingredient");
 
             Ingredient ingredient = this.CreateIngredient(this.Datas.Tables["Ingredient"].Rows[0]);
 

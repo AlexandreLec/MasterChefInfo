@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAD\DAO.cs" />
+    <Compile Include="Communication\Message.cs" />
+    <Compile Include="Communication\Serialization.cs" />
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\DeviceProcess.cs" />
     <Compile Include="Devices\TB_Device.cs" />
+    <Compile Include="Dishes\Menu.cs" />
+    <Compile Include="Dishes\Order.cs" />
+    <Compile Include="Dishes\Dish.cs" />
     <Compile Include="Ingredients\ConservationType.cs" />
     <Compile Include="Ingredients\Ingredient.cs" />
     <Compile Include="Ingredients\IngredientProcess.cs" />
