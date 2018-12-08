@@ -14,15 +14,14 @@ namespace Room.Main
     {
         static void Main(string[] args)
         {
+
+
+            Console.WriteLine("Waiting 5 minutes in simulation, {0} seconds in real life (speed = 1, scale = 10)", Clock.Instance.Period * 5 / 1000);
+            Thread.Sleep(Clock.Instance.Period * 5);
+
             Clock.Instance.Speed = 2;
-            Clock.Instance.Period = 6000;
-
-            Console.WriteLine("Waiting {0} seconds (speed = 2)", Clock.Instance.Period);
-            Thread.Sleep(Clock.Instance.Period);
-
-            Clock.Instance.Speed = 1;
-            Console.WriteLine("Waiting {0} seconds (speed = 1)", Clock.Instance.Period);
-            Thread.Sleep(Clock.Instance.Period);
+            Console.WriteLine("Waiting 5 minutes in simulation, {0} seconds in real life (speed = 2, scale = 10)", ((float)Clock.Instance.Period * 5 / 1000) );
+            Thread.Sleep(Clock.Instance.Period * 5);
 
         }
     }
