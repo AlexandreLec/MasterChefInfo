@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RoomMaster : Factory.IFactoryRoomMaster
+    class RoomMaster : Staff
     {
         /// <summary>
         /// Sprite of the room master
@@ -48,16 +48,13 @@ namespace Room.Model.Staff
 
             }
             */
-            
-            
+
+
         }
 
-        /// <summary>
-        /// Creation of a room master
-        /// </summary>
-        public void CreateRoomMaster()
+        public override void WhoAmI()
         {
-
+            Console.WriteLine("I'm a RoomMaster");
         }
     }
 }

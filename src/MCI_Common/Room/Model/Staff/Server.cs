@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    public class Server : Factory.IFactoryServer
+    class Server : Staff
     {
         /// <summary>
         /// Square in the room
@@ -47,12 +47,9 @@ namespace Room.Model.Staff
         }
         */
 
-        /// <summary>
-        /// creation of a server
-        /// </summary>
-        public void CreateServer()
+        public override void WhoAmI()
         {
-
+            Console.WriteLine("I'm a Server");
         }
     }
 }

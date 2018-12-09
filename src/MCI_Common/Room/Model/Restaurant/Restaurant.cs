@@ -20,13 +20,9 @@ namespace Room.Model.Restaurant
 
         void CreateStaff()
         {
-            var serverCreation = FactoryStaff.CreateServer();
-            var roomMasterCreation = FactoryStaff.CreateRoomMaster();
-            var rankChiefCreation = FactoryStaff.CreateRankChief();
-
-            serverCreation.CreateServer();
-            roomMasterCreation.CreateRoomMaster();
-            rankChiefCreation.CreateRankChief();
+            FactoryStaff factory = FactoryStaff.GetFactory();
+            Staff.Staff staff = factory.Create();
+            staff.WhoAmI();
         }
 
         void CreateClients()

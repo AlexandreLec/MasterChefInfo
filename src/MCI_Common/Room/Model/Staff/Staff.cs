@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    public class Staff
+    abstract class Staff
     {
         /// <summary>
         /// Name of the staff
         /// </summary>
-        private string Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// ID of the staff
         /// </summary>
-        private int Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Position of the staff
@@ -31,16 +31,17 @@ namespace Room.Model.Staff
         /// <summary>
         /// Availability of the staff
         /// </summary>
-        private bool Available { get; set; }
+        public bool Available { get; set; }
 
-        /// <summary>
+        /* /// <summary>
         /// Move to a position
         /// </summary>
         /// <param name="pos"></param>
-        /* public void MoveTo(Position pos)
+        public void MoveTo(Position pos)
         {
             
-        }
-        */
+        } */
+
+        public abstract void WhoAmI();
     }
 }

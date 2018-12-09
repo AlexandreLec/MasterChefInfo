@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    public class RankChief : Factory.IFactoryRankChief
+    class RankChief : Staff
     {
         /// <summary>
         /// Square in the room
@@ -53,12 +53,9 @@ namespace Room.Model.Staff
             
         }
 
-        /// <summary>
-        /// Creation of a rank chief
-        /// </summary>
-        public void CreateRankChief()
+        public override void WhoAmI()
         {
-            
+            Console.WriteLine("I'm a RankChief");
         }
     }
 }

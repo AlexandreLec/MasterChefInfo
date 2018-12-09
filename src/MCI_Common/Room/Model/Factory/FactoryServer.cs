@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Room.Model.Staff;
 
 namespace Room.Model.Factory
 {
-    public interface IFactoryRoomMaster
+    class FactoryServer : FactoryStaff
     {
-        void CreateRoomMaster();
+        public override Staff.Staff Create()
+        {
+            return (new Server());
+        }
     }
 }

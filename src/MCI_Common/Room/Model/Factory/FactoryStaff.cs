@@ -6,21 +6,34 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Factory
 {
-    public class FactoryStaff
+    abstract class FactoryStaff
     {
-        public static IFactoryServer CreateServer()
+        public static FactoryStaff GetFactory()
         {
-            return new Staff.Server();
+            int RankChiefNumber = 1;
+            int RoomMasterNumber = 1;
+            int ServerNumber = 1;
+
+            while (RankChiefNumber != 0)
+            {
+                RankChiefNumber--;
+                return (new FactoryRankChief());
+            }
+
+            while (RoomMasterNumber != 0)
+            {
+                RoomMasterNumber--;
+                return (new FactoryRoomMaster());
+            }
+
+            while (ServerNumber != 0)
+            {
+                ServerNumber--;
+                return (new FactoryServer());
+            }
+            return GetFactory();
         }
 
-        public static IFactoryRoomMaster CreateRoomMaster()
-        {
-            return new Staff.RoomMaster();
-        }
-
-        public static IFactoryRankChief CreateRankChief()
-        {
-            return new Staff.RankChief();
-        }
+        public abstract Staff.Staff Create();
     }
 }
