@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RoomMaster : Factory.IFactoryRoomMaster
+    class RoomMaster : Staff
     {
         /// <summary>
         /// Sprite of the room master
@@ -30,15 +30,31 @@ namespace Room.Model.Staff
         /// <param name="groupClient"></param>
         public void AssignTable(ClientGroup groupClient)
         {
-            // 
+            // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();
+            List<Table> ListTables = new List<Table>();
+
+            // List all the tables
+            foreach (var square in new SquareProcess().GetAll())
+            {
+                foreach (var table in square.Tables)
+                {
+                    ListTables.Add(table);
+                }
+            }
+
+            /* foreach (var AvailableTables in ListTables.Where(Table.Capacity()))
+            {
+
+            }
+            */
 
 
         }
 
-        public void CreateRoomMaster()
+        public override void WhoAmI()
         {
-
+            Console.WriteLine("I'm a RoomMaster");
         }
     }
 }
