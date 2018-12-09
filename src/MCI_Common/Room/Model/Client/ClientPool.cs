@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Client
 {
-    class ClientPool
+    public class ClientPool
     {
 
         public void AddGroup()
@@ -47,7 +47,10 @@ namespace Room.Model.Client
             List<Client> cltList = new List<Client>();
 
             for (int i = 0; i < nb; i++)
+            {
                 cltList.Add(new Client());
+                Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+            }
 
             return cltList;
 

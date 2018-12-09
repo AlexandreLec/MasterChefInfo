@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using MCI_Common.RoomMaterials;
 using MCI_Common.Time;
+using MCI_Common.Recipes;
 
 namespace Room.Model.Client
 {
@@ -45,16 +46,23 @@ namespace Room.Model.Client
         private event ReadyToPayEventHandler ReadyToPay;
         private string Sprite;
         
+        public ClientGroup()
+        {
+            //this.Eat(RecipeType.MAIN);  //for test purpose
+        }
 
-
-        private void Eat(string CurrentDish)
+        /// <summary>
+        /// Eat for given time, depending on meal eaten
+        /// </summary>
+        /// <param name="CurrentDish"></param>
+        private void Eat(RecipeType CurrentDish)
         {
             int delay;
 
             // Delay according to the dish eaten
-            if (CurrentDish == "Starter")
+            if (CurrentDish == RecipeType.STARTER)
                 delay = 15;
-            else if (CurrentDish == "Dish")
+            else if (CurrentDish == RecipeType.MAIN)
                 delay = 30;
             else
                 delay = 10;
@@ -68,7 +76,7 @@ namespace Room.Model.Client
 
             OnDishFinished(Id);
 
-            if (CurrentDish == "Dessert")
+            if (CurrentDish == RecipeType.DESSERT)
                 OnReadyToPay(Id);
 
         }
