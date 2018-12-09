@@ -10,13 +10,16 @@ namespace Room.Model.Client
     class ClientPool
     {
 
-
+        public void AddGroup()
+        {
+            ThreadPool.QueueUserWorkItem(GenerateGroup);
+        }
 
         /// <summary>
         /// Genereates the client group from created clients
         /// </summary>
         /// <param name="cltList"></param>
-        public void GenerateGroup()
+        private void GenerateGroup(object data)
         {
             // List for storing generated clients
             List<Client> cltList = new List<Client>();
@@ -39,7 +42,7 @@ namespace Room.Model.Client
         /// </summary>
         /// <param name="nb"></param>
         /// <returns></returns>
-        public List<Client> GenerateClients(int nb)
+        private List<Client> GenerateClients(int nb)
         {
             List<Client> cltList = new List<Client>();
 
