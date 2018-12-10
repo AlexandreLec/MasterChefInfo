@@ -18,21 +18,6 @@ namespace Room.Model.Factory
 
         }
 
-        public static FactoryStaff Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new FactoryStaff();
-                    }
-                    return instance;
-                }
-            }
-        }
-
         public static void GetFactory()
         {
             int RankChiefNumber = 1;
@@ -47,7 +32,6 @@ namespace Room.Model.Factory
             while (RankChiefNumber != 0)
             {
                 RankChiefNumber--;
-                GetRCFactory();
             }
             while (ServerNumber != 0)
             {
@@ -56,9 +40,5 @@ namespace Room.Model.Factory
             }
             
         }
-
-        public static FactoryRankChief GetRCFactory() { return new FactoryRankChief(); }
-
-        public abstract Staff.Staff Create();
     }
 }

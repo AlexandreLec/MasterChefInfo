@@ -39,7 +39,7 @@ namespace Room.Model.Client
         // TODO ajouter les envent handler au staff + abonnement
 
 
-        private int Id;
+        public int Id;
         public List<Client> ClientList;
         private Table TableSit;
         private Boolean Reserved;

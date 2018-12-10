@@ -19,14 +19,10 @@ namespace Room.Main
     {
         static void Main(string[] args)
         {
-            FactoryStaff factory = FactoryStaff.GetFactory();
-            Staff staff = factory.Create();
-            staff.WhoAmI();
 
-           /* Restaurant resto = new Restaurant();
+            Restaurant resto = new Restaurant();
 
-
-            ClientPool clients = new ClientPool(); */
+            ClientPool clients = new ClientPool();
 
             Console.Read();
         }
