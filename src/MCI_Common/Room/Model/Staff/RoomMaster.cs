@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RoomMaster : Staff
+    public class RoomMaster : Staff
     {
         /// <summary>
         /// Sprite of the room master
@@ -32,7 +32,11 @@ namespace Room.Model.Staff
         {
             // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();
+
+            // Initiate a new list of tables
             List<Table> ListTables = new List<Table>();
+            List<Table> AvailableTables = new List<Table>();
+
 
             // List all the tables
             foreach (var square in new SquareProcess().GetAll())
@@ -43,14 +47,16 @@ namespace Room.Model.Staff
                 }
             }
 
-            /* foreach (var AvailableTables in ListTables.Where(Table.Capacity()))
+            foreach (var AvailableTable in ListTables.Where(t => t.Capacity >= WaitingClients))
             {
-
+                AvailableTables.Add(AvailableTable);
             }
-            */
 
-
+            Table AssignedTable = AvailableTables[0];
+            AssignedTable.ClientGroupIdAssigned = groupClient.Id;
+            AssignedTable.IsAvailable = false;
         }
+
 
         public override void WhoAmI()
         {

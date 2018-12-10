@@ -22,5 +22,11 @@ namespace MCI_Common.Dishes
         /// The order is readay or not
         /// </summary>
         public bool Ready { get; set; }
+
+        public Order()
+        {
+            this.Dishes = new List<Dish>();
+            this.Ready = false;
+        }
     }
 }

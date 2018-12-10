@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Room.Model.Client
 {
     // Imovable ???
-    public class Client
+    public class Client : Movable
     {
         public string Sprite;
 

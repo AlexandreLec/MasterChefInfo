@@ -47,5 +47,10 @@ namespace MCI_Common.Recipes
         /// List of the recipe's steps
         /// </summary>
         public List<Step> Steps { get; set; }
+
+        public Recipe()
+        {
+            this.BakeTime = 0;
+        }
     }
 }

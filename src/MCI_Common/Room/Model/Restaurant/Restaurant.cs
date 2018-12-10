@@ -29,12 +29,8 @@ namespace Room.Model.Restaurant
             
         }
 
-        void CreateStaff()
+       public void CreateStaff()
         {
-            FactoryStaff factory = FactoryStaff.GetFactory();
-            Staff.Staff staff = factory.Create();
-            staff.WhoAmI();
-
 
         }
 

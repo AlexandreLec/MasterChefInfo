@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Threading;
 using MCI_Common.RoomMaterials;
 using MCI_Common.Recipes;
+using MCI_Common.Communication;
 using Room.Model.Staff;
-
+using Room.Model.Behaviour;
 
 namespace Room.Model.Client
 {
-    public class ClientGroup
+    public class ClientGroup : Movable
     {
         /// <summary>
         /// Delegate for ReadyToOrder event
@@ -37,18 +38,23 @@ namespace Room.Model.Client
         // TODO ajouter les envent handler au staff + abonnement
 
 
-        private int Id;
+        public int Id;
         public List<Client> ClientList;
-        private Table TableSit;
+        public Table TableSit;
         private Boolean Reserved;
         private Boolean IsHurry;
+        
+        // Events
         private event ReadyToOrderEventHandler ReadyToOrder;
         private event DishFinishedEventHandler DishFinished;
         private event ReadyToPayEventHandler ReadyToPay;
+
+        
         private string Sprite;
         
         public ClientGroup(int id)
         {
+
             Id = id;
 
             //adding subscriptions to events
@@ -56,7 +62,34 @@ namespace Room.Model.Client
             ReadyToOrder += StaffManager.Instance.OnReadyToOrder;
             ReadyToPay += StaffManager.Instance.OnReadyToPay;
 
+            
+
+            //Spawns at inital position
+            MoveTo(1, 1);
+
+
+            //Go to room master's counter
+            MoveTo(10, 10);
+            StaffManager.Instance.Master.AssignTable(this);
+
+            //Follows the room master (or leaves)
+
+
+            //Gets seated -> set individual clients around table
+
+            //Gets menus, reflexion moment
+
+            //Meal Orders are done
+
+            //(Wine order)
+
+            //Wait for food, then eats
+
             this.Eat(RecipeType.DESSERT);  //for test purpose
+
+
+            //Meal finished, ready to pay
+
         }
 
         /// <summary>
@@ -66,16 +99,15 @@ namespace Room.Model.Client
         private void Eat(RecipeType CurrentDish)
         {
             int delay;
-
-            Console.WriteLine("before meal");
+            
 
             // Delay according to the dish eaten
             if (CurrentDish == RecipeType.STARTER)
-                delay = 15;
+                delay = Global_Settings.timeStarter;
             else if (CurrentDish == RecipeType.MAIN)
-                delay = 30;
+                delay = Global_Settings.timeMain;
             else
-                delay = 10;
+                delay = Global_Settings.timeDessert;
 
             // If the client group is in a hurry, they stay twice less time
             if (IsHurry == true)

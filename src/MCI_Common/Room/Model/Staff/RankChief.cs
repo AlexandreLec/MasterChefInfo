@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RankChief : Staff
+    public class RankChief : Staff
     {
         /// <summary>
         /// Square in the room
@@ -43,6 +43,16 @@ namespace Room.Model.Staff
             
         }
         */
+
+        public void SeatClients(ClientGroup cltGr)
+        {
+            int i = 0;
+
+            foreach (Client.Client clt in cltGr.ClientList)
+            {
+                clt.position.SetPosition(cltGr.TableSit);
+            }
+        }
 
         /// <summary>
         /// Take the client's order
