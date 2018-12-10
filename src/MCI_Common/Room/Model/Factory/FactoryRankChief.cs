@@ -7,11 +7,8 @@ using Room.Model.Staff;
 
 namespace Room.Model.Factory
 {
-    public class FactoryRankChief
+    class FactoryRankChief : FactoryStaff
     {
-        public override Staff.Staff Create()
-        {
-            return (new RankChief());
-        }
+
     }
 }

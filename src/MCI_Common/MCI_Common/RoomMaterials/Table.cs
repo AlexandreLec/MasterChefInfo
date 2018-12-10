@@ -28,6 +28,9 @@ namespace MCI_Common.RoomMaterials
         /// </summary>
         public bool IsAvailable { get; set; }
 
+        /// <summary>
+        /// Client group assigned to a table
+        /// </summary>
         public int ClientGroupIdAssigned { get; set; }
   
         /// <summary>

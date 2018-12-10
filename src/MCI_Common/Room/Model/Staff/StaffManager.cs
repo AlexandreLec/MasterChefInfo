@@ -38,7 +38,7 @@ namespace Room.Model.Staff
                 Rankchiefs.Add(new RankChief());
             for (int i = 0; i < Global_Settings.nbServers; i++)
                 Servers.Add(new Server());
-
+            new RoomMaster();
 
         }
 
