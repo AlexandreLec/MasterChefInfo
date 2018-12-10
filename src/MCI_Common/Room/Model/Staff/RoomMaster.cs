@@ -28,11 +28,15 @@ namespace Room.Model.Staff
         /// Assign a table to a group of clients
         /// </summary>
         /// <param name="groupClient"></param>
-        public void AssignTable(ClientGroup groupClient)
+        public static void AssignTable(ClientGroup groupClient)
         {
             // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();
+
+            // Initiate a new list of tables
             List<Table> ListTables = new List<Table>();
+            List<Table> AvailableTables = new List<Table>();
+
 
             // List all the tables
             foreach (var square in new SquareProcess().GetAll())
@@ -43,13 +47,14 @@ namespace Room.Model.Staff
                 }
             }
 
-            /* foreach (var AvailableTables in ListTables.Where(Table.Capacity()))
+            foreach (var AvailableTable in ListTables.Where(t => t.Capacity >= WaitingClients))
             {
-
+                AvailableTables.Add(AvailableTable);
             }
-            */
 
-
+            Table AssignedTable = AvailableTables[0];
+            AssignedTable.ClientGroupIdAssigned = groupClient.Id;
+            AssignedTable.IsAvailable = false;
         }
 
         public override void WhoAmI()

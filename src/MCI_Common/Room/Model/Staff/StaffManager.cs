@@ -1,4 +1,6 @@
 ﻿using Room.Model.Client;
+using Room.Model.Factory;
+using MCI_Common.Communication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class StaffManager
+    public class StaffManager
     {
         /// <summary>
         /// List of rank chiefs
         /// </summary>
-        private RankChief[] Rankchiefs;
+        private List<RankChief> Rankchiefs;
 
         /// <summary>
         /// The room master
@@ -22,7 +24,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// List of servers
         /// </summary>
-        private Server[] Servers;
+        private List<Server> Servers;
 
         /// <summary>
         /// Staff Manager thread safe Single instance
@@ -30,9 +32,14 @@ namespace Room.Model.Staff
         private static StaffManager instance = null;
         private static readonly object padlock = new object();
 
-        private StaffManager()
+        public StaffManager()
         {
-            
+            for (int i = 0; i < Global_Settings.nbRankChief; i++)
+                Rankchiefs.Add(new RankChief());
+            for (int i = 0; i < Global_Settings.nbServers; i++)
+                Servers.Add(new Server());
+
+
         }
 
         /// <summary>

@@ -28,6 +28,8 @@ namespace MCI_Common.RoomMaterials
         /// </summary>
         public bool IsAvailable { get; set; }
 
+        public int ClientGroupIdAssigned { get; set; }
+  
         /// <summary>
         /// Number of breadbasket
         /// </summary>
