@@ -77,7 +77,7 @@ namespace Room.Model.Client
 
             //Go to room master's counter
             MoveTo(10, 10);
-            StaffManager.Instance.Master.AssignTable(this);
+            //StaffManager.Instance.Master.AssignTable(this);
 
             //Follows the room master (or leaves)
 
