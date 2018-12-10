@@ -34,6 +34,19 @@ namespace Kitchen.Model
             this.RoomCommunication = new SocketCom("10.162.128.230", 11000);
         }
 
+        /// <summary>
+        /// Send all the orders that are currently ready
+        /// </summary>
+        public void SendOrderReady()
+        {
+            List<Order> listReadyOrders = new List<Order>(Orders.Where(o => o.Ready));
+            foreach (var order in listReadyOrders)
+            {
+                this.RoomCommunication.Send(order);
+                this.Orders.Remove(order);
+            }
+        }
+
         public static Counter GetInstance()
         {
             if(Counter.Instance == null)

@@ -34,11 +34,14 @@ namespace Room.Model.Staff
 
         public StaffManager()
         {
+            Rankchiefs = new List<RankChief>();
+            Servers = new List<Server>();
+
             for (int i = 0; i < Global_Settings.nbRankChief; i++)
                 Rankchiefs.Add(new RankChief());
             for (int i = 0; i < Global_Settings.nbServers; i++)
                 Servers.Add(new Server());
-            new RoomMaster();
+            Master = new RoomMaster();
 
         }
 
@@ -65,9 +68,13 @@ namespace Room.Model.Staff
         /// Assign a rank chief to take the order
         /// </summary>
         /// <param name="clients"></param>
-        public void OnReadyToOrder(object source, OrderEventArgs Id)
+        public void OnReadyToOrder(object source, OrderEventArgs args)
         {
-            Console.WriteLine("Le client {0} est prêt à commander", Id.Id);
+            int i = 0;
+
+            Rankchiefs[i].TakeOrderTable(args.cltGroup);
+
+            Console.WriteLine("Le client {0} est prêt à commander", args.Id);
         }
 
         /// <summary>

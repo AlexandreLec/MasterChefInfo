@@ -19,7 +19,7 @@ namespace Room.Model.Restaurant
 
         public Restaurant()
         {
-            this.Squares = new SquareProcess().GetAll();
+            //this.Squares = new SquareProcess().GetAll();
 
             CreateStaff();
             Console.WriteLine("Staff created");
