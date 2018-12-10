@@ -1,6 +1,7 @@
 ﻿using MCI_Common.Dishes;
 using MCI_Common.Recipes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,7 @@ namespace Kitchen.Model
         /// <summary>
         /// Socket client to connect to room
         /// </summary>
-        private SocketCom RoomCommunication;
-
-        /// <summary>
-        /// List of the recipe available in menu
-        /// </summary>
-        public List<Recipe> Menu { get; set; }
+        public SocketCom RoomCommunication { get; private set; }
 
         /// <summary>
         /// List of clients's orders
