@@ -18,5 +18,11 @@ namespace Room.Model.Behaviour
             posX = x;
             posY = y;
         }
+
+        public void SetPosition(int x, int y)
+        {
+            posX = x;
+            posY = y;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading;
 using MCI_Common.RoomMaterials;
 using MCI_Common.Time;
 using MCI_Common.Recipes;
+using MCI_Common.Communication;
 using Room.Model.Staff;
 using Room.Model.Behaviour;
 
@@ -97,16 +98,15 @@ namespace Room.Model.Client
         private void Eat(RecipeType CurrentDish)
         {
             int delay;
-
-            Console.WriteLine("before meal");
+            
 
             // Delay according to the dish eaten
             if (CurrentDish == RecipeType.STARTER)
-                delay = 15;
+                delay = Global_Settings.timeStarter;
             else if (CurrentDish == RecipeType.MAIN)
-                delay = 30;
+                delay = Global_Settings.timeMain;
             else
-                delay = 10;
+                delay = Global_Settings.timeDessert;
 
             // If the client group is in a hurry, they stay twice less time
             if (IsHurry == true)
