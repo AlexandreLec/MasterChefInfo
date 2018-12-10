@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RoomMaster : Staff
+    public class RoomMaster : Staff
     {
         /// <summary>
         /// Sprite of the room master
@@ -28,7 +28,7 @@ namespace Room.Model.Staff
         /// Assign a table to a group of clients
         /// </summary>
         /// <param name="groupClient"></param>
-        public static void AssignTable(ClientGroup groupClient)
+        public void AssignTable(ClientGroup groupClient)
         {
             // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();

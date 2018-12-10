@@ -14,17 +14,17 @@ namespace Room.Model.Staff
         /// <summary>
         /// List of rank chiefs
         /// </summary>
-        private List<RankChief> Rankchiefs;
+        public List<RankChief> Rankchiefs;
 
         /// <summary>
         /// The room master
         /// </summary>
-        private RoomMaster Master;
+        public RoomMaster Master;
 
         /// <summary>
         /// List of servers
         /// </summary>
-        private List<Server> Servers;
+        public List<Server> Servers;
 
         /// <summary>
         /// Staff Manager thread safe Single instance

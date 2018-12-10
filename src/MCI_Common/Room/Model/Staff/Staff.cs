@@ -8,7 +8,7 @@ using Room.Model.Behaviour;
 
 namespace Room.Model.Staff
 {
-    abstract class Staff : Movable
+    public abstract class Staff : Movable
     {
         /// <summary>
         /// Name of the staff

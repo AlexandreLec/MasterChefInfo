@@ -39,12 +39,12 @@ namespace Room.Model.Client
         // TODO ajouter les envent handler au staff + abonnement
 
 
-        private int Id;
+        public int Id;
         public List<Client> ClientList;
         private Table TableSit;
         private Boolean Reserved;
         private Boolean IsHurry;
-
+        
         // Events
         private event ReadyToOrderEventHandler ReadyToOrder;
         private event DishFinishedEventHandler DishFinished;
@@ -67,9 +67,11 @@ namespace Room.Model.Client
 
             //Spawns at inital position
             MoveTo(1, 1);
-            
+
 
             //Go to room master's counter
+            MoveTo(10, 10);
+            StaffManager.Instance.Master.AssignTable(this);
 
             //Follows the room master (or leaves)
 
