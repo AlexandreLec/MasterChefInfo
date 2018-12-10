@@ -82,9 +82,13 @@
     <Compile Include="RoomMaterials\GlassType.cs" />
     <Compile Include="RoomMaterials\TB_Square.cs" />
     <Compile Include="RoomMaterials\TB_Table.cs" />
+    <Compile Include="Time\Clock.cs" />
     <Compile Include="Tools\TB_Tool.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\ToolProcess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

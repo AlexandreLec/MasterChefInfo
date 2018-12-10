@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Client
 {
+    // Imovable ???
     public class Client
     {
+        public string Sprite;
 
         /// <summary>
         /// If the client received its dish, false when

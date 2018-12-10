@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.RoomMaterials;
 using Room.Model.Factory;
+using Room.Model.Client;
+using Room.Model.Staff;
 
 namespace Room.Model.Restaurant
 {
@@ -12,25 +14,33 @@ namespace Room.Model.Restaurant
     {
         public List<Square> Squares { get; set; }
 
-        Restaurant()
+        
+
+
+        public Restaurant()
         {
             this.Squares = new SquareProcess().GetAll();
+
+            CreateStaff();
+            Console.WriteLine("Staff created");
+
+            CreateClients();
+            Console.WriteLine("Clients created");
             
         }
 
         void CreateStaff()
         {
-            var serverCreation = FactoryStaff.CreateServer();
-            var roomMasterCreation = FactoryStaff.CreateRoomMaster();
-            var rankChiefCreation = FactoryStaff.CreateRankChief();
+            FactoryStaff factory = FactoryStaff.GetFactory();
+            Staff.Staff staff = factory.Create();
+            staff.WhoAmI();
 
-            serverCreation.CreateServer();
-            roomMasterCreation.CreateRoomMaster();
-            rankChiefCreation.CreateRankChief();
+
         }
 
         void CreateClients()
         {
+            ClientPool cltPool = new ClientPool();
 
         }
 

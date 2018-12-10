@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCI_Common", "MCI_Common\MCI_Common.csproj", "{B7630D98-1259-40B3-B7D6-2FF40DC6F015}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen", "Kitchen\Kitchen.csproj", "{B129E226-0402-4B20-9F1C-F853FEDB444E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Tests", "Kitchen.Tests\Kitchen.Tests.csproj", "{ED17A66A-AEB8-45EA-8FD2-85EDA037E506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomTests", "RoomTests\RoomTests.csproj", "{F94E8C67-679B-4239-8D3B-EAFFE45A8A9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{ED17A66A-AEB8-45EA-8FD2-85EDA037E506}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED17A66A-AEB8-45EA-8FD2-85EDA037E506}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED17A66A-AEB8-45EA-8FD2-85EDA037E506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94E8C67-679B-4239-8D3B-EAFFE45A8A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94E8C67-679B-4239-8D3B-EAFFE45A8A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94E8C67-679B-4239-8D3B-EAFFE45A8A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94E8C67-679B-4239-8D3B-EAFFE45A8A9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
