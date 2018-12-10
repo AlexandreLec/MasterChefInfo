@@ -10,17 +10,19 @@ namespace Kitchen.Model
 {
     class ToolsManager
     {
+        private static ToolsManager Instance = null;
+
         public Hashtable LeasedTools { get; set; }
         public Hashtable AvailableTools { get; set; }
 
         private readonly object LockLeasing = new object();
         private readonly object LockReleasing = new object();
 
-        public ToolsManager(bool init = true)
+        private ToolsManager()
         {
             this.LeasedTools = new Hashtable();
             this.AvailableTools = new Hashtable();
-            if (init) this.InitToolsManager();
+            this.InitToolsManager();
         }
 
         private void InitToolsManager()
@@ -33,6 +35,12 @@ namespace Kitchen.Model
                 LeasedTools.Add(item.Name, 0);
             }
 
+        }
+
+        public static ToolsManager GetInstance()
+        {
+            if (Instance == null) Instance = new ToolsManager();
+            return Instance;
         }
 
         public bool LeaseTool(Tool tool)

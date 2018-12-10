@@ -27,5 +27,15 @@ namespace MCI_Common.Devices
         /// Capacity of the device
         /// </summary>
         public int Capacity { get; set; }
+
+        /// <summary>
+        /// Availability of the device
+        /// </summary>
+        public bool IsAvailable { get; set; }
+
+        public Device()
+        {
+            this.IsAvailable = false;
+        }
     }
 }

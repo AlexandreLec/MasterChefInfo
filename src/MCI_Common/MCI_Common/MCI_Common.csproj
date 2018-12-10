@@ -47,7 +47,6 @@
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\DeviceProcess.cs" />
     <Compile Include="Devices\TB_Device.cs" />
-    <Compile Include="Dishes\Menu.cs" />
     <Compile Include="Dishes\Order.cs" />
     <Compile Include="Dishes\Dish.cs" />
     <Compile Include="Ingredients\ConservationType.cs" />
