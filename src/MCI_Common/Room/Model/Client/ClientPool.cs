@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Room.Model.Staff;
-using MCI_Common.Time;
 
 namespace Room.Model.Client
 {
@@ -37,7 +36,7 @@ namespace Room.Model.Client
                 AddGroup();
 
                 //Wait 5 Sim min
-                Thread.Sleep(5*Clock.Instance.Period);
+                Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
             }
 
         }

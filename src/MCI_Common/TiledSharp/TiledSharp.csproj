@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B129E226-0402-4B20-9F1C-F853FEDB444E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Kitchen</RootNamespace>
-    <AssemblyName>Kitchen</AssemblyName>
+    <ProjectGuid>{DEDD84F5-45BC-4639-94BD-B2FE55D42C0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TiledSharp</RootNamespace>
+    <AssemblyName>TiledSharp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.7.0.1708, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,38 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="Model\CookChief.cs" />
-    <Compile Include="Model\Cooker.cs" />
-    <Compile Include="Model\Counter.cs" />
-    <Compile Include="Model\SocketCom.cs" />
-    <Compile Include="Model\ToolsManager.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="ImageLayer.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="ObjectGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Game2.cs" />
-    <Compile Include="View\Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="View\Content\Content.mgcb" />
-    <None Include="View\Content\MapKitchenNew.tmx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
-      <Project>{B7630D98-1259-40B3-B7D6-2FF40DC6F015}</Project>
-      <Name>MCI_Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TiledSharp\TiledSharp.csproj">
-      <Project>{dedd84f5-45bc-4639-94bd-b2fe55d42c0b}</Project>
-      <Name>TiledSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="View\Content\Cooker.png" />
-    <Content Include="View\Content\kitchenChief.png" />
-    <Content Include="View\Content\TileCuisine.png" />
-    <Content Include="View\Content\Washer.png" />
+    <Compile Include="TiledCore.cs" />
+    <Compile Include="Tileset.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

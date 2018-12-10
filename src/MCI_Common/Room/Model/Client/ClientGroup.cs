@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using MCI_Common.RoomMaterials;
-using MCI_Common.Time;
 using MCI_Common.Recipes;
 using Room.Model.Staff;
 
@@ -83,7 +82,7 @@ namespace Room.Model.Client
                 delay /= 2;
 
             // Wait for the group to finish eating, delay multiplied to get minutes
-            Thread.Sleep(delay*Clock.Instance.Period);
+            Thread.Sleep(delay* MCI_Common.Timer.Clock.Instance.Period);
 
             OnDishFinished(Id);
 

@@ -1,5 +1,5 @@
 ﻿using MCI_Common.Recipes;
-using MCI_Common.Time;
+using ProjectGameRestaurantNew;
 using Room.Model.Client;
 using System;
 using System.Collections;
@@ -17,7 +17,7 @@ namespace Room.Main
         static void Main(string[] args)
         {
 
-            ClientPool clients = new ClientPool();
+            /*ClientPool clients = new ClientPool();
 
             
 
@@ -26,9 +26,10 @@ namespace Room.Main
                 clients.AddGroup();
                 Thread.Sleep(Clock.Instance.Period);
                 Console.WriteLine(" ");
-            }
+            }*/
 
-            
+            using (var game = new Game1())
+                game.Run();
             Console.Read();
 
         }
