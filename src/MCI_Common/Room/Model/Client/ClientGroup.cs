@@ -7,6 +7,8 @@ using System.Threading;
 using MCI_Common.RoomMaterials;
 using MCI_Common.Time;
 using MCI_Common.Recipes;
+using Room.Model.Staff;
+
 
 namespace Room.Model.Client
 {
@@ -17,21 +19,21 @@ namespace Room.Model.Client
         /// </summary>
         /// <param name="source"></param>
         /// <param name="args"></param>
-        public delegate void ReadyToOrderEventHandler(object source, EventArgs args);
+        public delegate void ReadyToOrderEventHandler(object source, OrderEventArgs args);
 
         /// <summary>
         /// Delegate for DishFinished event
         /// </summary>
         /// <param name="source"></param>
         /// <param name="args"></param>
-        public delegate void DishFinishedEventHandler(object source, EventArgs args);
+        public delegate void DishFinishedEventHandler(object source, OrderEventArgs args);
 
         /// <summary>
         /// Delegate for ReadyToPay event
         /// </summary>
         /// <param name="source"></param>
         /// <param name="args"></param>
-        public delegate void ReadyToPayEventHandler(object source, EventArgs args);
+        public delegate void ReadyToPayEventHandler(object source, OrderEventArgs args);
 
         // TODO ajouter les envent handler au staff + abonnement
 
@@ -46,9 +48,16 @@ namespace Room.Model.Client
         private event ReadyToPayEventHandler ReadyToPay;
         private string Sprite;
         
-        public ClientGroup()
+        public ClientGroup(int id)
         {
-            //this.Eat(RecipeType.MAIN);  //for test purpose
+            Id = id;
+
+            //adding subscriptions to events
+            DishFinished += StaffManager.Instance.OnDishFinished;
+            ReadyToOrder += StaffManager.Instance.OnReadyToOrder;
+            ReadyToPay += StaffManager.Instance.OnReadyToPay;
+
+            this.Eat(RecipeType.DESSERT);  //for test purpose
         }
 
         /// <summary>
@@ -58,6 +67,8 @@ namespace Room.Model.Client
         private void Eat(RecipeType CurrentDish)
         {
             int delay;
+
+            Console.WriteLine("before meal");
 
             // Delay according to the dish eaten
             if (CurrentDish == RecipeType.STARTER)
@@ -99,7 +110,7 @@ namespace Room.Model.Client
         /// <param name="GroupId"></param>
         protected virtual void OnReadyToOrder(int GroupId)
         {
-            ReadyToOrder?.Invoke(this, new OrderEventArgs() { Id = GroupId } );
+            ReadyToOrder?.Invoke(this, new OrderEventArgs(this.Id));
         }
 
         /// <summary>
@@ -108,7 +119,7 @@ namespace Room.Model.Client
         /// <param name="GroupId"></param>
         protected virtual void OnDishFinished(int GroupId)
         {
-            DishFinished?.Invoke(this, new OrderEventArgs() { Id = GroupId });
+            DishFinished?.Invoke(this, new OrderEventArgs(this.Id));
         }
 
         /// <summary>
@@ -117,7 +128,7 @@ namespace Room.Model.Client
         /// <param name="GroupId"></param>
         protected virtual void OnReadyToPay(int GroupId)
         {
-            ReadyToPay?.Invoke(this, new OrderEventArgs() { Id = GroupId });
+            ReadyToPay?.Invoke(this, new OrderEventArgs(this.Id));
         }
 
 
@@ -129,5 +140,8 @@ namespace Room.Model.Client
     public class OrderEventArgs : EventArgs
     {
         public int Id { get; set; }
+
+        public OrderEventArgs(int id_clt) { this.Id = id_clt; }
+
     }
 }

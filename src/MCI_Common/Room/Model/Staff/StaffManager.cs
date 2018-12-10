@@ -25,30 +25,62 @@ namespace Room.Model.Staff
         private Server[] Servers;
 
         /// <summary>
-        /// Assign a rank chief to take the order
+        /// Staff Manager thread safe Single instance
         /// </summary>
-        /// <param name="clients"></param>
-        public void ReadyToOrder(ClientGroup clients)
+        private static StaffManager instance = null;
+        private static readonly object padlock = new object();
+
+        private StaffManager()
         {
             
         }
 
         /// <summary>
-        /// Assign a server to clear and serve the meal
+        /// Method for Singelton Management
+        /// </summary>
+        public static StaffManager Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new StaffManager();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Assign a rank chief to take the order
         /// </summary>
         /// <param name="clients"></param>
-        public void DishTerminated(ClientGroup clients)
+        public void OnReadyToOrder(object source, OrderEventArgs Id)
         {
-            
+            Console.WriteLine("Le client {0} est prêt à commander", Id.Id);
+        }
+
+        /// <summary>
+        /// Assign a server to clear and serve the meal when event raised
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="Id"></param>
+        public void OnDishFinished(object source, OrderEventArgs Id)
+        {
+            Console.WriteLine("Le client {0} a fini", Id.Id);
         }
 
         /// <summary>
         /// Assign a room master to make payment
         /// </summary>
         /// <param name="clients"></param>
-        public void Payment(ClientGroup clients)
+        public void OnReadyToPay (object source, OrderEventArgs Id)
         {
-            
+            Console.WriteLine("Le client {0} est prêt à payer", Id.Id);
+            //Prepare payment
         }
     }
 }
