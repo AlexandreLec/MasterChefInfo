@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCI_Common.Time
+namespace MCI_Common.Timer
 {
 
     public sealed class Clock

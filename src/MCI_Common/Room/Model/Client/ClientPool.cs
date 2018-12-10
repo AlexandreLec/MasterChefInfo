@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Room.Model.Staff;
-using MCI_Common.Time;
-using MCI_Common.Communication;
 
 namespace Room.Model.Client
 {
     public class ClientPool
     {
-        
+        /// <summary>
+        /// Number of clients per shift (default = 200)
+        /// </summary>
+        public int nbCltPerShift { get; set; }
+
         /// <summary>
         /// Number of clients since start
         /// </summary>
@@ -25,14 +27,16 @@ namespace Room.Model.Client
 
         public ClientPool()
         {
+            //Sets nb of clients for the shift
+            nbCltPerShift = 200;
 
             //Creates client groups
-            while(nbCltSinceStart < Global_Settings.nbCltPerShift)
+            while(nbCltSinceStart < nbCltPerShift)
             {
                 AddGroup();
 
                 //Wait 5 Sim min
-                Thread.Sleep(5*Clock.Instance.Period);
+                Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
             }
 
         }

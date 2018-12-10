@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.7.0.1708, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,20 +67,30 @@
     <Compile Include="Model\Staff\Staff.cs" />
     <Compile Include="Model\Staff\StaffManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Game1.cs" />
+    <Compile Include="View\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="View\Content\Content.mgcb" />
+    <None Include="View\Content\MapRestaurantNew.tmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
       <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
       <Name>MCI_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TiledSharp\TiledSharp.csproj">
+      <Project>{dedd84f5-45bc-4639-94bd-b2fe55d42c0b}</Project>
+      <Name>TiledSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="View\Content\TilePerso.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
