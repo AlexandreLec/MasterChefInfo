@@ -26,7 +26,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Movement of the staff
         /// </summary>
-        private IMovable MoveBehaviour;
+        //private IMovable MoveBehaviour;
 
         /// <summary>
         /// Availability of the staff

@@ -8,5 +8,7 @@ namespace MCI_Common.Dishes
 {
     class Menu
     {
+
+        
     }
 }
