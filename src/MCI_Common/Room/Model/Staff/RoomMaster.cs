@@ -57,6 +57,7 @@ namespace Room.Model.Staff
             AssignedTable.IsAvailable = false;
         }
 
+
         public override void WhoAmI()
         {
             Console.WriteLine("I'm a RoomMaster");

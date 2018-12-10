@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCI_Common.Behaviour;
 
 namespace MCI_Common.RoomMaterials
 {
@@ -42,6 +43,8 @@ namespace MCI_Common.RoomMaterials
         /// Water bottle on the table
         /// </summary>
         public int Water { get; set; }
+
+        public List<Position> posAroundTable;
         
     }
 }

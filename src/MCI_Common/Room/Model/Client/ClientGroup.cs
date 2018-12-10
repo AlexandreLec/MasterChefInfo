@@ -41,7 +41,7 @@ namespace Room.Model.Client
 
         public int Id;
         public List<Client> ClientList;
-        private Table TableSit;
+        public Table TableSit;
         private Boolean Reserved;
         private Boolean IsHurry;
         

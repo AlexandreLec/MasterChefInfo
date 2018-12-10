@@ -44,6 +44,16 @@ namespace Room.Model.Staff
         }
         */
 
+        public void SeatClients(ClientGroup cltGr)
+        {
+            int i = 0;
+
+            foreach (Client.Client clt in cltGr.ClientList)
+            {
+                clt.position.SetPosition(cltGr.TableSit);
+            }
+        }
+
         /// <summary>
         /// Take the client's order
         /// </summary>
