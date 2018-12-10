@@ -67,15 +67,27 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void TakeOrderTable(ClientGroup clients)
         {
+            int i;
+
             foreach (Client.Client clt in clients.ClientList)
             {
-                for(int i=0; i < 3; i++)
+                i = 0;
+
+                while(clt.Order[i] != null)
                 {
                     Dish dish = new Dish(clients.tableOrder);
                     dish.Recipe = clt.Order[i];
                     clients.tableOrder.Dishes.Add(dish);
+                    i++;
                 }
             }
+
+            SendOrder(clients.tableOrder);
+        }
+
+        private void SendOrder(Order order)
+        {
+
         }
 
         public override void WhoAmI()

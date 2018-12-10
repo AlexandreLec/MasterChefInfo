@@ -74,7 +74,7 @@ namespace Room.Model.Staff
 
             Rankchiefs[i].TakeOrderTable(args.cltGroup);
 
-            Console.WriteLine("Le client {0} est prêt à commander", args.Id);
+            Console.WriteLine("Le client {0} est prêt à commander", args.cltGroup.Id);
         }
 
         /// <summary>
