@@ -22,8 +22,6 @@ namespace Room.Main
 
             Restaurant resto = new Restaurant();
 
-            ClientPool clients = new ClientPool();
-
             Console.Read();
         }
     }

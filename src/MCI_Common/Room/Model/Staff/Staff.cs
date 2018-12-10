@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.Communication;
+using MCI_Common.Behaviour;
 using Room.Model.Behaviour;
 
 namespace Room.Model.Staff
