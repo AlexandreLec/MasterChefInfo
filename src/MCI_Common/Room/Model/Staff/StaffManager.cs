@@ -72,9 +72,10 @@ namespace Room.Model.Staff
         {
             int i = 0;
 
+            Console.WriteLine("Le client {0} est prêt à commander", args.cltGroup.Id);
+
             Rankchiefs[i].TakeOrderTable(args.cltGroup);
 
-            Console.WriteLine("Le client {0} est prêt à commander", args.cltGroup.Id);
         }
 
         /// <summary>
@@ -82,18 +83,22 @@ namespace Room.Model.Staff
         /// </summary>
         /// <param name="source"></param>
         /// <param name="Id"></param>
-        public void OnDishFinished(object source, OrderEventArgs Id)
+        public void OnDishFinished(object source, OrderEventArgs args)
         {
-            Console.WriteLine("Le client {0} a fini", Id.Id);
+            int i = 0;
+
+            Console.WriteLine("Le client {0} a fini", args.cltGroup.Id);
+
+            Servers[i].ClearMeal(args.cltGroup);
         }
 
         /// <summary>
         /// Assign a room master to make payment
         /// </summary>
         /// <param name="clients"></param>
-        public void OnReadyToPay (object source, OrderEventArgs Id)
+        public void OnReadyToPay (object source, OrderEventArgs args)
         {
-            Console.WriteLine("Le client {0} est prêt à payer", Id.Id);
+            Console.WriteLine("Le client {0} est prêt à payer", args.cltGroup.Id);
             //Prepare payment
         }
     }

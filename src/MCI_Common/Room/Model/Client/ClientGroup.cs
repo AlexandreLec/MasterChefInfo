@@ -46,8 +46,9 @@ namespace Room.Model.Client
         public Table TableSit;
         public RecipeType MealProgression = RecipeType.UNKNOWN;
 
-        private Boolean Reserved;
-        private Boolean IsHurry;
+        private bool Reserved;
+        private bool IsHurry;
+        private bool Ready = false;
 
         
         
@@ -59,11 +60,12 @@ namespace Room.Model.Client
         
         private string Sprite;
         
-        public ClientGroup(int id)
+        public ClientGroup(int id, List<Client> list)
         {
 
             Id = id;
             ClientList = new List<Client>();
+            ClientList = list;
 
             //adding subscriptions to events
             DishFinished += StaffManager.Instance.OnDishFinished;
@@ -80,18 +82,21 @@ namespace Room.Model.Client
             MoveTo(10, 10);
             //StaffManager.Instance.Master.AssignTable(this);
 
+
             //Follows the room master (or leaves)
 
 
             //Gets seated -> set individual clients around table
 
             //Gets menus, reflexion moment
-
+            Order();
             //Meal Orders are done
 
             //(Wine order)
 
+
             //Wait for food, then eats
+            
 
             //this.Eat();  //for test purpose
 
@@ -105,9 +110,11 @@ namespace Room.Model.Client
         /// </summary>
         public void Order()
         {
+            Console.WriteLine("Group {0} ordering...", Id);
+
             foreach (Client clt in ClientList)
             {
-                clt.OrderMeal();
+                //clt.OrderMeal();
             }
 
             //5min for decision making
@@ -115,14 +122,41 @@ namespace Room.Model.Client
 
             //Ready to order
             OnReadyToOrder(this);
-
-            //Wait for meal
             WaitMeal();
+            
         }
 
+        /// <summary>
+        /// Order dessert (those who didn't)
+        /// </summary>
+        public void OrderDessert()
+        {
+            foreach (Client clt in ClientList)
+                if (clt.Order[2] == null)
+                    clt.OrderMethod.OrderDessert(clt);
+
+            OnReadyToOrder(this);
+
+        }
+
+        /// <summary>
+        /// Wait until every client of the group is served
+        /// </summary>
         private void WaitMeal()
         {
-           // while ()//foreach
+            Console.WriteLine("Group {0} waiting for it's meal", Id);
+
+            while (Ready != true)
+            {
+                Ready = true;
+
+                foreach(Client clt in ClientList)
+                {
+                    if (clt.Served == false)
+                        Ready = false;
+                }
+            }
+            Eat();
         }
 
         /// <summary>

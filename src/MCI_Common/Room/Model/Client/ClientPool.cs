@@ -28,13 +28,15 @@ namespace Room.Model.Client
             Console.WriteLine("Client Pool created");
 
             //Creates client groups
-            while(nbCltSinceStart < Global_Settings.nbCltPerShift)
-            {
-                AddGroup();
+            /*   UNCOMMENT FOR PRODUCTION   */
+            AddGroup();
+            //while(nbCltSinceStart < Global_Settings.nbCltPerShift)
+            //{
+            //    AddGroup();
 
-                //Wait 5 Sim min
-                Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
-            }
+            //    //Wait 5 Sim min
+            //    Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
+            //}
 
         }
 
@@ -71,12 +73,10 @@ namespace Room.Model.Client
             cltList = GenerateClients(rdNb);
 
             // ClientGroup created
-            ClientGroup group = new ClientGroup(nbCltGp);
+            Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, rdNb);
+            ClientGroup group = new ClientGroup(nbCltGp, cltList);
 
-            // Group's list of clients filled with generated clients
-            group.ClientList = cltList;
-
-            Console.WriteLine("New client group, thread ID : {0}", Thread.CurrentThread.ManagedThreadId);
+            
 
 
         }

@@ -85,6 +85,7 @@
     <Compile Include="RoomMaterials\TB_Square.cs" />
     <Compile Include="RoomMaterials\TB_Table.cs" />
     <Compile Include="Time\Clock.cs" />
+    <Compile Include="Time\Randomizer.cs" />
     <Compile Include="Tools\TB_Tool.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\ToolProcess.cs" />
