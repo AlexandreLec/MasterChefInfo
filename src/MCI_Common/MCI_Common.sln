@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomTests", "RoomTests\Room
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiledSharp", "TiledSharp\TiledSharp.csproj", "{DEDD84F5-45BC-4639-94BD-B2FE55D42C0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDevKitchenNew", "..\..\..\..\ProjectDevKitchenNew\ProjectDevKitchenNew\ProjectDevKitchenNew.csproj", "{12BCC3F2-BD99-4424-9777-BDD58B811D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,12 @@ Global
 		{DEDD84F5-45BC-4639-94BD-B2FE55D42C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DEDD84F5-45BC-4639-94BD-B2FE55D42C0B}.Release|x86.ActiveCfg = Release|Any CPU
 		{DEDD84F5-45BC-4639-94BD-B2FE55D42C0B}.Release|x86.Build.0 = Release|Any CPU
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Debug|x86.ActiveCfg = Debug|x86
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Debug|x86.Build.0 = Debug|x86
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Release|Any CPU.ActiveCfg = Release|x86
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Release|x86.ActiveCfg = Release|x86
+		{12BCC3F2-BD99-4424-9777-BDD58B811D87}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

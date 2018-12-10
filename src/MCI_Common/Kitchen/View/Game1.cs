@@ -4,12 +4,13 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using TiledSharp;
 
+
 namespace ProjectDevKitchenNew
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game2 : Game
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -33,7 +34,7 @@ namespace ProjectDevKitchenNew
         Vector2 positionWasher;
 
 
-        public Game2()
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
