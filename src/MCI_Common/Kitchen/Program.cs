@@ -1,4 +1,5 @@
 ﻿using Kitchen.Model;
+using Kitchen.View;
 using MCI_Common.Dishes;
 using MCI_Common.Ingredients;
 using MCI_Common.Recipes;
@@ -19,7 +20,7 @@ namespace Kitchen
             //Cooker cuisto = new Cooker(1);
             //cuisto.PrepareStep(new RecipeProcess().GetOne(1).Steps[0]);
 
-            Washer washman = new Washer();
+            /*Washer washman = new Washer();
             Oven four = new Oven();
 
             Order order = new Order();
@@ -35,7 +36,7 @@ namespace Kitchen
             two.Id = 2;
 
             CookChief chief = new CookChief(4, washman);
-            chief.CarryOrder(order);
+            chief.CarryOrder(order);*/
 
             Console.Read();
         }
