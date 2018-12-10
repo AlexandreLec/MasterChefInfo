@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Room.Model.Behaviour
+namespace MCI_Common.Behaviour
 {
     public abstract class Movable
     {
         public Position position = new Position(0, 0);
-        
+
 
         /// <summary>
         /// Moves to fixed position
@@ -19,12 +19,12 @@ namespace Room.Model.Behaviour
         public void MoveTo(int x, int y)
         {
             // check if map coordinates are in range
-            if(x >= 0 && y >= 0)
+            if (x >= 0 && y >= 0)
             {
                 position.posX = x;
                 position.posY = y;
             }
-            
+
         }
 
         /// <summary>
@@ -33,11 +33,10 @@ namespace Room.Model.Behaviour
         /// </summary>
         /// <param name="vectorX"></param>
         /// <param name="vectorY"></param>
-        public void Move (int vectorX, int vectorY)
+        public void Move(int vectorX, int vectorY)
         {
             position.posX += vectorX;
             position.posY += vectorY;
         }
-
     }
 }
