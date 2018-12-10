@@ -17,8 +17,8 @@ namespace Kitchen.Tests
         public void TestGetInstance()
         {
             Counter result = Counter.GetInstance();
-            Counter excepted = Counter.GetInstance();
-            Assert.AreSame(excepted, result);
+            Counter expected = Counter.GetInstance();
+            Assert.AreSame(expected, result);
         }
     }
 }

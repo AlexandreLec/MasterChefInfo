@@ -93,6 +93,7 @@ namespace MCI_Common
         /// <returns>Dataset with results</returns>
         public DataSet getRows(string request, string dataTableName)
         {
+            this.data.Clear();
             this.cmd.CommandText = request;
             adapter.SelectCommand = this.cmd;
             adapter.SelectCommand.Connection = this.bddConnexion;

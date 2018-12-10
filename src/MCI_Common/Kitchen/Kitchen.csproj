@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CookChief.cs" />
+    <Compile Include="Model\Cooker.cs" />
     <Compile Include="Model\Counter.cs" />
     <Compile Include="Model\SocketCom.cs" />
+    <Compile Include="Model\ToolsManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

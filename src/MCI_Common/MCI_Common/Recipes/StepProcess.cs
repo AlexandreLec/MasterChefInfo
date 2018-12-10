@@ -87,7 +87,7 @@ namespace MCI_Common.Recipes
         {
             this.Datas.Clear();
             this.Request = this.MapTable.GetAllByRecipe(id);
-            this.Datas = this.Bdd.getRows(this.Request, "Steps");
+            this.Datas = this.Bdd.getRows(this.Request, "Steps").Copy();
 
             List<Step> results = new List<Step>();
 

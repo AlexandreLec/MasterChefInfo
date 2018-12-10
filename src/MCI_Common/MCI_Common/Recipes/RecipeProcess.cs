@@ -72,8 +72,9 @@ namespace MCI_Common.Recipes
             recipe.Persons = int.Parse(row["Personnes"].ToString());
             recipe.PrepTime = float.Parse(row["TempsPrep"].ToString());
             recipe.BakeTime = float.Parse(row["TempsCuisson"].ToString());
-            recipe.Steps = new StepProcess().ListAllByRecipe(recipe.Id);
             recipe.Type = this.DefineRecipeType(int.Parse(row["TypeRecetteid"].ToString()));
+            recipe.Steps = new StepProcess().ListAllByRecipe(recipe.Id);
+            
             return recipe;
         }
 

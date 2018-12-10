@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Dishes
 {
-    class Dish
+    public class Dish
     {
         /// <summary>
         /// Unique idnetifier of a dish

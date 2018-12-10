@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Dishes
 {
-    class Order
+    public class Order
     {
         /// <summary>
         /// Id of the command
