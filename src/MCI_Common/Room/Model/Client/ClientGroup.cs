@@ -7,8 +7,9 @@ using System.Threading;
 using MCI_Common.RoomMaterials;
 using MCI_Common.Recipes;
 using MCI_Common.Communication;
+using MCI_Common.Dishes;
+using MCI_Common.Behaviour;
 using Room.Model.Staff;
-using Room.Model.Behaviour;
 
 namespace Room.Model.Client
 {
@@ -40,9 +41,14 @@ namespace Room.Model.Client
 
         public int Id;
         public List<Client> ClientList;
+        public Order tableOrder;
         public Table TableSit;
+        public RecipeType MealProgression = RecipeType.UNKNOWN;
+
         private Boolean Reserved;
         private Boolean IsHurry;
+
+        
         
         // Events
         private event ReadyToOrderEventHandler ReadyToOrder;
@@ -56,6 +62,7 @@ namespace Room.Model.Client
         {
 
             Id = id;
+            ClientList = new List<Client>();
 
             //adding subscriptions to events
             DishFinished += StaffManager.Instance.OnDishFinished;
@@ -85,7 +92,7 @@ namespace Room.Model.Client
 
             //Wait for food, then eats
 
-            this.Eat(RecipeType.DESSERT);  //for test purpose
+            this.Eat();  //for test purpose
 
 
             //Meal finished, ready to pay
@@ -96,18 +103,25 @@ namespace Room.Model.Client
         /// Eat for given time, depending on meal eaten
         /// </summary>
         /// <param name="CurrentDish"></param>
-        private void Eat(RecipeType CurrentDish)
+        private void Eat()
         {
-            int delay;
+            int delay = 0;
             
 
             // Delay according to the dish eaten
-            if (CurrentDish == RecipeType.STARTER)
+            if (MealProgression == RecipeType.STARTER)
                 delay = Global_Settings.timeStarter;
-            else if (CurrentDish == RecipeType.MAIN)
+            else if (MealProgression == RecipeType.MAIN)
                 delay = Global_Settings.timeMain;
-            else
+            else if(MealProgression == RecipeType.DESSERT)
                 delay = Global_Settings.timeDessert;
+            else if(MealProgression == RecipeType.UNKNOWN)
+                Console.WriteLine("Meal hasn't started");
+            else if (MealProgression == RecipeType.FINISHED)
+                Console.WriteLine("Meal has finished");
+            else
+                Console.WriteLine("Eat error");
+
 
             // If the client group is in a hurry, they stay twice less time
             if (IsHurry == true)
@@ -118,7 +132,7 @@ namespace Room.Model.Client
 
             OnDishFinished(Id);
 
-            if (CurrentDish == RecipeType.DESSERT)
+            if (MealProgression == RecipeType.DESSERT)
                 OnReadyToPay(Id);
 
         }
@@ -171,6 +185,8 @@ namespace Room.Model.Client
     public class OrderEventArgs : EventArgs
     {
         public int Id { get; set; }
+
+        public ClientGroup cltGroup;
 
         public OrderEventArgs(int id_clt) { this.Id = id_clt; }
 

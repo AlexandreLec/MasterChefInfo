@@ -11,6 +11,7 @@ namespace MCI_Common.Recipes
         STARTER,
         MAIN,
         DESSERT,
-        UNKNOW
+        UNKNOWN,
+        FINISHED
     }
 }

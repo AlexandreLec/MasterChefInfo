@@ -55,7 +55,7 @@ namespace MCI_Common.Recipes
                 case 3:
                     return RecipeType.DESSERT;
             }
-            return RecipeType.UNKNOW;
+            return RecipeType.UNKNOWN;
         }
 
         /// <summary>
