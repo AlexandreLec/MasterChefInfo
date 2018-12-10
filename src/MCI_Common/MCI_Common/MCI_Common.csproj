@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAD\DAO.cs" />
+    <Compile Include="Communication\Global_Settings.cs" />
     <Compile Include="Communication\Message.cs" />
     <Compile Include="Communication\Serialization.cs" />
     <Compile Include="Devices\Device.cs" />

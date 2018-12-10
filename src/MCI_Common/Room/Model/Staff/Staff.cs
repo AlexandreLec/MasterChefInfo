@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCI_Common.Communication;
+using Room.Model.Behaviour;
 
 namespace Room.Model.Staff
 {
-    abstract class Staff
+    public abstract class Staff : Movable
     {
         /// <summary>
         /// Name of the staff
@@ -19,28 +21,15 @@ namespace Room.Model.Staff
         public int Id { get; set; }
 
         /// <summary>
-        /// Position of the staff
-        /// </summary>
-        //private Behaviour.Position Pos { get; set; }
-
-        /// <summary>
         /// Movement of the staff
         /// </summary>
-        private IMovable MoveBehaviour;
+        //private IMovable MoveBehaviour;
 
         /// <summary>
         /// Availability of the staff
         /// </summary>
         public bool Available { get; set; }
 
-        /* /// <summary>
-        /// Move to a position
-        /// </summary>
-        /// <param name="pos"></param>
-        public void MoveTo(Position pos)
-        {
-            
-        } */
 
         public abstract void WhoAmI();
     }

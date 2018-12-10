@@ -6,34 +6,39 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Factory
 {
-    abstract class FactoryStaff
+    public class FactoryStaff
     {
-        public static FactoryStaff GetFactory()
+        private static FactoryStaff instance = null;
+        private static readonly object padlock = new object();
+
+        public 
+
+        FactoryStaff()
+        {
+
+        }
+
+        public static void GetFactory()
         {
             int RankChiefNumber = 1;
             int RoomMasterNumber = 1;
             int ServerNumber = 1;
 
-            while (RankChiefNumber != 0)
-            {
-                RankChiefNumber--;
-                return (new FactoryRankChief());
-            }
-
             while (RoomMasterNumber != 0)
             {
                 RoomMasterNumber--;
-                return (new FactoryRoomMaster());
+                new FactoryRoomMaster();
             }
-
+            while (RankChiefNumber != 0)
+            {
+                RankChiefNumber--;
+            }
             while (ServerNumber != 0)
             {
                 ServerNumber--;
-                return (new FactoryServer());
+                new FactoryServer();
             }
-            return GetFactory();
+            
         }
-
-        public abstract Staff.Staff Create();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Room.Model.Staff
 {
-    class RankChief : Staff
+    public class RankChief : Staff
     {
         /// <summary>
         /// Square in the room

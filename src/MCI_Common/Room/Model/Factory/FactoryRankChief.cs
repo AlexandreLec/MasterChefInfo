@@ -9,9 +9,6 @@ namespace Room.Model.Factory
 {
     class FactoryRankChief : FactoryStaff
     {
-        public override Staff.Staff Create()
-        {
-            return (new RankChief());
-        }
+
     }
 }

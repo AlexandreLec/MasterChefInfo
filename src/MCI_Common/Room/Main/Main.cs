@@ -1,6 +1,9 @@
 ﻿using MCI_Common.Recipes;
 using MCI_Common.Time;
 using Room.Model.Client;
+using Room.Model.Factory;
+using Room.Model.Staff;
+using Room.Model.Restaurant;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,20 +20,11 @@ namespace Room.Main
         static void Main(string[] args)
         {
 
+            Restaurant resto = new Restaurant();
+
             ClientPool clients = new ClientPool();
 
-            
-
-            for (int i=0; i < 10; i++)
-            {
-                clients.AddGroup();
-                Thread.Sleep(Clock.Instance.Period);
-                Console.WriteLine(" ");
-            }
-
-            
             Console.Read();
-
         }
     }
 }
