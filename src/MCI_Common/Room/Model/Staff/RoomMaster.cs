@@ -57,6 +57,11 @@ namespace Room.Model.Staff
             AssignedTable.IsAvailable = false;
         }
 
+        public void CltPayment(ClientGroup grp)
+        {
+            Console.WriteLine("Le client {0} a payé", grp.Id);
+        }
+
 
         public override void WhoAmI()
         {
