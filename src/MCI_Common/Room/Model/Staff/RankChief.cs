@@ -2,7 +2,6 @@
 using MCI_Common.Dishes;
 using MCI_Common.Recipes;
 using Room.Model.Client;
-using Room.Model.Restaurant;
 using Room.Model.Behaviour;
 using System;
 using System.Collections.Generic;
@@ -24,11 +23,9 @@ namespace Room.Model.Staff
         /// </summary>
         private string Sprite;
 
-        public static ReadyCounter Counter { get; internal set; }
-
         public RankChief()
         {
-            Counter = new ReadyCounter();
+            
             Console.WriteLine("Rank chief created");
         }
 
