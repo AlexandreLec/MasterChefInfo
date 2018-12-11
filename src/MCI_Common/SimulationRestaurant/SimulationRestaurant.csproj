@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E10D69A3-00E9-43BE-9052-447BD1A1E8DE}</ProjectGuid>
+    <ProjectGuid>{4A512241-4526-4892-9275-AA115AA7D071}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SimulationKitchen</RootNamespace>
-    <AssemblyName>SimulationKitchen</AssemblyName>
+    <RootNamespace>SimulationRestaurant</RootNamespace>
+    <AssemblyName>SimulationRestaurant</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,30 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\IModel.cs" />
-    <Compile Include="Controller\Configuration.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game1.cs" />
-    <Compile Include="Model\CookChief.cs" />
-    <Compile Include="Model\Cooker.cs" />
-    <Compile Include="Model\Counter.cs" />
-    <Compile Include="Model\DevicesManager.cs" />
-    <Compile Include="Model\Kitchen.cs" />
-    <Compile Include="Model\LogWriter.cs" />
-    <Compile Include="Model\Oven.cs" />
-    <Compile Include="Model\SocketCom.cs" />
-    <Compile Include="Model\ToolsManager.cs" />
-    <Compile Include="Model\Washer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -94,8 +78,31 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
-    <None Include="Content\MapKitch.tmx" />
+    <None Include="Content\bin\Windows\Client.xnb" />
+    <None Include="Content\bin\Windows\Content\Client.xnb" />
+    <None Include="Content\bin\Windows\Content\Host.xnb" />
+    <None Include="Content\bin\Windows\Content\MapRestaurantNew.tmx" />
+    <None Include="Content\bin\Windows\Content\RankChief.xnb" />
+    <None Include="Content\bin\Windows\Content\Server.xnb" />
+    <None Include="Content\bin\Windows\Content\TilePerso.xnb" />
+    <None Include="Content\bin\Windows\Host.xnb" />
+    <None Include="Content\bin\Windows\RankChief.xnb" />
+    <None Include="Content\bin\Windows\Server.xnb" />
+    <None Include="Content\bin\Windows\TilePerso.xnb" />
+    <None Include="Content\Content.mgcb" />
+    <None Include="Content\MapRestaurantNew.tmx" />
+    <None Include="Content\obj\Windows\.mgcontent" />
+    <None Include="Content\obj\Windows\Client.mgcontent" />
+    <None Include="Content\obj\Windows\Content\.mgcontent" />
+    <None Include="Content\obj\Windows\Content\Client.mgcontent" />
+    <None Include="Content\obj\Windows\Content\Host.mgcontent" />
+    <None Include="Content\obj\Windows\Content\RankChief.mgcontent" />
+    <None Include="Content\obj\Windows\Content\Server.mgcontent" />
+    <None Include="Content\obj\Windows\Content\TilePerso.mgcontent" />
+    <None Include="Content\obj\Windows\Host.mgcontent" />
+    <None Include="Content\obj\Windows\RankChief.mgcontent" />
+    <None Include="Content\obj\Windows\Server.mgcontent" />
+    <None Include="Content\obj\Windows\TilePerso.mgcontent" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -111,10 +118,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
-      <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
-      <Name>MCI_Common</Name>
-    </ProjectReference>
+    <Content Include="Content\Client.png" />
+    <Content Include="Content\Host.png" />
+    <Content Include="Content\RankChief.png" />
+    <Content Include="Content\Server.png" />
+    <Content Include="Content\TilePerso.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TiledSharp\TiledSharp.csproj">
       <Project>{dedd84f5-45bc-4639-94bd-b2fe55d42c0b}</Project>
       <Name>TiledSharp</Name>

@@ -27,7 +27,7 @@ namespace Room.Model.Staff
         /// </summary>
         public List<Server> Servers;
 
-        public static ReadyCounter Counter { get; internal set; }
+        public ReadyCounter Counter { get; internal set; }
 
         /// <summary>
         /// Staff Manager thread safe Single instance

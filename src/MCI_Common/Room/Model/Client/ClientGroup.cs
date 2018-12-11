@@ -114,7 +114,7 @@ namespace Room.Model.Client
 
             foreach (Client clt in ClientList)
             {
-                //clt.OrderMeal();
+                clt.OrderMeal();
             }
 
             //5min for decision making

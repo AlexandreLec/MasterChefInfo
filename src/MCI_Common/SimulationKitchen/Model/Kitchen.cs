@@ -1,4 +1,6 @@
-﻿using MCI_Common.Recipes;
+﻿using MCI_Common.Behaviour;
+using MCI_Common.Dishes;
+using MCI_Common.Recipes;
 using Microsoft.Xna.Framework;
 using SimulationKitchen.Contract;
 using System;
@@ -24,6 +26,8 @@ namespace SimulationKitchen.Model
 
         public Washer WashMan { get; set; }
 
+        
+
         public Kitchen(int cookersNb)
         {
             this.RoomCounter = Counter.GetInstance();
@@ -34,8 +38,24 @@ namespace SimulationKitchen.Model
 
         public void Start()
         {
-            this.RoomCounter.RoomCommunication.StartListening();
+            Console.WriteLine("Test");
+            Order order = new Order();
+            Dish one = new Dish(order);
+            Dish two = new Dish(order);
+            Console.WriteLine("Test456");
+            one.Recipe = new RecipeProcess().GetOne(1);
+            two.Recipe = new RecipeProcess().GetOne(2);
+
+            order.Dishes.Add(one);
+            order.Dishes.Add(two);
+
+            one.Id = 1;
+            two.Id = 2;
+            //this.RoomCounter.RoomCommunication.StartListening();
             this.WashMan.StartWorking().Start();
+            
+
+            this.Chief.CarryOrder(order);
         }
 
         private void CreateCookers(int nb)
@@ -45,10 +65,12 @@ namespace SimulationKitchen.Model
             int space = 0;
             for (int i = 1; i <= nb; i++)
             {
-                Vector2 position = new Vector2(80 + space, 160);
+                Position position = new Position(80 + space, 160);
                 this.Cookers.Add(new Cooker(i, this.WashMan, oven, position));
                 space += 80;
             }
         }
+
+        
     }
 }

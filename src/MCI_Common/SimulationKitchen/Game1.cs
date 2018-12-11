@@ -1,5 +1,4 @@
-﻿using MCI_Common.Behaviour;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationKitchen.Contract;
@@ -32,7 +31,18 @@ namespace SimulationKitchen
         Texture2D textureWasher;
         // Affection des Vector
         public static Vector2 positionKitchenChief { get; set; }
-        
+
+        public static Vector2 positionWasher { get; set; }
+
+        public static int posXWasher { get; set; }
+
+        public static int posYWasher { get; set; }
+
+        public static int TimerUpdate { get; set; }
+
+        public static int locationX { get; set; }
+
+        public static int locationY { get; set; }
 
         public IModel Model { get; set; }
 
@@ -55,6 +65,10 @@ namespace SimulationKitchen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            posXWasher = 128;
+            posYWasher = 64;
+            positionKitchenChief = new Vector2(32, 32);
+            positionWasher = new Vector2(posXWasher, posYWasher);
 
             base.Initialize();
         }
@@ -88,9 +102,9 @@ namespace SimulationKitchen
             textureWasher = Content.Load<Texture2D>("Washer");
             // Ajout d'une position aux sprites
             //positionKitchenChief = new Vector2(0, 0);
-           
 
-            
+
+
         }
 
         /// <summary>
@@ -109,9 +123,36 @@ namespace SimulationKitchen
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic 
+            TimerUpdate += 1;
+            locationX = 32;
+            locationY = 64;
+
+            if (TimerUpdate == 16)
+            {
+                if (posXWasher < locationX)
+                {
+                    posXWasher += 16;
+                }
+                if (posXWasher > locationX)
+                {
+                    posXWasher -= 16;
+                }
+                if (posYWasher < locationY)
+                {
+                    posYWasher += 16;
+                }
+                if (posYWasher > locationY)
+                {
+                    posYWasher -= 16;
+                }
+
+                TimerUpdate = 0;
+            }
             
-            
+
+            // TODO: Add your update logic here
+            positionWasher = new Vector2(posXWasher, posYWasher);
+
             base.Update(gameTime);
         }
 
@@ -146,6 +187,7 @@ namespace SimulationKitchen
                         spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White); // On dessine la Tile
                         // on Draw les sprites des chara
                         spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
+                        spriteBatch.Draw(textureWasher, positionWasher, Color.White);
 
                         foreach (var cooker in this.Model.Cookers)
                         {
@@ -154,6 +196,7 @@ namespace SimulationKitchen
                         
                         //                       
                         spriteBatch.End();
+                        base.Draw(gameTime);
                         base.Draw(gameTime);
                     }
                 }
