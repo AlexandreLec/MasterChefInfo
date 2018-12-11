@@ -1,4 +1,5 @@
-﻿using MCI_Common.Devices;
+﻿using MCI_Common.Behaviour;
+using MCI_Common.Devices;
 using MCI_Common.Dishes;
 using MCI_Common.Recipes;
 using MCI_Common.Tools;
@@ -14,7 +15,7 @@ using System.Timers;
 
 namespace SimulationKitchen.Model
 {
-    public class Cooker
+    public class Cooker : Movable
     {
         /// <summary>
         /// Identifier of the cooker
@@ -25,11 +26,6 @@ namespace SimulationKitchen.Model
         /// Availability of the cooker
         /// </summary>
         public bool IsAvailable { get; set; }
-
-        /// <summary>
-        /// Position of the Cooker
-        /// </summary>
-        public Vector2 Position { get; set; }
 
         /// <summary>
         /// Tools manager to lease tools
@@ -49,7 +45,7 @@ namespace SimulationKitchen.Model
         /// Instantiate a cooker
         /// </summary>
         /// <param name="toolsStorage"></param>
-        public Cooker(int id, Washer washer, Oven oven, Vector2 position)
+        public Cooker(int id, Washer washer, Oven oven, Position position)
         {
             this.Id = id;
             this.ToolsStorage = ToolsManager.GetInstance();
@@ -77,7 +73,7 @@ namespace SimulationKitchen.Model
                 LogWriter.GetInstance().Write("Cooker " + this.Id + " step finished");
                 this.WasherEngine.AddToolsToWash(step.Tools);
                 this.DevicesStorage.ReleaseDevices(step.Devices);
-
+                this.MoveTo(this.Position.posX+16,this.Position.posY);                
                 if (dish != null)
                 {
                     if (dish.Recipe.BakeTime == 0)

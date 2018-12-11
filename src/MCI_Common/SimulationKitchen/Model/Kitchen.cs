@@ -1,4 +1,6 @@
-﻿using MCI_Common.Recipes;
+﻿using MCI_Common.Behaviour;
+using MCI_Common.Dishes;
+using MCI_Common.Recipes;
 using Microsoft.Xna.Framework;
 using SimulationKitchen.Contract;
 using System;
@@ -16,23 +18,44 @@ namespace SimulationKitchen.Model
         /// </summary>
         public List<Recipe> Menu { get; private set; }
 
+        public Counter RoomCounter { get; set; }
+
         public List<Cooker> Cookers { get; set; }
 
         public CookChief Chief { get; set; }
 
         public Washer WashMan { get; set; }
 
+        
+
         public Kitchen(int cookersNb)
         {
-            LogWriter.GetInstance().Write("Create a kitchen with " + cookersNb + " cooker(s).");
+            this.RoomCounter = Counter.GetInstance();
             this.WashMan = new Washer();
             this.CreateCookers(cookersNb);
-            this.Chief = new CookChief(this.Cookers);
+            this.Chief = new CookChief(this.Cookers, this.RoomCounter);
         }
 
         public void Start()
         {
+            Console.WriteLine("Test");
+            Order order = new Order();
+            Dish one = new Dish(order);
+            Dish two = new Dish(order);
+            Console.WriteLine("Test456");
+            one.Recipe = new RecipeProcess().GetOne(1);
+            two.Recipe = new RecipeProcess().GetOne(2);
+
+            order.Dishes.Add(one);
+            order.Dishes.Add(two);
+
+            one.Id = 1;
+            two.Id = 2;
+            //this.RoomCounter.RoomCommunication.StartListening();
             this.WashMan.StartWorking().Start();
+            
+
+            this.Chief.CarryOrder(order);
         }
 
         private void CreateCookers(int nb)
@@ -42,10 +65,12 @@ namespace SimulationKitchen.Model
             int space = 0;
             for (int i = 1; i <= nb; i++)
             {
-                Vector2 position = new Vector2(80 + space, 160);
+                Position position = new Position(80 + space, 160);
                 this.Cookers.Add(new Cooker(i, this.WashMan, oven, position));
                 space += 80;
             }
         }
+
+        
     }
 }
