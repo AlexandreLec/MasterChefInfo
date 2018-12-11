@@ -32,10 +32,11 @@
             this.LogDisplay = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_conf_save = new System.Windows.Forms.Button();
             this.txt_conf_nb_cookers = new System.Windows.Forms.TextBox();
             this.label_nb_cooker = new System.Windows.Forms.Label();
-            this.btn_conf_save = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.LogDisplay);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -82,6 +84,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(122, 200);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Stop Simulation";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tabPage2
             // 
@@ -95,6 +107,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configuration";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btn_conf_save
+            // 
+            this.btn_conf_save.Location = new System.Drawing.Point(8, 198);
+            this.btn_conf_save.Name = "btn_conf_save";
+            this.btn_conf_save.Size = new System.Drawing.Size(90, 23);
+            this.btn_conf_save.TabIndex = 2;
+            this.btn_conf_save.Text = "Save";
+            this.btn_conf_save.UseVisualStyleBackColor = true;
+            this.btn_conf_save.Click += new System.EventHandler(this.btn_conf_save_Click);
             // 
             // txt_conf_nb_cookers
             // 
@@ -112,16 +134,6 @@
             this.label_nb_cooker.Size = new System.Drawing.Size(112, 13);
             this.label_nb_cooker.TabIndex = 0;
             this.label_nb_cooker.Text = "Nombre de Cuisinier(s)";
-            // 
-            // btn_conf_save
-            // 
-            this.btn_conf_save.Location = new System.Drawing.Point(8, 198);
-            this.btn_conf_save.Name = "btn_conf_save";
-            this.btn_conf_save.Size = new System.Drawing.Size(90, 23);
-            this.btn_conf_save.TabIndex = 2;
-            this.btn_conf_save.Text = "Save";
-            this.btn_conf_save.UseVisualStyleBackColor = true;
-            this.btn_conf_save.Click += new System.EventHandler(this.btn_conf_save_Click);
             // 
             // Form1
             // 
@@ -150,6 +162,7 @@
         private System.Windows.Forms.TextBox txt_conf_nb_cookers;
         private System.Windows.Forms.Label label_nb_cooker;
         private System.Windows.Forms.Button btn_conf_save;
+        private System.Windows.Forms.Button button2;
     }
 }
 

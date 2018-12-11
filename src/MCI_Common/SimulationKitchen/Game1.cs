@@ -15,8 +15,8 @@ namespace SimulationKitchen
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public const int WINDOW_WIDTH = 880; // dimmension fenètre jeu  
-        public const int WINDOW_HEIGHT = 640; // dimmension fenètre jeu         
+        public const int WINDOW_WIDTH = 480; // dimmension fenètre jeu  
+        public const int WINDOW_HEIGHT = 320; // dimmension fenètre jeu         
         TmxMap map; // déclaration de la méthode fourni par TiledSharp   
         public Texture2D tileset; // init des tiles en tant que Texture2D
         public int tileWidth; // Valeur Récupéré grace a TMXmap

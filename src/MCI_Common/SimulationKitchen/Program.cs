@@ -32,5 +32,14 @@ namespace SimulationKitchen
             using (var game = new Game1(model))
                 game.Run();
         }
+
+        public static void Stop()
+        {
+            IModel model = new Kitchen(Configuration.CookersNumber);
+            model.Start();
+
+            using (var game = new Game1(model))
+            game.Exit();
+        }
     }
 }
