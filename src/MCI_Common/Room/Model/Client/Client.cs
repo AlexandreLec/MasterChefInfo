@@ -1,6 +1,7 @@
 ﻿using MCI_Common.Recipes;
 using Room.Model.Behaviour;
 using MCI_Common.Behaviour;
+using MCI_Common.Timer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Room.Model.Client
         /// If the client received its dish, false when
         /// the waiter clears the table
         /// </summary>
-        private Boolean Served;
+        public bool Served { get; set; }
 
         /// <summary>
         /// List of the dishes ordered by the client
@@ -30,6 +31,16 @@ namespace Room.Model.Client
         /// </summary>
         public OrderBehaviour OrderMethod;
 
+        public Client()
+        {
+            if(Randomizer.Instance.R.Next(0,2) == 0)
+                OrderMethod = new OrderAllOne();
+            else
+                OrderMethod = new OrderTwoStep();
+
+
+            Console.WriteLine("Client created, order method: {0}", OrderMethod);
+        }
         
         public void OrderMeal()
         {

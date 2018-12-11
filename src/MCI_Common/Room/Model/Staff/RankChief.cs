@@ -1,7 +1,9 @@
 ﻿using MCI_Common.RoomMaterials;
 using MCI_Common.Dishes;
+using MCI_Common.Recipes;
 using Room.Model.Client;
 using Room.Model.Restaurant;
+using Room.Model.Behaviour;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,11 @@ namespace Room.Model.Staff
 
         public static ReadyCounter Counter { get; internal set; }
 
+        public RankChief()
+        {
+            Counter = new ReadyCounter();
+            Console.WriteLine("Rank chief created");
+        }
 
 
         /// <summary>
@@ -42,7 +49,9 @@ namespace Room.Model.Staff
         /// <param name="Table"></param>
         public void ClearTable(Table tableToClr)
         {
-            
+            //Puts away napkins and nappe
+
+            PrepareTable(tableToClr);
         }
         
         
@@ -67,15 +76,48 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void TakeOrderTable(ClientGroup clients)
         {
-            foreach (Client.Client clt in clients.ClientList)
+            int i;
+
+            if(clients.MealProgression == RecipeType.MAIN)
             {
-                for(int i=0; i < 3; i++)
-                {
-                    Dish dish = new Dish(clients.tableOrder);
-                    dish.Recipe = clt.Order[i];
-                    clients.tableOrder.Dishes.Add(dish);
-                }
+                //Takes dessert orders for those who order in two times
+                foreach (Client.Client clt in clients.ClientList)
+                    if(clt.OrderMethod.Method() == "two")
+                    {
+                        Dish dish = new Dish(clients.tableOrder);
+                        dish.Recipe = clt.Order[2];
+                        clients.tableOrder.Dishes.Add(dish);
+                    }
+
             }
+            else
+            {
+                foreach (Client.Client clt in clients.ClientList)
+                {
+                    i = 0;
+
+                    while (clt.Order[i] != null)
+                    {
+                        Dish dish = new Dish(clients.tableOrder);
+                        dish.Recipe = clt.Order[i];
+                        clients.tableOrder.Dishes.Add(dish);
+                        i++;
+                    }
+                }
+
+                
+            }
+
+            Console.WriteLine("Commande du groupe {0} passée", clients.Id);
+
+            SendOrder(clients.tableOrder);
+
+
+        }
+
+        private void SendOrder(Order order)
+        {
+
         }
 
         public override void WhoAmI()

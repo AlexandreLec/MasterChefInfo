@@ -5,15 +5,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Room.Model.Staff;
+using MCI_Common.Communication;
 
 namespace Room.Model.Client
 {
     public class ClientPool
     {
-        /// <summary>
-        /// Number of clients per shift (default = 200)
-        /// </summary>
-        public int nbCltPerShift { get; set; }
+        
 
         /// <summary>
         /// Number of clients since start
@@ -27,17 +25,18 @@ namespace Room.Model.Client
 
         public ClientPool()
         {
-            //Sets nb of clients for the shift
-            nbCltPerShift = 200;
+            Console.WriteLine("Client Pool created");
 
             //Creates client groups
-            while(nbCltSinceStart < nbCltPerShift)
-            {
-                AddGroup();
+            /*   UNCOMMENT FOR PRODUCTION   */
+            AddGroup();
+            //while(nbCltSinceStart < Global_Settings.nbCltPerShift)
+            //{
+            //    AddGroup();
 
-                //Wait 5 Sim min
-                Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
-            }
+            //    //Wait 5 Sim min
+            //    Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
+            //}
 
         }
 
@@ -74,13 +73,11 @@ namespace Room.Model.Client
             cltList = GenerateClients(rdNb);
 
             // ClientGroup created
-            ClientGroup group = new ClientGroup(nbCltGp);
+            Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, rdNb);
+            ClientGroup group = new ClientGroup(nbCltGp, cltList);
 
-            // Group's list of clients filled with generated clients
-            group.ClientList = cltList;
-
-            // Add event subsriptions
             
+
 
         }
 
@@ -93,8 +90,6 @@ namespace Room.Model.Client
         {
             List<Client> cltList = new List<Client>();
             Client clt;
-
-            Console.WriteLine("New client group, nb : {0}", Thread.CurrentThread.ManagedThreadId);
 
             for (int i = 0; i < nb; i++)
             {

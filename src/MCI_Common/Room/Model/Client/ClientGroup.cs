@@ -10,6 +10,7 @@ using MCI_Common.Communication;
 using MCI_Common.Dishes;
 using MCI_Common.Behaviour;
 using Room.Model.Staff;
+using MCI_Common.Timer;
 
 namespace Room.Model.Client
 {
@@ -45,8 +46,9 @@ namespace Room.Model.Client
         public Table TableSit;
         public RecipeType MealProgression = RecipeType.UNKNOWN;
 
-        private Boolean Reserved;
-        private Boolean IsHurry;
+        private bool Reserved;
+        private bool IsHurry;
+        private bool Ready = false;
 
         
         
@@ -58,11 +60,12 @@ namespace Room.Model.Client
         
         private string Sprite;
         
-        public ClientGroup(int id)
+        public ClientGroup(int id, List<Client> list)
         {
 
             Id = id;
             ClientList = new List<Client>();
+            ClientList = list;
 
             //adding subscriptions to events
             DishFinished += StaffManager.Instance.OnDishFinished;
@@ -79,24 +82,81 @@ namespace Room.Model.Client
             MoveTo(10, 10);
             //StaffManager.Instance.Master.AssignTable(this);
 
+
             //Follows the room master (or leaves)
 
 
             //Gets seated -> set individual clients around table
 
             //Gets menus, reflexion moment
-
+            Order();
             //Meal Orders are done
 
             //(Wine order)
 
-            //Wait for food, then eats
 
-            this.Eat();  //for test purpose
+            //Wait for food, then eats
+            
+
+            //this.Eat();  //for test purpose
 
 
             //Meal finished, ready to pay
 
+        }
+
+        /// <summary>
+        /// Group order -> each client orders (fills individual order table)
+        /// </summary>
+        public void Order()
+        {
+            Console.WriteLine("Group {0} ordering...", Id);
+
+            foreach (Client clt in ClientList)
+            {
+                //clt.OrderMeal();
+            }
+
+            //5min for decision making
+            Thread.Sleep(5*Clock.Instance.Period);
+
+            //Ready to order
+            OnReadyToOrder(this);
+            WaitMeal();
+            
+        }
+
+        /// <summary>
+        /// Order dessert (those who didn't)
+        /// </summary>
+        public void OrderDessert()
+        {
+            foreach (Client clt in ClientList)
+                if (clt.Order[2] == null)
+                    clt.OrderMethod.OrderDessert(clt);
+
+            OnReadyToOrder(this);
+
+        }
+
+        /// <summary>
+        /// Wait until every client of the group is served
+        /// </summary>
+        private void WaitMeal()
+        {
+            Console.WriteLine("Group {0} waiting for it's meal", Id);
+
+            while (Ready != true)
+            {
+                Ready = true;
+
+                foreach(Client clt in ClientList)
+                {
+                    if (clt.Served == false)
+                        Ready = false;
+                }
+            }
+            Eat();
         }
 
         /// <summary>
@@ -128,12 +188,13 @@ namespace Room.Model.Client
                 delay /= 2;
 
             // Wait for the group to finish eating, delay multiplied to get minutes
+            Console.WriteLine("Eating...");
             Thread.Sleep(delay* MCI_Common.Timer.Clock.Instance.Period);
 
-            OnDishFinished(Id);
+            OnDishFinished(this);
 
             if (MealProgression == RecipeType.DESSERT)
-                OnReadyToPay(Id);
+                OnReadyToPay(this);
 
         }
         
@@ -153,27 +214,27 @@ namespace Room.Model.Client
         /// Executed when clients have decided
         /// </summary>
         /// <param name="GroupId"></param>
-        protected virtual void OnReadyToOrder(int GroupId)
+        protected virtual void OnReadyToOrder(ClientGroup group)
         {
-            ReadyToOrder?.Invoke(this, new OrderEventArgs(this.Id));
+            ReadyToOrder?.Invoke(this, new OrderEventArgs(group));
         }
 
         /// <summary>
         /// Executed when every client of a group has finished eating
         /// </summary>
         /// <param name="GroupId"></param>
-        protected virtual void OnDishFinished(int GroupId)
+        protected virtual void OnDishFinished(ClientGroup group)
         {
-            DishFinished?.Invoke(this, new OrderEventArgs(this.Id));
+            DishFinished?.Invoke(this, new OrderEventArgs(group));
         }
 
         /// <summary>
         /// Executed when client is ready to pay (after finishing it's dessert)
         /// </summary>
         /// <param name="GroupId"></param>
-        protected virtual void OnReadyToPay(int GroupId)
+        protected virtual void OnReadyToPay(ClientGroup group)
         {
-            ReadyToPay?.Invoke(this, new OrderEventArgs(this.Id));
+            ReadyToPay?.Invoke(this, new OrderEventArgs(group));
         }
 
 
@@ -184,11 +245,9 @@ namespace Room.Model.Client
     /// </summary>
     public class OrderEventArgs : EventArgs
     {
-        public int Id { get; set; }
-
         public ClientGroup cltGroup;
 
-        public OrderEventArgs(int id_clt) { this.Id = id_clt; }
+        public OrderEventArgs(ClientGroup group) { cltGroup = group; }
 
     }
 }
