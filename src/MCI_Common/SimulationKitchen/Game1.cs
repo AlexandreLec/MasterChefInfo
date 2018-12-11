@@ -69,7 +69,7 @@ namespace SimulationKitchen
             // TODO: use this.Content to load your game content here
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            map = new TmxMap("Content/MapKitchenNew.tmx"); // On importe la map en tmx 
+            map = new TmxMap("Content/MapKitch.tmx"); // On importe la map en tmx 
             tileset = Content.Load<Texture2D>(map.Tilesets[0].Name.ToString()); // On charge les textures du tileset = TilePerso                    
             //Début d'affectation des Tiles
             var version = map.Version;

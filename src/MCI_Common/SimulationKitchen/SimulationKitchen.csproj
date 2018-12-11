@@ -95,7 +95,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <None Include="Content\MapKitchenNew.tmx" />
+    <None Include="Content\MapKitch.tmx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
