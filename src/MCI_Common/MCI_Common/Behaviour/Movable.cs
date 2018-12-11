@@ -8,8 +8,9 @@ namespace MCI_Common.Behaviour
 {
     public abstract class Movable
     {
-        public Position position = new Position(0, 0);
+        public Position Position { get; set; }
 
+        public event EventHandler MoveEvent;
 
         /// <summary>
         /// Moves to fixed position
@@ -21,11 +22,31 @@ namespace MCI_Common.Behaviour
             // check if map coordinates are in range
             if (x >= 0 && y >= 0)
             {
-                position.posX = x;
-                position.posY = y;
+                this.Position.posX = x;
+                this.Position.posY = y;
             }
+            this.OnMoveEvent(EventArgs.Empty);
 
         }
+
+        /*public void MoveTo(Position position)
+        {
+            // check if map coordinates are in range
+            while (position.posX != )
+            {
+                position.posX += +1;
+                position.posX -= -1;
+            }        
+                            
+            while(position.posY != position.posY)
+            {
+                position.posY += +1;
+                position.posY -= -1;
+            }          
+         this.OnMoveEvent(EventArgs.Empty);
+
+        } */
+
 
         /// <summary>
         /// Move sprite according to vector along X and Y axis
@@ -35,8 +56,13 @@ namespace MCI_Common.Behaviour
         /// <param name="vectorY"></param>
         public void Move(int vectorX, int vectorY)
         {
-            position.posX += vectorX;
-            position.posY += vectorY;
+            this.Position.posX += vectorX;
+            this.Position.posY += vectorY;
+        }
+
+        protected virtual void OnMoveEvent(EventArgs e)
+        {
+            MoveEvent?.Invoke(this, e);
         }
     }
 }

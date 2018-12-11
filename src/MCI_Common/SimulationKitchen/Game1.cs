@@ -15,8 +15,8 @@ namespace SimulationKitchen
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public const int WINDOW_WIDTH = 880; // dimmension fenètre jeu  
-        public const int WINDOW_HEIGHT = 640; // dimmension fenètre jeu         
+        public const int WINDOW_WIDTH = 480; // dimmension fenètre jeu  
+        public const int WINDOW_HEIGHT = 320; // dimmension fenètre jeu         
         TmxMap map; // déclaration de la méthode fourni par TiledSharp   
         public Texture2D tileset; // init des tiles en tant que Texture2D
         public int tileWidth; // Valeur Récupéré grace a TMXmap
@@ -31,6 +31,18 @@ namespace SimulationKitchen
         Texture2D textureWasher;
         // Affection des Vector
         public static Vector2 positionKitchenChief { get; set; }
+
+        public static Vector2 positionWasher { get; set; }
+
+        public static int posXWasher { get; set; }
+
+        public static int posYWasher { get; set; }
+
+        public static int TimerUpdate { get; set; }
+
+        public static int locationX { get; set; }
+
+        public static int locationY { get; set; }
 
         public IModel Model { get; set; }
 
@@ -53,6 +65,10 @@ namespace SimulationKitchen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            posXWasher = 128;
+            posYWasher = 64;
+            positionKitchenChief = new Vector2(32, 32);
+            positionWasher = new Vector2(posXWasher, posYWasher);
 
             base.Initialize();
         }
@@ -69,7 +85,7 @@ namespace SimulationKitchen
             // TODO: use this.Content to load your game content here
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            map = new TmxMap("Content/MapKitchenNew.tmx"); // On importe la map en tmx 
+            map = new TmxMap("Content/MapKitch.tmx"); // On importe la map en tmx 
             tileset = Content.Load<Texture2D>(map.Tilesets[0].Name.ToString()); // On charge les textures du tileset = TilePerso                    
             //Début d'affectation des Tiles
             var version = map.Version;
@@ -86,9 +102,9 @@ namespace SimulationKitchen
             textureWasher = Content.Load<Texture2D>("Washer");
             // Ajout d'une position aux sprites
             //positionKitchenChief = new Vector2(0, 0);
-            positionKitchenChief = new Vector2(0, 0);
 
-            
+
+
         }
 
         /// <summary>
@@ -107,9 +123,36 @@ namespace SimulationKitchen
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
+            TimerUpdate += 1;
+            locationX = 32;
+            locationY = 64;
 
+            if (TimerUpdate == 16)
+            {
+                if (posXWasher < locationX)
+                {
+                    posXWasher += 16;
+                }
+                if (posXWasher > locationX)
+                {
+                    posXWasher -= 16;
+                }
+                if (posYWasher < locationY)
+                {
+                    posYWasher += 16;
+                }
+                if (posYWasher > locationY)
+                {
+                    posYWasher -= 16;
+                }
+
+                TimerUpdate = 0;
+            }
             
+
+            // TODO: Add your update logic here
+            positionWasher = new Vector2(posXWasher, posYWasher);
+
             base.Update(gameTime);
         }
 
@@ -130,7 +173,7 @@ namespace SimulationKitchen
 
                     if (gid == 0)
                     {
-                        //Si l'id de la tile est 9 alors on affiche un "trou"
+                        //Si l'id de la tile est 0 alors on affiche un "trou"
                     }
                     else
                     {
@@ -144,6 +187,7 @@ namespace SimulationKitchen
                         spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White); // On dessine la Tile
                         // on Draw les sprites des chara
                         spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
+                        spriteBatch.Draw(textureWasher, positionWasher, Color.White);
 
                         foreach (var cooker in this.Model.Cookers)
                         {
@@ -152,6 +196,7 @@ namespace SimulationKitchen
                         
                         //                       
                         spriteBatch.End();
+                        base.Draw(gameTime);
                         base.Draw(gameTime);
                     }
                 }
