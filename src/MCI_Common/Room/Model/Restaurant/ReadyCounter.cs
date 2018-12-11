@@ -1,4 +1,6 @@
 ﻿using MCI_Common.Recipes;
+using Room.Model.Client;
+using Room.Model.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +11,58 @@ namespace Room.Model.Restaurant
 {
     public class ReadyCounter
     {
-        public List<Recipe>[] Menu;
+        public SocketCom socket;
+        public int p;
+        public string s;
+        private bool _ready = false;
+        public bool ready
+        {
+            get { return this._ready; }
+            set { _ready = value; }
+        }
+
+        public List<Recipe>[] Menu { get; set; }
 
         public ReadyCounter()
         {
+
             Menu = new List<Recipe>[3];
 
             Menu[0] = new List<Recipe>();
             Menu[1] = new List<Recipe>();
             Menu[2] = new List<Recipe>();
+
+            s = "10.162.128.230";
+            p = 11000;
+            socket = new SocketCom(s, p);
+            
+            Console.WriteLine("Socket created");
+            
+            socket.MenuReception += UpdateMenu;
+
+            //while(StaffManager.Instance.Counter.Menu[0][0] == null)
+                socket.Send("<MENU>");
+
+            
+
         }
 
-        public void UpdateMenu(List<Recipe>[] plats)
+        public void UpdateMenu(object send, EventArgs e)
         {
-            for (int i=0; i < 3; i++)
-                Menu[i] = plats[i];
+            Console.WriteLine("Menu Update");
+            ObjectEventArgs oe = (ObjectEventArgs)e;
+
+            List<Recipe> AllAvailableRecipe = (List<Recipe>) oe.receiveObject;
+
+            List<Recipe> Starter = AllAvailableRecipe.Where(o => o.Type == RecipeType.STARTER).ToList();
+            List<Recipe> Main = AllAvailableRecipe.Where(o => o.Type == RecipeType.MAIN).ToList();
+            List<Recipe> Dessert = AllAvailableRecipe.Where(o => o.Type == RecipeType.DESSERT).ToList();
+            this.Menu[0] = Starter;
+            this.Menu[1] = Main;
+            this.Menu[2] = Dessert;
         }
+
+        
 
     }
 }

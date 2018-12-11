@@ -1,6 +1,7 @@
 ﻿using MCI_Common.RoomMaterials;
 using MCI_Common.Dishes;
 using MCI_Common.Recipes;
+using Room.Model.Staff;
 using Room.Model.Client;
 using Room.Model.Behaviour;
 using System;
@@ -114,6 +115,7 @@ namespace Room.Model.Staff
 
         private void SendOrder(Order order)
         {
+            StaffManager.Instance.Counter.socket.Send(order);
 
         }
 
