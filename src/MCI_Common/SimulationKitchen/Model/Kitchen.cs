@@ -26,15 +26,15 @@ namespace SimulationKitchen.Model
 
         public Kitchen(int cookersNb)
         {
-            //this.RoomCounter = Counter.GetInstance();
+            this.RoomCounter = Counter.GetInstance();
             this.WashMan = new Washer();
             this.CreateCookers(cookersNb);
-            this.Chief = new CookChief(this.Cookers);
+            this.Chief = new CookChief(this.Cookers, this.RoomCounter);
         }
 
         public void Start()
         {
-            //this.RoomCounter.RoomCommunication.StartListening();
+            this.RoomCounter.RoomCommunication.StartListening();
             this.WashMan.StartWorking().Start();
         }
 
