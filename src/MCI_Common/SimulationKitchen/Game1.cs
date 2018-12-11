@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MCI_Common.Behaviour;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationKitchen.Contract;
@@ -31,6 +32,7 @@ namespace SimulationKitchen
         Texture2D textureWasher;
         // Affection des Vector
         public static Vector2 positionKitchenChief { get; set; }
+        
 
         public IModel Model { get; set; }
 
@@ -86,7 +88,7 @@ namespace SimulationKitchen
             textureWasher = Content.Load<Texture2D>("Washer");
             // Ajout d'une position aux sprites
             //positionKitchenChief = new Vector2(0, 0);
-            positionKitchenChief = new Vector2(0, 0);
+           
 
             
         }
@@ -107,8 +109,8 @@ namespace SimulationKitchen
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-
+            // TODO: Add your update logic 
+            
             
             base.Update(gameTime);
         }
