@@ -130,7 +130,7 @@ namespace SimulationKitchen
 
                     if (gid == 0)
                     {
-                        //Si l'id de la tile est 9 alors on affiche un "trou"
+                        //Si l'id de la tile est 0 alors on affiche un "trou"
                     }
                     else
                     {
