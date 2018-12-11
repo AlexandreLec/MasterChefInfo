@@ -86,7 +86,7 @@ namespace MCI_Common.Recipes
         {
             this.Datas.Clear();
             this.Request = this.MapTable.GetAll();
-            this.Datas = this.Bdd.getRows(this.Request, "Recipe");
+            this.Datas = this.Bdd.getRows(this.Request, "Recipe").Copy();
 
             List<Recipe> results = new List<Recipe>();
 

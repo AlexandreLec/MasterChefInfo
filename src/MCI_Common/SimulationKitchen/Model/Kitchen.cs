@@ -16,6 +16,8 @@ namespace SimulationKitchen.Model
         /// </summary>
         public List<Recipe> Menu { get; private set; }
 
+        public Counter RoomCounter { get; set; }
+
         public List<Cooker> Cookers { get; set; }
 
         public CookChief Chief { get; set; }
@@ -24,7 +26,7 @@ namespace SimulationKitchen.Model
 
         public Kitchen(int cookersNb)
         {
-            LogWriter.GetInstance().Write("Create a kitchen with " + cookersNb + " cooker(s).");
+            //this.RoomCounter = Counter.GetInstance();
             this.WashMan = new Washer();
             this.CreateCookers(cookersNb);
             this.Chief = new CookChief(this.Cookers);
@@ -32,6 +34,7 @@ namespace SimulationKitchen.Model
 
         public void Start()
         {
+            //this.RoomCounter.RoomCommunication.StartListening();
             this.WashMan.StartWorking().Start();
         }
 

@@ -28,7 +28,6 @@ namespace SimulationKitchen.Model
         private void InitToolsManager()
         {
             List<Tool> allTools = new ToolProcess().ListAll();
-
             foreach (var item in allTools)
             {
                 AvailableTools.Add(item.Name,item.Quantity);
