@@ -44,6 +44,10 @@ namespace SimulationKitchen
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+            foreach (var cooker in this.Model.Cookers)
+            {
+                cooker.MoveEvent += this.UpdateCookers;                
+            }
         }
 
         /// <summary>
@@ -110,9 +114,22 @@ namespace SimulationKitchen
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic 
-            
-            
             base.Update(gameTime);
+        }
+
+        private void UpdateCookers(object sender, EventArgs e)
+        {
+            spriteBatch.Begin();
+            foreach (var cooker in this.Model.Cookers)
+            {
+                spriteBatch.Draw(textureCooker, this.PositionToVector(cooker.Position), Color.White);
+            }
+            spriteBatch.End();
+        }
+
+        private Vector2 PositionToVector(Position pos)
+        {
+            return new Vector2(pos.posX, pos.posY);
         }
 
         /// <summary>
@@ -149,9 +166,9 @@ namespace SimulationKitchen
 
                         foreach (var cooker in this.Model.Cookers)
                         {
-                            spriteBatch.Draw(textureCooker, cooker.Position, Color.White);
+                            spriteBatch.Draw(textureCooker, this.PositionToVector(cooker.Position), Color.White);
                         }
-                        
+
                         //                       
                         spriteBatch.End();
                         base.Draw(gameTime);

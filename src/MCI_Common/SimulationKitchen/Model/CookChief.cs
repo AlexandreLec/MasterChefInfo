@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SimulationKitchen.Model
 {
-    public class CookChief : Movable
+    public class CookChief
     {
         public Counter CounterPlate { get; set; }
 
@@ -66,7 +66,7 @@ namespace SimulationKitchen.Model
         private void GenerateMenu()
         {
             
-            List<Recipe> AllRecipe = new RecipeProcess().GetAll();
+            List<Recipe> AllRecipe = new List<Recipe>(new RecipeProcess().GetAll());
             List<Recipe> AllAvailableRecipe = AllRecipe.Where(o => this.RecipeAvailable(o)).ToList();
             List<Recipe> Starter = AllAvailableRecipe.Where(o => o.Type == RecipeType.STARTER).ToList();
             List<Recipe> Main = AllAvailableRecipe.Where(o => o.Type == RecipeType.MAIN).ToList();
