@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Behaviour
 {
-    public abstract class Movable
+    public  class Movable
     {
         public Position position = new Position(0, 0);
 

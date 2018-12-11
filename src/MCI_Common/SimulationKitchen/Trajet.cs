@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*namespace SimulationKitchen
+namespace SimulationKitchen
 {
     class Trajet
     {
@@ -35,4 +35,4 @@ using System.Threading.Tasks;
         }
         
 }
-    */
+    

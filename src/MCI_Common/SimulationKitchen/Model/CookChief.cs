@@ -1,4 +1,5 @@
-﻿using MCI_Common.Communication;
+﻿using MCI_Common.Behaviour;
+using MCI_Common.Communication;
 using MCI_Common.Dishes;
 using MCI_Common.Ingredients;
 using MCI_Common.Recipes;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SimulationKitchen.Model
 {
-    public class CookChief
+    public class CookChief : Movable
     {
         public Counter CounterPlate { get; set; }
 
@@ -118,6 +119,6 @@ namespace SimulationKitchen.Model
             }
             return result.All(o => o == true);
         }
-
     }
+    
 }
