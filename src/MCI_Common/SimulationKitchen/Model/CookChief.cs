@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SimulationKitchen.Model
 {
@@ -20,7 +21,7 @@ namespace SimulationKitchen.Model
         /// <summary>
         /// List of the recipe available in menu
         /// </summary>
-        public List<Recipe>[] Menu { get; private set; }
+        public List<Recipe> Menu { get; private set; }
 
         public List<Cooker> Cookers { get; set; }
 
@@ -30,7 +31,7 @@ namespace SimulationKitchen.Model
         {
             this.CounterPlate = counterplate;
             this.Cookers = cookers;
-            this.Menu = new List<Recipe>[3];
+            this.Menu = new List<Recipe>();
             this.GenerateMenu();
             this.CounterPlate.RoomCommunication.NewMenuDemand += this.SendMenuDel;
 
@@ -64,15 +65,8 @@ namespace SimulationKitchen.Model
 
         private void GenerateMenu()
         {
-            
             List<Recipe> AllRecipe = new RecipeProcess().GetAll();
-            List<Recipe> AllAvailableRecipe = AllRecipe.Where(o => this.RecipeAvailable(o)).ToList();
-            List<Recipe> Starter = AllAvailableRecipe.Where(o => o.Type == RecipeType.STARTER).ToList();
-            List<Recipe> Main = AllAvailableRecipe.Where(o => o.Type == RecipeType.MAIN).ToList();
-            List<Recipe> Dessert = AllAvailableRecipe.Where(o => o.Type == RecipeType.DESSERT).ToList();
-            this.Menu[0] = Starter;
-            this.Menu[1] = Main;
-            this.Menu[2] = Dessert;
+            this.Menu = AllRecipe.Where(o => this.RecipeAvailable(o)).ToList();
             
         }
 
@@ -83,9 +77,9 @@ namespace SimulationKitchen.Model
 
         private void SendMenu()
         {
-            LogWriter.GetInstance().Write(this.Menu[0][0].Name);
-            string msg = Serialization.SerializeAnObject(this.Menu[0][0]);
+            string msg = Serialization.SerializeAnObject(this.Menu);
             msg += "<MENU>";
+            Console.WriteLine(msg);
             this.CounterPlate.RoomCommunication.Send(msg);
         }
 
