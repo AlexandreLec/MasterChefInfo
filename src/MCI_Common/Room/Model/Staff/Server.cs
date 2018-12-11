@@ -31,6 +31,7 @@ namespace Room.Model.Staff
 
             //Gives the meals
 
+            //Update meal progression
             if(clts.MealProgression == RecipeType.UNKNOWN)
                 clts.MealProgression = RecipeType.STARTER;
             else if (clts.MealProgression == RecipeType.STARTER)

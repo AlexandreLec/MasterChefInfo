@@ -82,6 +82,7 @@
     <Compile Include="Model\Washer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trajet.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,7 +96,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <None Include="Content\MapKitchenNew.tmx" />
+    <None Include="Content\MapKitch.tmx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

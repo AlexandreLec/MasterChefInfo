@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="Content\MapKitchenNew.tmx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">

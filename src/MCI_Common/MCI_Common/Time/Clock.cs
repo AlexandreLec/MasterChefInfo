@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Timer
 {
-
+    //TO DO Implement time (hour and minues, night/day shift)
     public sealed class Clock
     {
         /// <summary>

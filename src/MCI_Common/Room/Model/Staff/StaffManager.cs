@@ -1,6 +1,7 @@
 ﻿using Room.Model.Client;
 using Room.Model.Factory;
 using MCI_Common.Communication;
+using Room.Model.Restaurant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Room.Model.Staff
         /// </summary>
         public List<Server> Servers;
 
+        public static ReadyCounter Counter { get; internal set; }
+
         /// <summary>
         /// Staff Manager thread safe Single instance
         /// </summary>
@@ -34,6 +37,7 @@ namespace Room.Model.Staff
 
         public StaffManager()
         {
+            Counter = new ReadyCounter();
             Rankchiefs = new List<RankChief>();
             Servers = new List<Server>();
 
@@ -99,7 +103,9 @@ namespace Room.Model.Staff
         public void OnReadyToPay (object source, OrderEventArgs args)
         {
             Console.WriteLine("Le client {0} est prêt à payer", args.cltGroup.Id);
+
             //Prepare payment
+            Master.CltPayment(args.cltGroup);
         }
     }
 }

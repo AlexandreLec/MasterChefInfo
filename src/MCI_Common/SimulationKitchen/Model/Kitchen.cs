@@ -42,12 +42,12 @@ namespace SimulationKitchen.Model
         {
             this.Cookers = new List<Cooker>();
             Oven oven = new Oven();
-            int space = 50;
+            int space = 0;
             for (int i = 1; i <= nb; i++)
             {
-                Vector2 position = new Vector2(90 + space, 300);
+                Vector2 position = new Vector2(80 + space, 160);
                 this.Cookers.Add(new Cooker(i, this.WashMan, oven, position));
-                space += 150;
+                space += 80;
             }
         }
     }

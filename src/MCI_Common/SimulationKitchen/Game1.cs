@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MCI_Common.Behaviour;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationKitchen.Contract;
@@ -15,8 +16,8 @@ namespace SimulationKitchen
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public const int WINDOW_WIDTH = 880; // dimmension fenètre jeu  
-        public const int WINDOW_HEIGHT = 640; // dimmension fenètre jeu         
+        public const int WINDOW_WIDTH = 480; // dimmension fenètre jeu  
+        public const int WINDOW_HEIGHT = 320; // dimmension fenètre jeu         
         TmxMap map; // déclaration de la méthode fourni par TiledSharp   
         public Texture2D tileset; // init des tiles en tant que Texture2D
         public int tileWidth; // Valeur Récupéré grace a TMXmap
@@ -31,6 +32,7 @@ namespace SimulationKitchen
         Texture2D textureWasher;
         // Affection des Vector
         public static Vector2 positionKitchenChief { get; set; }
+        
 
         public IModel Model { get; set; }
 
@@ -69,7 +71,7 @@ namespace SimulationKitchen
             // TODO: use this.Content to load your game content here
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            map = new TmxMap("Content/MapKitchenNew.tmx"); // On importe la map en tmx 
+            map = new TmxMap("Content/MapKitch.tmx"); // On importe la map en tmx 
             tileset = Content.Load<Texture2D>(map.Tilesets[0].Name.ToString()); // On charge les textures du tileset = TilePerso                    
             //Début d'affectation des Tiles
             var version = map.Version;
@@ -86,7 +88,7 @@ namespace SimulationKitchen
             textureWasher = Content.Load<Texture2D>("Washer");
             // Ajout d'une position aux sprites
             //positionKitchenChief = new Vector2(0, 0);
-            positionKitchenChief = new Vector2(0, 0);
+           
 
             
         }
@@ -107,8 +109,8 @@ namespace SimulationKitchen
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-
+            // TODO: Add your update logic 
+            
             
             base.Update(gameTime);
         }
@@ -130,7 +132,7 @@ namespace SimulationKitchen
 
                     if (gid == 0)
                     {
-                        //Si l'id de la tile est 9 alors on affiche un "trou"
+                        //Si l'id de la tile est 0 alors on affiche un "trou"
                     }
                     else
                     {
