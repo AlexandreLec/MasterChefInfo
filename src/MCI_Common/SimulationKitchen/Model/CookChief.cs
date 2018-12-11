@@ -31,9 +31,7 @@ namespace SimulationKitchen.Model
         {
             this.CounterPlate = counterplate;
             this.Cookers = cookers;
-            LogWriter.GetInstance().Write("Build menu");
             this.Menu = new List<Recipe>[3];
-            LogWriter.GetInstance().Write("generate menu");
             this.GenerateMenu();
             this.CounterPlate.RoomCommunication.NewMenuDemand += this.SendMenuDel;
 
@@ -108,13 +106,18 @@ namespace SimulationKitchen.Model
         private bool RecipeAvailable(Recipe recipe)
         {
             List<bool> result = new List<bool>();
+            List<Ingredient> AllIngredients = new IngredientProcess().ListAll();
 
-            foreach (var item in new RecipeProcess().GetOne(1).Steps)
+            foreach (var item in recipe.Steps)
             {
                 if (item.Ingredients.Count() == 0) continue;
                 else
                 {
-                    result.Add(item.Ingredients.All(o => o.Quantity <= new IngredientProcess().GetOne(o.Id).Quantity));
+                    foreach (var ingredient in item.Ingredients)
+                    {
+                        if (ingredient.Quantity <= AllIngredients.Where(o => o.Id == ingredient.Id).First().Quantity) result.Add(true);
+                        else result.Add(false);
+                    }
                 }
             }
             return result.All(o => o == true);
