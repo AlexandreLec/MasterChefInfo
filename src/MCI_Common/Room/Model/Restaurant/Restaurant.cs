@@ -14,7 +14,7 @@ namespace Room.Model.Restaurant
     {
         public List<Square> Squares { get; set; }
 
-        
+        public StaffManager staff;
 
 
         public Restaurant()
@@ -31,11 +31,13 @@ namespace Room.Model.Restaurant
 
        public void CreateStaff()
         {
+            staff = new StaffManager();
 
         }
 
         void CreateClients()
         {
+            while (staff.Counter.ready == false) { }
             ClientPool cltPool = new ClientPool();
 
         }

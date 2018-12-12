@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace SimulationKitchen.Model
 {
+
     public class SocketCom
     {
-        public Socket Cnx { get; set; }
-
-        public Socket Handler { get; set; }
 
         public event EventHandler NewMenuDemand;
+
+        public Socket RoomHandler { get; set; }
 
         public string IpAddress { get; set; }
 
@@ -63,15 +63,16 @@ namespace SimulationKitchen.Model
                     // Start listening for connections.  
                     while (true)
                     {
-                        LogWriter.GetInstance().Write("Kitchen Listenning on "+listener.LocalEndPoint.ToString()+", waiting for connection ...");
-                        // Program is suspended while waiting for an incoming connection.  
-                        this.Handler = listener.Accept();
-                        this.OnNewMenuDemand(EventArgs.Empty);
-                        // An incoming connection needs to be processed.  
+                        // Set the event to nonsignaled state.  
+                        LogWriter.GetInstance().Write("Kitchen Listenning on " + listener.LocalEndPoint.ToString() + ", waiting for connection ...");
 
+                        // Program is suspended while waiting for an incoming connection.  
+                        this.RoomHandler = listener.Accept();
+                        LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " connected");
+                        // An incoming connection needs to be processed.  
                         while (true)
                         {
-                            int bytesRec = this.Handler.Receive(bytes);
+                            int bytesRec = this.RoomHandler.Receive(bytes);
                             this.Datas += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             if (this.Datas.IndexOf("<EOF>") > -1)
                             {
@@ -84,6 +85,7 @@ namespace SimulationKitchen.Model
                 catch (Exception e)
                 {
                     LogWriter.GetInstance().Write(e.ToString());
+                    this.StartListening();
                 }
             }).Start();
         }
@@ -91,18 +93,19 @@ namespace SimulationKitchen.Model
         private void ProcessRecieveData(string data)
         {
             data = data.Substring(0, data.Length - 5);
-            if(data == "<END>")
+            if (data == "<MENU>")
             {
-                this.Handler.Close();
-            }
-            else if (data == "<MENU>")
-            {
+                LogWriter.GetInstance().Write("Menu demand");
                 this.OnNewMenuDemand(EventArgs.Empty);
+            }
+            else if (data == "<END>")
+            {
+                this.RoomHandler.Close();
             }
 
             //Ingredient result = (Ingredient)Serialization.DeSerializeAnObject(data, typeof(Ingredient));
         }
-
+        
         /// <summary>
         /// Send an object in the socket
         /// </summary>
@@ -112,18 +115,11 @@ namespace SimulationKitchen.Model
         public bool Send(string msg)
         {
             msg += "<EOF>";
-            LogWriter.GetInstance().Write("Program send " + msg);
-            // Get the socket connection
-            using (this.Handler)
-            {
-                if (this.Handler == null)
-                    return false;
+            LogWriter.GetInstance().Write("Program send info");
 
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+            byte[] data = Encoding.ASCII.GetBytes(msg);
 
-                // Send request to the server.
-                this.Handler.Send(bytes);
-            }
+            this.RoomHandler.Send(data);
             return true;
         }
 
