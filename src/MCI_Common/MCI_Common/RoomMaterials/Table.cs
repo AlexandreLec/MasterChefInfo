@@ -44,12 +44,14 @@ namespace MCI_Common.RoomMaterials
         /// </summary>
         public int Water { get; set; }
 
-        public List<Position> posAroundTable;
+        /// <summary>
+        /// Location of the table in the room
+        /// </summary>
+        public Position TableLocation { get; set; }
 
         public Table()
         {
-            this.posAroundTable = new List<Position>();
-            //Add available positions to array
+            
         }
         
     }
