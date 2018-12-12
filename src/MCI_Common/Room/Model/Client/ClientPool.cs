@@ -11,45 +11,42 @@ namespace Room.Model.Client
 {
     public class ClientPool
     {
-        
-
         /// <summary>
         /// Number of clients since start
         /// </summary>
-        private int nbCltSinceStart = 0;
+        public int NbCltSinceStart { get; set; }
 
         /// <summary>
         /// Number of client groups
         /// </summary>
-        private int nbCltGp = 0;
+        public int NbCltGp { get; set; }
 
         public ClientPool()
         {
-            Console.WriteLine("Client Pool created");
+            this.NbCltSinceStart = 0;
+            this.NbCltGp = 0;
 
             //Creates client groups
             /*   UNCOMMENT FOR PRODUCTION   */
-            AddGroup();
-            //while(nbCltSinceStart < Global_Settings.nbCltPerShift)
-            //{
-            //    AddGroup();
-
-            //    //Wait 5 Sim min
-            //    Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
-            //}
-
+            this.SpawnClientsGroup();
+            
         }
 
         /// <summary>
-        /// Adds a client group to the thread pool
+        /// Create a clients pool periodically
         /// </summary>
-        public void AddGroup()
+        public void SpawnClientsGroup()
         {
-            ThreadPool.QueueUserWorkItem(GenerateGroup);
+            while(this.NbCltSinceStart < Global_Settings.nbCltPerShift)
+            {
+                ThreadPool.QueueUserWorkItem(GenerateGroup);
+                //Wait 5 Sim min
+                Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
+            }
         }
 
         /// <summary>
-        /// Genereates the client group from created clients
+        /// Generates the client group from created clients
         /// </summary>
         /// <param name="cltList"></param>
         private void GenerateGroup(object data)
@@ -64,21 +61,17 @@ namespace Room.Model.Client
             int rdNb = number.Next(1, 11);
 
             // Increment number of clients since start
-            nbCltSinceStart += rdNb;
+            this.NbCltSinceStart += rdNb;
 
             //Increment group number
-            nbCltGp++;
+            this.NbCltGp++;
 
             // Generates between 1 and 10 clients 
             cltList = GenerateClients(rdNb);
 
             // ClientGroup created
             Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, rdNb);
-            ClientGroup group = new ClientGroup(nbCltGp, cltList);
-
-            
-
-
+            ClientGroup group = new ClientGroup(this.NbCltGp, cltList);
         }
 
         /// <summary>
@@ -95,13 +88,8 @@ namespace Room.Model.Client
             {
                 clt = new Client();
                 cltList.Add(clt);
-                
-                
-
             }
-
             return cltList;
-
         }
 
     }

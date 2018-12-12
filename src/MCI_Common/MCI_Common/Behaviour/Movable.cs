@@ -13,7 +13,7 @@ namespace MCI_Common.Behaviour
         public event EventHandler MoveEvent;
 
         /// <summary>
-        /// Moves to fixed position
+        /// Teleport to fixed position
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -29,23 +29,36 @@ namespace MCI_Common.Behaviour
 
         }
 
-        /*public void MoveTo(Position position)
+        /// <summary>
+        /// Move to a fixed position
+        /// </summary>
+        /// <param name="position"></param>
+        public void MoveTo(Position position)
         {
-            // check if map coordinates are in range
-            while (position.posX != )
+            while(this.Position.posX < position.posX)
             {
-                position.posX += +1;
-                position.posX -= -1;
-            }        
-                            
-            while(position.posY != position.posY)
-            {
-                position.posY += +1;
-                position.posY -= -1;
-            }          
-         this.OnMoveEvent(EventArgs.Empty);
+                this.Position.posX += 1;
+                this.OnMoveEvent(EventArgs.Empty);
+            }
 
-        } */
+            while (this.Position.posX > position.posX)
+            {
+                this.Position.posX -= 1;
+                this.OnMoveEvent(EventArgs.Empty);
+            }
+
+            while (this.Position.posY < position.posY)
+            {
+                this.Position.posX += 1;
+                this.OnMoveEvent(EventArgs.Empty);
+            }
+
+            while (this.Position.posY > position.posY)
+            {
+                this.Position.posX -= 1;
+                this.OnMoveEvent(EventArgs.Empty);
+            }
+        }
 
 
         /// <summary>

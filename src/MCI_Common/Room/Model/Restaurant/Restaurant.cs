@@ -7,45 +7,54 @@ using MCI_Common.RoomMaterials;
 using Room.Model.Factory;
 using Room.Model.Client;
 using Room.Model.Staff;
+using Room.Interfaces;
 
 namespace Room.Model.Restaurant
 {
     class Restaurant
     {
+        /// <summary>
+        /// List of the squares in the room
+        /// </summary>
         public List<Square> Squares { get; set; }
 
-        public StaffManager staff;
+        /// <summary>
+        /// Staff manager instance
+        /// </summary>
+        public StaffManager Staff { get; set; }
 
-
+        /// <summary>
+        /// Instantiate a restaurant
+        /// </summary>
         public Restaurant()
         {
             //this.Squares = new SquareProcess().GetAll();
 
-            CreateStaff();
+            Staff = new StaffManager();
             Console.WriteLine("Staff created");
 
-            CreateClients();
+            CreateClientPool();
             Console.WriteLine("Clients created");
             
         }
 
-       public void CreateStaff()
+        /// <summary>
+        /// Generate the client ppol
+        /// </summary>
+        void CreateClientPool()
         {
-            staff = new StaffManager();
-
+            while (this.Staff.Counter.ready == false) { }
+            this.CltPool = new ClientPool();
         }
 
-        void CreateClients()
-        {
-            while (staff.Counter.ready == false) { }
-            ClientPool cltPool = new ClientPool();
-
-        }
-
-        /*void ApplyConfig(IController Config)
+        /// <summary>
+        /// Apply user configuration
+        /// </summary>
+        /// <param name="Config"></param>
+        void ApplyConfig(IController Config)
         {
             
         }
-        */
+        
     }
 }

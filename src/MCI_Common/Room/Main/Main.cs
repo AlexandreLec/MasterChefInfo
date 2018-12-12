@@ -21,9 +21,6 @@ namespace Room.Main
         {
 
             Restaurant resto = new Restaurant();
-            
-            
-            //Console.WriteLine("Menu: {0}", sm.Counter.Menu[0][0].Name);
 
             Console.Read();
         }

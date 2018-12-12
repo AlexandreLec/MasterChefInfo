@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="Model\Behaviour\OrderAllOne.cs" />
     <Compile Include="Model\Behaviour\OrderBehaviour.cs" />
@@ -74,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">

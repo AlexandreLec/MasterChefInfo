@@ -9,7 +9,7 @@ namespace Room.Model.Behaviour
 {
     public interface OrderBehaviour
     {
-        string Method();
+        string Name { get; set; }
 
         /// <summary>
         /// Order meal according to order method

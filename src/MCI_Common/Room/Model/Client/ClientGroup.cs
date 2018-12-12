@@ -39,32 +39,42 @@ namespace Room.Model.Client
 
         // TODO ajouter les envent handler au staff + abonnement
 
+        /// <summary>
+        /// Id of the clients group
+        /// </summary>
+        public int Id { get; set; }
 
-        public int Id;
-        public List<Client> ClientList;
-        public Order tableOrder;
-        public Table TableSit;
+        /// <summary>
+        /// List of clients in the group
+        /// </summary>
+        public List<Client> ClientList { get; set; }
+
+        /// <summary>
+        /// Order of the group containing dishes for each client
+        /// </summary>
+        public Order tableOrder { get; set; }
+
+        /// <summary>
+        /// Group's table
+        /// </summary>
+        public Table TableSit { get; set; }
+
         public RecipeType MealProgression = RecipeType.UNKNOWN;
 
         private bool Reserved;
         private bool IsHurry;
         private bool Ready = false;
 
-        
-        
         // Events
         private event ReadyToOrderEventHandler ReadyToOrder;
         private event DishFinishedEventHandler DishFinished;
         private event ReadyToPayEventHandler ReadyToPay;
-
         
         private string Sprite;
         
         public ClientGroup(int id, List<Client> list)
         {
-
             Id = id;
-            ClientList = new List<Client>();
             ClientList = list;
 
             //adding subscriptions to events
@@ -72,11 +82,8 @@ namespace Room.Model.Client
             ReadyToOrder += StaffManager.Instance.OnReadyToOrder;
             ReadyToPay += StaffManager.Instance.OnReadyToPay;
 
-            
-
             //Spawns at inital position
             MoveTo(1, 1);
-
 
             //Go to room master's counter
             MoveTo(10, 10);

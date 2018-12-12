@@ -13,8 +13,6 @@ namespace Room.Model.Client
     // Imovable ???
     public class Client : Movable
     {
-        public string Sprite;
-
         /// <summary>
         /// If the client received its dish, false when
         /// the waiter clears the table
@@ -31,6 +29,9 @@ namespace Room.Model.Client
         /// </summary>
         public OrderBehaviour OrderMethod;
 
+        /// <summary>
+        /// Instantiate a client
+        /// </summary>
         public Client()
         {
             if(Randomizer.Instance.R.Next(0,2) == 0)
@@ -38,10 +39,12 @@ namespace Room.Model.Client
             else
                 OrderMethod = new OrderTwoStep();
 
-
             Console.WriteLine("Client created, order method: {0}", OrderMethod);
         }
         
+        /// <summary>
+        /// Order a meal
+        /// </summary>
         public void OrderMeal()
         {
             OrderMethod.OrderMeal(this);

@@ -16,5 +16,10 @@ namespace SimulationRestaurant
         {
             InitializeComponent();
         }
+
+        private void btn_start_sim_Click(object sender, EventArgs e)
+        {
+            Program.Launch();
+        }
     }
 }

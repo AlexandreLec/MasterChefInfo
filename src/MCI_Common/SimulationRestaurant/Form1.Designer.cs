@@ -97,6 +97,7 @@
             this.btn_start_sim.TabIndex = 0;
             this.btn_start_sim.Text = "Start Simulation";
             this.btn_start_sim.UseVisualStyleBackColor = true;
+            this.btn_start_sim.Click += new System.EventHandler(this.btn_start_sim_Click);
             // 
             // tabPage2
             // 
