@@ -10,10 +10,6 @@ namespace Room.Model.Staff
 {
     public class RoomMaster : Staff
     {
-        /// <summary>
-        /// Sprite of the room master
-        /// </summary>
-        private string Sprite;
 
         /// <summary>
         /// Check the reservation of a group of clients
@@ -38,14 +34,7 @@ namespace Room.Model.Staff
             List<Table> AvailableTables = new List<Table>();
 
 
-            // List all the tables
-            foreach (var square in new SquareProcess().GetAll())
-            {
-                foreach (var table in square.Tables)
-                {
-                    ListTables.Add(table);
-                }
-            }
+            
 
             foreach (var AvailableTable in ListTables.Where(t => t.Capacity >= WaitingClients))
             {

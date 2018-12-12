@@ -82,18 +82,11 @@ namespace Room.Model.Client
             ReadyToOrder += StaffManager.Instance.OnReadyToOrder;
             ReadyToPay += StaffManager.Instance.OnReadyToPay;
 
-            //Spawns at inital position
-            MoveTo(1, 1);
-
-            //Go to room master's counter
-            MoveTo(10, 10);
-            //StaffManager.Instance.Master.AssignTable(this);
+            
+            
 
 
-            //Follows the room master (or leaves)
-
-
-            //Gets seated -> set individual clients around table
+            
 
             //Gets menus, reflexion moment
             Order();
@@ -109,6 +102,21 @@ namespace Room.Model.Client
 
 
             //Meal finished, ready to pay
+
+        }
+
+        public void Start(object data)
+        {
+            Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, this.ClientList.Count());
+            //Spawns at inital position
+            MoveTo(192, 608);
+            //Go to room master's counter
+            MoveTo(10, 10);
+            StaffManager.Instance.Master.AssignTable(this);
+            //Follows the room master (or leaves)
+
+
+            //Gets seated -> set individual clients around table
 
         }
 

@@ -14,14 +14,19 @@ namespace Room.Model.Restaurant
     class Restaurant
     {
         /// <summary>
-        /// List of the squares in the room
+        /// List of the tables in the room
         /// </summary>
-        public List<Square> Squares { get; set; }
+        List<Table> ListTables = new List<Table>();
 
         /// <summary>
         /// Staff manager instance
         /// </summary>
         public StaffManager Staff { get; set; }
+
+        /// <summary>
+        /// Clients group list
+        /// </summary>
+        public ClientPool CltPool { get; set; }
 
         /// <summary>
         /// Instantiate a restaurant
@@ -45,6 +50,26 @@ namespace Room.Model.Restaurant
         {
             while (this.Staff.Counter.ready == false) { }
             this.CltPool = new ClientPool();
+        }
+
+        /// <summary>
+        /// Generate the table
+        /// </summary>
+        public void GenerateTable()
+        {
+            // List all the tables
+            foreach (var square in new SquareProcess().GetAll())
+            {
+                foreach (var table in square.Tables)
+                {
+                    ListTables.Add(table);
+                }
+            }
+
+            foreach (var table in ListTables)
+            {
+                
+            }
         }
 
         /// <summary>

@@ -21,10 +21,20 @@ namespace Room.Model.Client
         /// </summary>
         public int NbCltGp { get; set; }
 
+        /// <summary>
+        /// List the client group
+        /// </summary>
+        public List<ClientGroup> ClientGroups { get; set; }
+
+        /// <summary>
+        /// Instantiate a clientpool
+        /// </summary>
         public ClientPool()
         {
             this.NbCltSinceStart = 0;
             this.NbCltGp = 0;
+
+            this.ClientGroups = new List<ClientGroup>();
 
             //Creates client groups
             /*   UNCOMMENT FOR PRODUCTION   */
@@ -39,7 +49,8 @@ namespace Room.Model.Client
         {
             while(this.NbCltSinceStart < Global_Settings.nbCltPerShift)
             {
-                ThreadPool.QueueUserWorkItem(GenerateGroup);
+                ClientGroup group = GenerateGroup();
+                ThreadPool.QueueUserWorkItem();
                 //Wait 5 Sim min
                 Thread.Sleep(5* MCI_Common.Timer.Clock.Instance.Period);
             }
@@ -48,8 +59,7 @@ namespace Room.Model.Client
         /// <summary>
         /// Generates the client group from created clients
         /// </summary>
-        /// <param name="cltList"></param>
-        private void GenerateGroup(object data)
+        private ClientGroup GenerateGroup()
         {
             // List for storing generated clients
             List<Client> cltList = new List<Client>();
@@ -70,8 +80,11 @@ namespace Room.Model.Client
             cltList = GenerateClients(rdNb);
 
             // ClientGroup created
-            Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, rdNb);
+            
             ClientGroup group = new ClientGroup(this.NbCltGp, cltList);
+            this.ClientGroups.Add(group);
+
+            return group;
         }
 
         /// <summary>
