@@ -12,9 +12,9 @@ namespace Room.Model.Staff
     {
         public List<Table> Tables { get; set; }
 
-        public RoomMaster()
+        public RoomMaster(List<Table> tables)
         {
-            Tables = new List<Table>();
+            Tables = tables;
         }
 
         /// <summary>

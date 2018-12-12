@@ -81,7 +81,7 @@ namespace MCI_Common.RoomMaterials
         {
             this.DatasSquare.Clear();
             this.Request = this.MapTableSquare.GetAll();
-            this.DatasSquare = this.Bdd.getRows(this.Request, "Square");
+            this.DatasSquare = this.Bdd.getRows(this.Request, "Square").Copy();
 
             List<Square> results = new List<Square>();
 

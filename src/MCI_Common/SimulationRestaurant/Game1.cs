@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MCI_Common.Behaviour;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SimulationRestaurant.Interfaces;
 using System;
 using System.Xml.Linq;
 using TiledSharp;
@@ -14,8 +16,8 @@ namespace ProjectGameRestaurantNew
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;           
-        public const int WINDOW_WIDTH = 880; // dimmension fenètre jeu  1280px 
-        public const int WINDOW_HEIGHT = 640; // dimmension fenètre jeu  80px        
+        public const int WINDOW_WIDTH = 480; // dimmension fenètre jeu  1280px 
+        public const int WINDOW_HEIGHT = 320; // dimmension fenètre jeu  80px        
         TmxMap map; // déclaration de la méthode fourni par TiledSharp   
         public Texture2D tileset; // init des tiles en tant que Texture2D
         public int tileWidth; // Valeur Récupéré grace a TMXmap
@@ -23,27 +25,34 @@ namespace ProjectGameRestaurantNew
         public int tilesetTilesWide;
         public int tilesetTilesHigh;
         public int[,] Tiles; // chaque tiles est séparer par une virgule (ref fichier de la map qui est en format CSV ex: 0,1,1,1 0= vide 1=Ground texture)
-        int nbLayers = 8;
+        int nbLayers = 5;
         // Affectation des textures2D 
         Texture2D textureRankChief;
         Texture2D textureServer;
         Texture2D textureHost;
         Texture2D textureClient;
+        Texture2D textureTable;
+        Texture2D textureChair;
         // Affection des Vector
         Vector2 positionRankChief;
         Vector2 positionServer;
         Vector2 positionHost;
         Vector2 positionClient;
         //
-        
+
+        public IModel Model { get; set; }
 
 
-        public Game1()
+        public Game1(IModel model)
         {
+            this.Model = model;
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+
+            
         }
 
         /// <summary>
@@ -83,13 +92,14 @@ namespace ProjectGameRestaurantNew
             textureServer = Content.Load<Texture2D>("Server");
             textureHost = Content.Load<Texture2D>("Host");
             textureClient = Content.Load<Texture2D>("Client");
+            textureTable = Content.Load<Texture2D>("tableTwoPeople");
+            textureChair = Content.Load<Texture2D>("Chair");
             // Ajout d'une position aux sprites
             positionRankChief = new Vector2(0, 0);
             positionServer = new Vector2(0, 54);
             positionHost = new Vector2(128, 560);
             positionClient = new Vector2(16, 16);
             //                      
-            var addObject = map.ObjectGroups[0].Objects[0];            
         }
 
         /// <summary>
@@ -99,6 +109,11 @@ namespace ProjectGameRestaurantNew
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+
+        private Vector2 PositionToVector(Position position)
+        {
+            return new Vector2(position.posX, position.posY);
         }
 
         /// <summary>
@@ -114,6 +129,16 @@ namespace ProjectGameRestaurantNew
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+        }
+
+        private void Update()
+        {
+            spriteBatch.Begin();
+            foreach (var client in Model.Clients)
+            {
+                spriteBatch.Draw(textureClient, PositionToVector(client.Position), Color.White);
+            }
+            spriteBatch.End();
         }
 
         /// <summary>
@@ -151,6 +176,12 @@ namespace ProjectGameRestaurantNew
                         spriteBatch.Draw(textureServer, positionServer, Color.White);
                         spriteBatch.Draw(textureHost, positionHost, Color.White);
                         spriteBatch.Draw(textureClient, positionClient, Color.White);
+
+                        foreach (var table in Model.ListTables)
+                        {
+                            spriteBatch.Draw(textureChair, PositionToVector(table.TableLocation), Color.White);
+                            spriteBatch.Draw(textureTable, new Vector2(table.TableLocation.posX,table.TableLocation.posY+16), Color.White);
+                        }
                         //                       
                         spriteBatch.End();
                     }

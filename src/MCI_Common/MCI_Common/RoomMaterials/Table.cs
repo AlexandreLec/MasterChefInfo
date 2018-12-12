@@ -51,7 +51,7 @@ namespace MCI_Common.RoomMaterials
 
         public Table()
         {
-            
+            TableLocation = new Position(0,0);
         }
         
     }

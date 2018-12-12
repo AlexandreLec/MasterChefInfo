@@ -68,6 +68,27 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Game1.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\IModel.cs" />
+    <Compile Include="Model\Behaviour\OrderAllOne.cs" />
+    <Compile Include="Model\Behaviour\OrderBehaviour.cs" />
+    <Compile Include="Model\Behaviour\OrderTwoStep.cs" />
+    <Compile Include="Model\Client\Client.cs" />
+    <Compile Include="Model\Client\ClientGroup.cs" />
+    <Compile Include="Model\Client\ClientPool.cs" />
+    <Compile Include="Model\Factory\FactoryRankChief.cs" />
+    <Compile Include="Model\Factory\FactoryRoomMaster.cs" />
+    <Compile Include="Model\Factory\FactoryServer.cs" />
+    <Compile Include="Model\Factory\FactoryStaff.cs" />
+    <Compile Include="Model\Restaurant\DirtyCounter.cs" />
+    <Compile Include="Model\Restaurant\ReadyCounter.cs" />
+    <Compile Include="Model\Restaurant\Restaurant.cs" />
+    <Compile Include="Model\Restaurant\SocketCom.cs" />
+    <Compile Include="Model\Staff\RankChief.cs" />
+    <Compile Include="Model\Staff\RoomMaster.cs" />
+    <Compile Include="Model\Staff\Server.cs" />
+    <Compile Include="Model\Staff\Staff.cs" />
+    <Compile Include="Model\Staff\StaffManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -129,10 +150,17 @@
     <Content Include="Content\TilePerso.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MCI_Common\MCI_Common.csproj">
+      <Project>{b7630d98-1259-40b3-b7d6-2ff40dc6f015}</Project>
+      <Name>MCI_Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TiledSharp\TiledSharp.csproj">
       <Project>{dedd84f5-45bc-4639-94bd-b2fe55d42c0b}</Project>
       <Name>TiledSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,6 @@
 ﻿using ProjectGameRestaurantNew;
+using Room.Model.Restaurant;
+using SimulationRestaurant.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +25,14 @@ namespace SimulationRestaurant
         [STAThread]
         public static void Launch()
         {
-            using (var game = new Game1())
+            IModel model = new Restaurant();
+            using (var game = new Game1(model))
                 game.Run();
         }
 
         public static void Stop()
         {
-            using (var game = new Game1())
-                game.Exit();
+           
         }
     }
 }

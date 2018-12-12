@@ -8,15 +8,16 @@ using Room.Model.Factory;
 using Room.Model.Client;
 using Room.Model.Staff;
 using Room.Interfaces;
+using SimulationRestaurant.Interfaces;
 
 namespace Room.Model.Restaurant
 {
-    class Restaurant
+    public class Restaurant : IModel
     {
         /// <summary>
         /// List of the tables in the room
         /// </summary>
-        List<Table> ListTables { get; set; }
+        public List<Table> ListTables { get; private set; }
 
         /// <summary>
         /// Staff manager instance
@@ -26,7 +27,7 @@ namespace Room.Model.Restaurant
         /// <summary>
         /// Clients group list
         /// </summary>
-        public ClientPool CltPool { get; set; }
+        public List<ClientGroup> Clients { get; set; }
 
         /// <summary>
         /// Instantiate a restaurant
@@ -34,8 +35,7 @@ namespace Room.Model.Restaurant
         public Restaurant()
         {
             //this.Squares = new SquareProcess().GetAll();
-
-            Staff = new StaffManager();
+            Staff = StaffManager.Instance;
             Console.WriteLine("Staff created");
 
             CreateClientPool();
@@ -50,7 +50,8 @@ namespace Room.Model.Restaurant
         void CreateClientPool()
         {
             while (this.Staff.Counter.ready == false) { }
-            this.CltPool = new ClientPool();
+            Console.WriteLine("Create client pool");
+            ClientPool CltPool = new ClientPool();
         }
 
         /// <summary>
@@ -71,11 +72,12 @@ namespace Room.Model.Restaurant
             foreach (var table in ListTables)
             {
                 table.TableLocation.posX = 48+i;
-                table.TableLocation.posY = 384+y;
-                i += 48;
-                if (i == 336)
+                table.TableLocation.posY = 64+y;
+                i += 64;
+                if (i == 384)
                 {
-                    y = 80;
+                    y = 32;
+                    i = 0;
                 }
             }
         }
