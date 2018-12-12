@@ -25,6 +25,7 @@ namespace MCI_Common.Behaviour
                 this.Position.posX = x;
                 this.Position.posY = y;
             }
+            Console.WriteLine("Move");
             this.OnMoveEvent(EventArgs.Empty);
 
         }

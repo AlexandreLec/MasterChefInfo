@@ -34,14 +34,15 @@ namespace Room.Model.Restaurant
         /// </summary>
         public Restaurant()
         {
+            this.ListTables = new List<Table>();
+            this.GenerateTable();
             //this.Squares = new SquareProcess().GetAll();
-            Staff = StaffManager.Instance;
+            Staff = StaffManager.Instance(ListTables);
             Console.WriteLine("Staff created");
 
             CreateClientPool();
             Console.WriteLine("Clients created");
-            this.ListTables = new List<Table>();
-            this.GenerateTable();
+            
         }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace Room.Model.Restaurant
             while (this.Staff.Counter.ready == false) { }
             Console.WriteLine("Create client pool");
             ClientPool CltPool = new ClientPool();
+            Clients = CltPool.ClientGroups;
         }
 
         /// <summary>
@@ -64,6 +66,7 @@ namespace Room.Model.Restaurant
             {
                 foreach (var table in square.Tables)
                 {
+                    Console.WriteLine("New table");
                     ListTables.Add(table);
                 }
             }

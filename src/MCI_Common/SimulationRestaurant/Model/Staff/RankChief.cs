@@ -106,7 +106,7 @@ namespace Room.Model.Staff
 
             Console.WriteLine("Commande du groupe {0} passée", clients.Id);
 
-            StaffManager.Instance.Counter.SendOrder(clients.tableOrder);
+            StaffManager.Instance().Counter.SendOrder(clients.tableOrder);
 
         }
 

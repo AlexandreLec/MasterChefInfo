@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.Dishes;
+using MCI_Common.RoomMaterials;
 
 namespace Room.Model.Staff
 {
@@ -42,7 +43,7 @@ namespace Room.Model.Staff
         /// <summary>
         /// Instantiate a Staff Manager
         /// </summary>
-        private StaffManager()
+        private StaffManager(List<Table> tables)
         {
             Counter = new ReadyCounter();
             
@@ -53,7 +54,7 @@ namespace Room.Model.Staff
                 Rankchiefs.Add(new RankChief());
             for (int i = 0; i < Global_Settings.nbServers; i++)
                 Servers.Add(new Server());
-            Master = new RoomMaster();
+            Master = new RoomMaster(tables);
 
             //StaffManager.Instance.Counter.socket.OrderReadyReception += this.OnOrderReadyToServe;
         }
@@ -61,19 +62,17 @@ namespace Room.Model.Staff
         /// <summary>
         /// Method for Singelton Management
         /// </summary>
-        public static StaffManager Instance
+        public static StaffManager Instance(List<Table> tables = null)
         {
-            get
+            lock(padlock)
             {
-                lock (padlock)
-                {
                     if (instance == null)
                     {
-                        instance = new StaffManager();
+                        instance = new StaffManager(tables);
                     }
                     return instance;
-                }
             }
+            
         }
 
         public void OnOrderReadyToServe(object source, EventArgs args)
