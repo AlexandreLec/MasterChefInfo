@@ -34,14 +34,9 @@ namespace Room.Model.Staff
         {
             // Count of the number of clients in the group
             int WaitingClients = groupClient.ClientList.Count();
-
+            Console.WriteLine(WaitingClients);
             // Initiate a new list of tables
             List<Table> AvailableTables = this.Tables.Where(t => t.Capacity >= WaitingClients).ToList();
-
-            foreach (var table in AvailableTables)
-            {
-                AvailableTables.Add(table);
-            }
 
             Table AssignedTable = AvailableTables.First();
             AssignedTable.ClientGroupIdAssigned = groupClient.Id;

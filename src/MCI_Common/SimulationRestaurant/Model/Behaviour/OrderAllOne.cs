@@ -32,7 +32,7 @@ namespace Room.Model.Behaviour
         public void OrderDessert(Client.Client clt)
         {
             if(clt.Order[2] == null)
-                clt.Order[2] = StaffManager.Instance.Counter.Menu[2][Randomizer.Instance.R.Next(0, StaffManager.Instance.Counter.Menu[2].Count)];
+                clt.Order[2] = StaffManager.Instance().Counter.Menu[2][Randomizer.Instance.R.Next(0, StaffManager.Instance().Counter.Menu[2].Count)];
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Room.Model.Behaviour
         /// <param name="clt"></param>
         public void OrderMain(Client.Client clt)
         {
-            clt.Order[1] = StaffManager.Instance.Counter.Menu[1][Randomizer.Instance.R.Next(0, StaffManager.Instance.Counter.Menu[1].Count)];
+            clt.Order[1] = StaffManager.Instance().Counter.Menu[1][Randomizer.Instance.R.Next(0, StaffManager.Instance().Counter.Menu[1].Count)];
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace Room.Model.Behaviour
         /// <param name="clt"></param>
         public void OrderStarter(Client.Client clt)
         {
-            Console.WriteLine(StaffManager.Instance.Counter.Menu[0][0]);
-            clt.Order[0] = StaffManager.Instance.Counter.Menu[0][Randomizer.Instance.R.Next(0, 5)];
+            Console.WriteLine(StaffManager.Instance().Counter.Menu[0][0]);
+            clt.Order[0] = StaffManager.Instance().Counter.Menu[0][Randomizer.Instance.R.Next(0, 5)];
 
         }
 

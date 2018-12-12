@@ -42,17 +42,21 @@ namespace ProjectGameRestaurantNew
 
         public IModel Model { get; set; }
 
+        public bool Aschanged { get; set; }
 
         public Game1(IModel model)
         {
             this.Model = model;
-
+            Aschanged = false;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
 
-            
+            foreach (var client in Model.Clients)
+            {
+                client.MoveEvent += Update;
+            }
         }
 
         /// <summary>
@@ -121,24 +125,18 @@ namespace ProjectGameRestaurantNew
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        protected override void Update(GameTime gametime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            
 
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
+            base.Update(gametime);
         }
 
-        private void Update()
+        private void Update(object sender, EventArgs e)
         {
-            spriteBatch.Begin();
-            foreach (var client in Model.Clients)
-            {
-                spriteBatch.Draw(textureClient, PositionToVector(client.Position), Color.White);
-            }
-            spriteBatch.End();
+            Aschanged = true;
         }
 
         /// <summary>
@@ -181,6 +179,11 @@ namespace ProjectGameRestaurantNew
                         {
                             spriteBatch.Draw(textureChair, PositionToVector(table.TableLocation), Color.White);
                             spriteBatch.Draw(textureTable, new Vector2(table.TableLocation.posX,table.TableLocation.posY+16), Color.White);
+                        }
+
+                        foreach (var client in Model.Clients)
+                        {
+                            spriteBatch.Draw(textureClient, PositionToVector(client.Position), Color.White);
                         }
                         //                       
                         spriteBatch.End();

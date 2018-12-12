@@ -80,9 +80,9 @@ namespace Room.Model.Client
             this.tableOrder = new Order();
 
             //adding subscriptions to events
-            DishFinished += StaffManager.Instance.OnDishFinished;
-            ReadyToOrder += StaffManager.Instance.OnReadyToOrder;
-            ReadyToPay += StaffManager.Instance.OnReadyToPay;
+            DishFinished += StaffManager.Instance().OnDishFinished;
+            ReadyToOrder += StaffManager.Instance().OnReadyToOrder;
+            ReadyToPay += StaffManager.Instance().OnReadyToPay;
 
             
             
@@ -114,7 +114,7 @@ namespace Room.Model.Client
             MoveTo(80, 288);
             //Go to room master's counter
             MoveTo(64, 240);
-            Table table = StaffManager.Instance.Master.AssignTable(this);
+            Table table = StaffManager.Instance().Master.AssignTable(this);
             //Follows the room master (or leaves)
 
             MoveTo(table.TableLocation);
