@@ -189,10 +189,10 @@ namespace SimulationKitchen
                         spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
                         spriteBatch.Draw(textureWasher, positionWasher, Color.White);
 
-                        /*foreach (var cooker in this.Model.Cookers)
+                        foreach (var cooker in this.Model.Cookers)
                         {
                             spriteBatch.Draw(textureCooker, cooker.Position, Color.White);
-                        }*/
+                        }
                         
                         //                       
                         spriteBatch.End();
