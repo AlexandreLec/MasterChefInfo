@@ -50,6 +50,7 @@ namespace SimulationKitchen.Model
             foreach (var order in listReadyOrders)
             {
                 string msg = Serialization.SerializeAnObject(order);
+                msg += "<ORDER_READY>";
                 this.RoomCommunication.Send(msg);
                 this.Orders.Remove(order);
             }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using MCI_Common.Communication;
 using MCI_Common.Recipes;
+using MCI_Common.Dishes;
 
 namespace Room.Model.Restaurant
 {
@@ -22,6 +23,8 @@ namespace Room.Model.Restaurant
 
 
         public event EventHandler MenuReception;
+
+        public event EventHandler OrderReadyReception;
 
         /// <summary>
         /// Create a connection 
@@ -93,28 +96,12 @@ namespace Room.Model.Restaurant
                     {
                         Console.WriteLine("Unexpected exception : {0}", e.ToString());
                     }
-
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
-                }
-
-                
+                } 
             }).Start();
-        }
-
-        /// <summary>
-        /// Send an object in the socket
-        /// </summary>
-        /// <param name="server"></param>
-        /// <param name="port"></param>
-        /// <returns></returns>
-        public void Send(Object obj)
-        {
-            string msg = Serialization.SerializeAnObject(obj);
-
-            SocketRequest(msg);
         }
 
         /// <summary>
@@ -132,24 +119,28 @@ namespace Room.Model.Restaurant
             Console.WriteLine("Reception");
             datas = datas.Substring(0, datas.Length - 5);
             Console.WriteLine(datas);
-            if (datas == "<END>")
-            {
-                
-            }
+
             if (datas.IndexOf("<MENU>") > -1)
             {
-
                 datas = datas.Substring(0, datas.Length - "<MENU>".Length);
-                ObjectEventArgs msg = new ObjectEventArgs(datas, typeof(List<Recipe>));
-
-                OnMenuReception(msg);
-                
+                ObjectEventArgs args = new ObjectEventArgs(datas, typeof(List<Recipe>));
+                OnMenuReception(args);   
+            }
+            else if (datas.IndexOf("<ORDER_READY>") > -1)
+            {
+                ObjectEventArgs args = new ObjectEventArgs(datas, typeof(Order));
+                OnOrderReadyReception(args);
             }
         }
 
         protected virtual void OnMenuReception(EventArgs e)
         {
             MenuReception?.Invoke(this, e);
+        }
+
+        protected virtual void OnOrderReadyReception(EventArgs e)
+        {
+            OrderReadyReception?.Invoke(this, e);
         }
     }
 
@@ -161,18 +152,5 @@ namespace Room.Model.Restaurant
         {
             receiveObject = Serialization.DeSerializeAnObject(str,type);
         }
-    }
-
-    // State object for receiving data from remote device.  
-    public class StateObject
-    {
-        // Client socket.  
-        public Socket workSocket = null;
-        // Size of receive buffer.  
-        public const int BufferSize = 256;
-        // Receive buffer.  
-        public byte[] buffer = new byte[BufferSize];
-        // Received data string.  
-        public StringBuilder sb = new StringBuilder();
     }
 }

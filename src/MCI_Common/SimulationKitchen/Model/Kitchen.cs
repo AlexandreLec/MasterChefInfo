@@ -38,24 +38,9 @@ namespace SimulationKitchen.Model
 
         public void Start()
         {
-            Console.WriteLine("Test");
-            Order order = new Order();
-            Dish one = new Dish(order);
-            Dish two = new Dish(order);
-            Console.WriteLine("Test456");
-            one.Recipe = new RecipeProcess().GetOne(1);
-            two.Recipe = new RecipeProcess().GetOne(2);
-
-            order.Dishes.Add(one);
-            order.Dishes.Add(two);
-
-            one.Id = 1;
-            two.Id = 2;
-            //this.RoomCounter.RoomCommunication.StartListening();
+            this.RoomCounter.RoomCommunication.StartListening();
             this.WashMan.StartWorking().Start();
             
-
-            this.Chief.CarryOrder(order);
         }
 
         private void CreateCookers(int nb)

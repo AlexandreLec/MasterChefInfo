@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCI_Common.Communication;
+using Room.Model.Restaurant;
 
 namespace Room.Model.Staff
 {
@@ -64,7 +66,7 @@ namespace Room.Model.Staff
 
             foreach (Client.Client clt in cltGr.ClientList)
             {
-                clt.position.SetPosition(cltGr.TableSit.posAroundTable[i]);
+                clt.Position.SetPosition(cltGr.TableSit.posAroundTable[i]);
             }
         }
 
@@ -108,14 +110,7 @@ namespace Room.Model.Staff
 
             Console.WriteLine("Commande du groupe {0} passée", clients.Id);
 
-            SendOrder(clients.tableOrder);
-
-
-        }
-
-        private void SendOrder(Order order)
-        {
-            StaffManager.Instance.Counter.socket.Send(order);
+            StaffManager.Instance.Counter.SendOrder(clients.tableOrder);
 
         }
 

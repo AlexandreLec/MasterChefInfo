@@ -34,13 +34,14 @@ namespace SimulationKitchen.Model
             this.Menu = new List<Recipe>();
             this.GenerateMenu();
             this.CounterPlate.RoomCommunication.NewMenuDemand += this.SendMenuDel;
-
+            this.CounterPlate.RoomCommunication.NewOrderArrive += this.CarryOrder;
         }
 
-        public void CarryOrder(Order cmd)
+        public void CarryOrder(object sender, EventArgs e)
         {
-            LogWriter.GetInstance().Write("Starting prepare order n° "+cmd.Id);
-            foreach (var item in cmd.Dishes)
+            OrderEventArgs order = (OrderEventArgs) e;
+            LogWriter.GetInstance().Write("Starting prepare order n° "+order.receiveOrder.Id);
+            foreach (var item in order.receiveOrder.Dishes)
             {
                 ThreadPool.QueueUserWorkItem(state => PrepareDish(item));
             }

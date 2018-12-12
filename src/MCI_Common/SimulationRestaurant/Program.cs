@@ -18,5 +18,18 @@ namespace SimulationRestaurant
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+        [STAThread]
+        public static void Launch()
+        {
+            using (var game = new Game1())
+                game.Run();
+        }
+
+        public static void Stop()
+        {
+            using (var game = new Game1())
+                game.Exit();
+        }
     }
 }

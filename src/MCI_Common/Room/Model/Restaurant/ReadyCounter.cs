@@ -1,4 +1,6 @@
-﻿using MCI_Common.Recipes;
+﻿using MCI_Common.Communication;
+using MCI_Common.Dishes;
+using MCI_Common.Recipes;
 using Room.Model.Client;
 using Room.Model.Staff;
 using System;
@@ -42,9 +44,18 @@ namespace Room.Model.Restaurant
 
             //while(StaffManager.Instance.Counter.Menu[0][0] == null)
                 socket.Send("<MENU>");
+        }
 
-            
+        public void SendOrder(Order order)
+        {
+            string msg = Serialization.SerializeAnObject(order);
+            msg += "<ORDER>";
+            socket.Send(msg);
+        }
 
+        public void GetOrder(Order order)
+        {
+            socket.Send("<ORDER>");
         }
 
         public void UpdateMenu(object send, EventArgs e)
@@ -61,8 +72,5 @@ namespace Room.Model.Restaurant
             this.Menu[1] = Main;
             this.Menu[2] = Dessert;
         }
-
-        
-
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCI_Common.Dishes;
 
 namespace Room.Model.Staff
 {
@@ -15,18 +16,21 @@ namespace Room.Model.Staff
         /// <summary>
         /// List of rank chiefs
         /// </summary>
-        public List<RankChief> Rankchiefs;
+        public List<RankChief> Rankchiefs { get; private set; }
 
         /// <summary>
         /// The room master
         /// </summary>
-        public RoomMaster Master;
+        public RoomMaster Master { get; private set; }
 
         /// <summary>
         /// List of servers
         /// </summary>
-        public List<Server> Servers;
+        public List<Server> Servers { get; private set; }
 
+        /// <summary>
+        /// Counter to exchange information with kitchen
+        /// </summary>
         public ReadyCounter Counter { get; internal set; }
 
         /// <summary>
@@ -35,6 +39,9 @@ namespace Room.Model.Staff
         private static StaffManager instance = null;
         private static readonly object padlock = new object();
 
+        /// <summary>
+        /// Instantiate a Staff Manager
+        /// </summary>
         public StaffManager()
         {
             Counter = new ReadyCounter();
@@ -47,6 +54,7 @@ namespace Room.Model.Staff
                 Servers.Add(new Server());
             Master = new RoomMaster();
 
+            StaffManager.Instance.Counter.socket.OrderReadyReception += this.OnOrderReadyToServe;
         }
 
         /// <summary>
@@ -67,6 +75,11 @@ namespace Room.Model.Staff
             }
         }
 
+        public void OnOrderReadyToServe(object source, EventArgs args)
+        {
+            Order order = (Order)((ObjectEventArgs)args).receiveObject;
+            //this.Servers.Where(server => server.IsAvailable).First().ServeMeal();
+        }
 
         /// <summary>
         /// Assign a rank chief to take the order

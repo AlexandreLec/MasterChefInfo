@@ -1,4 +1,5 @@
 ﻿using MCI_Common.Communication;
+using MCI_Common.Dishes;
 using MCI_Common.Recipes;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SimulationKitchen.Model
     {
 
         public event EventHandler NewMenuDemand;
+        public event EventHandler NewOrderArrive;
 
         public Socket RoomHandler { get; set; }
 
@@ -38,8 +40,6 @@ namespace SimulationKitchen.Model
         {
             new Thread(() =>
             {
-                // Data buffer for incoming data.  
-                byte[] bytes = new Byte[1024];
 
                 // Establish the local endpoint for the socket.  
                 // Dns.GetHostName returns the name of the   
@@ -68,24 +68,39 @@ namespace SimulationKitchen.Model
 
                         // Program is suspended while waiting for an incoming connection.  
                         this.RoomHandler = listener.Accept();
-                        LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " connected");
-                        // An incoming connection needs to be processed.  
-                        while (true)
-                        {
-                            int bytesRec = this.RoomHandler.Receive(bytes);
-                            this.Datas += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                            if (this.Datas.IndexOf("<EOF>") > -1)
-                            {
-                                this.ProcessRecieveData(this.Datas);
-                                this.Datas = "";
-                            }
-                        }
+
+                        this.NewClient();
+                        
                     }
                 }
                 catch (Exception e)
                 {
                     LogWriter.GetInstance().Write(e.ToString());
-                    this.StartListening();
+                }
+            }).Start();
+        }
+
+        private void NewClient()
+        {
+            new Thread(() =>
+            {
+                LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " connected");
+
+                // Data buffer for incoming data.  
+                byte[] bytes = new Byte[1024];
+
+                while (this.RoomHandler.Connected)
+                {
+                    int bytesRec = this.RoomHandler.Receive(bytes);
+                    this.Datas += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    if (this.Datas.IndexOf("<EOF>") > -1)
+                    {
+                        this.ProcessRecieveData(this.Datas);
+                        this.Datas = "";
+
+                    }
+                    LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " disconnected");
+                    this.RoomHandler.Close();
                 }
             }).Start();
         }
@@ -98,12 +113,12 @@ namespace SimulationKitchen.Model
                 LogWriter.GetInstance().Write("Menu demand");
                 this.OnNewMenuDemand(EventArgs.Empty);
             }
-            else if (data == "<END>")
+            else if (data.IndexOf("<ORDER>") > -1)
             {
-                this.RoomHandler.Close();
+                LogWriter.GetInstance().Write("Order to prepare");
+                OrderEventArgs OrderEvent = new OrderEventArgs(data);
+                this.OnNewOrderArrive(OrderEvent);
             }
-
-            //Ingredient result = (Ingredient)Serialization.DeSerializeAnObject(data, typeof(Ingredient));
         }
         
         /// <summary>
@@ -126,6 +141,21 @@ namespace SimulationKitchen.Model
         protected virtual void OnNewMenuDemand(EventArgs e)
         {
             NewMenuDemand?.Invoke(this, e);
+        }
+
+        protected virtual void OnNewOrderArrive(EventArgs e)
+        {
+            NewOrderArrive?.Invoke(this, e);
+        }
+    }
+
+    public class OrderEventArgs : EventArgs
+    {
+        public Order receiveOrder;
+
+        public OrderEventArgs(string str)
+        {
+            receiveOrder = (Order) Serialization.DeSerializeAnObject(str, typeof(Order));
         }
     }
 }

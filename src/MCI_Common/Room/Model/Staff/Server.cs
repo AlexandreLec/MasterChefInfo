@@ -11,15 +11,15 @@ namespace Room.Model.Staff
 {
     public class Server : Staff
     {
-        /// <summary>
-        /// Square in the room
-        /// </summary>
-        //private Square mySquare;
+        public bool IsAvailable { get; set; }
 
         /// <summary>
-        /// Sprite of the rank chief
+        /// Instantiate a server
         /// </summary>
-        private string Sprite;
+        public Server()
+        {
+            this.IsAvailable = true;
+        }
 
         /// <summary>
         /// Serve the client's meal
@@ -48,14 +48,16 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void ClearMeal(ClientGroup clients)
         {
+            this.IsAvailable = false;
             Console.WriteLine("Clearing meal of group {0}", clients.Id);
 
             foreach (Client.Client clt in clients.ClientList)
                 clt.Served = false;
 
             if (clients.MealProgression == RecipeType.MAIN)
-                clients.OrderDessert();                
-            
+                clients.OrderDessert();
+
+            this.IsAvailable = true;
         }
 
         /// <summary>
