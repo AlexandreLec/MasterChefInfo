@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MCI_Common.Behaviour
@@ -36,31 +37,91 @@ namespace MCI_Common.Behaviour
         /// <param name="position"></param>
         public void MoveTo(Position position)
         {
-            while(this.Position.posX < position.posX)
+            if(this.Position.posX > position.posX && this.Position.posY > position.posY)
             {
-                this.Position.posX += 1;
-                this.OnMoveEvent(EventArgs.Empty);
+                while (this.Position.posX > position.posX)
+                {
+                    this.Position.posX -= 1;
+                    Thread.Sleep(50);
+                }
+
+                while (this.Position.posY > position.posY)
+                {
+                    this.Position.posY -= 1;
+                    Thread.Sleep(50);
+                }
             }
 
-            while (this.Position.posX > position.posX)
+            if (this.Position.posX < position.posX && this.Position.posY > position.posY)
+            {
+                while (this.Position.posX < position.posX)
+                {
+                    this.Position.posX += 1;
+                    Thread.Sleep(50);
+                }
+
+                while (this.Position.posY > position.posY)
+                {
+                    this.Position.posY -= 1;
+                    Thread.Sleep(50);
+                }
+            }
+
+            if (this.Position.posX > position.posX && this.Position.posY < position.posY)
+            {
+                while (this.Position.posX > position.posX)
+                {
+                    this.Position.posX -= 1;
+                    Thread.Sleep(50);
+                }
+
+                while (this.Position.posY < position.posY)
+                {
+                    this.Position.posY += 1;
+                    Thread.Sleep(50);
+                }
+            }
+
+            if (this.Position.posX < position.posX && this.Position.posY < position.posY)
+            {
+                while (this.Position.posX < position.posX)
+                {
+                    this.Position.posX += 1;
+                    Thread.Sleep(50);
+                }
+
+                while (this.Position.posY < position.posY)
+                {
+                    this.Position.posY += 1;
+                    Thread.Sleep(50);
+                }
+            }
+
+
+            /*while (this.Position.posX > position.posX)
             {
                 this.Position.posX -= 1;
-                this.OnMoveEvent(EventArgs.Empty);
+                //this.OnMoveEvent(EventArgs.Empty);
             }
 
             while (this.Position.posY < position.posY)
             {
                 this.Position.posX += 1;
-                this.OnMoveEvent(EventArgs.Empty);
+                //this.OnMoveEvent(EventArgs.Empty);
             }
 
             while (this.Position.posY > position.posY)
             {
                 this.Position.posX -= 1;
-                this.OnMoveEvent(EventArgs.Empty);
-            }
+                //this.OnMoveEvent(EventArgs.Empty);
+            }*/
         }
 
+        public void MoveTeleport(Position position)
+        {
+            this.Position.posX = position.posX;
+            this.Position.posY = position.posY;
+        }
 
         /// <summary>
         /// Move sprite according to vector along X and Y axis

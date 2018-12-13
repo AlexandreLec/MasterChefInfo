@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationRestaurant.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using TiledSharp;
 
@@ -14,6 +15,7 @@ namespace ProjectGameRestaurantNew
     /// </summary>
     public class Game1 : Game
     {
+        public GraphicsDevice graphicDevice;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;           
         public const int WINDOW_WIDTH = 480; // dimmension fenètre jeu  1280px 
@@ -30,19 +32,13 @@ namespace ProjectGameRestaurantNew
         Texture2D textureRankChief;
         Texture2D textureServer;
         Texture2D textureHost;
-        Texture2D textureClient;
+        Texture2D[] textureClient;
         Texture2D textureTable;
         Texture2D textureChair;
-        // Affection des Vector
-        Vector2 positionRankChief;
-        Vector2 positionServer;
-        Vector2 positionHost;
-        Vector2 positionClient;
-        //
 
         public IModel Model { get; set; }
 
-        public bool Aschanged { get; set; }
+        public bool Aschanged = true;
 
         public Game1(IModel model)
         {
@@ -52,11 +48,7 @@ namespace ProjectGameRestaurantNew
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
-
-            foreach (var client in Model.Clients)
-            {
-                client.MoveEvent += Update;
-            }
+            Model.Change += Update;
         }
 
         /// <summary>
@@ -95,15 +87,16 @@ namespace ProjectGameRestaurantNew
             textureRankChief = Content.Load<Texture2D>("RankChief");
             textureServer = Content.Load<Texture2D>("Server");
             textureHost = Content.Load<Texture2D>("Host");
-            textureClient = Content.Load<Texture2D>("Client");
+            textureClient = new Texture2D[10];
+            for (int i = 0; i < 10; i++)
+            {
+                textureClient[i] = Content.Load<Texture2D>("Client"+(i+1));
+            }
+            
             textureTable = Content.Load<Texture2D>("tableTwoPeople");
             textureChair = Content.Load<Texture2D>("Chair");
-            // Ajout d'une position aux sprites
-            positionRankChief = new Vector2(0, 0);
-            positionServer = new Vector2(0, 54);
-            positionHost = new Vector2(128, 560);
-            positionClient = new Vector2(16, 16);
-            //                      
+
+            
         }
 
         /// <summary>
@@ -127,8 +120,6 @@ namespace ProjectGameRestaurantNew
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gametime)
         {
-            
-
             // TODO: Add your update logic here
 
             base.Update(gametime);
@@ -146,9 +137,8 @@ namespace ProjectGameRestaurantNew
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
-                     
+
             for (int numLayer = 0; numLayer < nbLayers; numLayer++)
             {
                 for (var i = 0; i < map.Layers[numLayer].Tiles.Count; i++) //on compte le nombre de Tiles nécessaire pour faire la map.
@@ -167,29 +157,39 @@ namespace ProjectGameRestaurantNew
                         float x = (i % map.Width) * map.TileWidth; // On calcule les coordonnées de positionnement de la tile
                         float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight; // On calcule les coordonnées de positionnement de la tile
                         Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight); // On récupere la Tile d'origine
+
                         spriteBatch.Begin();
+
                         spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White); // On dessine la Tile
-                        // on Draw les sprites des chara
-                        spriteBatch.Draw(textureRankChief, positionRankChief, Color.White);
-                        spriteBatch.Draw(textureServer, positionServer, Color.White);
-                        spriteBatch.Draw(textureHost, positionHost, Color.White);
-                        spriteBatch.Draw(textureClient, positionClient, Color.White);
+                                                                                                                                  // on Draw les sprites des chara
+                        spriteBatch.Draw(textureHost, PositionToVector(Model.Master.Position), Color.White);
 
                         foreach (var table in Model.ListTables)
                         {
                             spriteBatch.Draw(textureChair, PositionToVector(table.TableLocation), Color.White);
-                            spriteBatch.Draw(textureTable, new Vector2(table.TableLocation.posX,table.TableLocation.posY+16), Color.White);
+                            spriteBatch.Draw(textureTable, new Vector2(table.TableLocation.posX, table.TableLocation.posY + 16), Color.White);
                         }
-
+                        foreach (var server in Model.Servers)
+                        {
+                            spriteBatch.Draw(textureServer, PositionToVector(server.Position), Color.White);
+                        }
+                        foreach (var chief in Model.Rankchiefs)
+                        {
+                            spriteBatch.Draw(textureRankChief, PositionToVector(chief.Position), Color.White);
+                        }
                         foreach (var client in Model.Clients)
                         {
-                            spriteBatch.Draw(textureClient, PositionToVector(client.Position), Color.White);
+                            spriteBatch.Draw(textureClient[client.ClientList.Count-1], PositionToVector(client.Position), Color.White);
                         }
-                        //                       
-                        spriteBatch.End();
+                        spriteBatch.End();                    
                     }
                 }
             }
+
+
+
+
+
             base.Draw(gameTime);
         }
     }

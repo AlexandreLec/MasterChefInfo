@@ -51,7 +51,7 @@ namespace MCI_Common.Communication
         /// <summary>
         /// Number of clients per shift
         /// </summary>
-        static private int _nbCltPerShift = 200;
+        static private int _nbCltPerShift = 100;
         static public int nbCltPerShift
         {
             get { return _nbCltPerShift; }

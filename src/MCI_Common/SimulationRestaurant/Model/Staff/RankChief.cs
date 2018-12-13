@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.Communication;
 using Room.Model.Restaurant;
+using MCI_Common.Behaviour;
 
 namespace Room.Model.Staff
 {
@@ -28,10 +29,9 @@ namespace Room.Model.Staff
 
         public RankChief()
         {
-            
+            this.Position = new Position(48,192);
             Console.WriteLine("Rank chief created");
         }
-
 
         /// <summary>
         /// Prepare a table
@@ -76,7 +76,7 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void TakeOrderTable(ClientGroup clients)
         {
-
+            MoveTeleport(clients.Position);
             if(clients.MealProgression == RecipeType.MAIN)
             {
                 //Takes dessert orders for those who order in two times
@@ -106,7 +106,7 @@ namespace Room.Model.Staff
 
             Console.WriteLine("Commande du groupe {0} passée", clients.Id);
 
-            StaffManager.Instance().Counter.SendOrder(clients.tableOrder);
+            //StaffManager.Instance().Counter.SendOrder(clients.tableOrder);
 
         }
 

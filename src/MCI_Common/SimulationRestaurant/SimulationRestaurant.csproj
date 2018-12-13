@@ -80,6 +80,7 @@
     <Compile Include="Model\Factory\FactoryRoomMaster.cs" />
     <Compile Include="Model\Factory\FactoryServer.cs" />
     <Compile Include="Model\Factory\FactoryStaff.cs" />
+    <Compile Include="Model\LogWriter.cs" />
     <Compile Include="Model\Restaurant\DirtyCounter.cs" />
     <Compile Include="Model\Restaurant\ReadyCounter.cs" />
     <Compile Include="Model\Restaurant\Restaurant.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Model\Staff\StaffManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

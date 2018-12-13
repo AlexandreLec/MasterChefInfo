@@ -26,8 +26,10 @@ namespace SimulationRestaurant
         public static void Launch()
         {
             IModel model = new Restaurant();
+            model.Start();
             using (var game = new Game1(model))
                 game.Run();
+            
         }
 
         public static void Stop()

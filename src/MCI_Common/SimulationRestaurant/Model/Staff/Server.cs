@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCI_Common.Behaviour;
 
 namespace Room.Model.Staff
 {
@@ -19,6 +20,7 @@ namespace Room.Model.Staff
         public Server()
         {
             this.IsAvailable = true;
+            this.Position = new Position(320, 32);
         }
 
         /// <summary>

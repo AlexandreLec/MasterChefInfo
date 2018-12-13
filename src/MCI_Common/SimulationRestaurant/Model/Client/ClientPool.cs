@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Room.Model.Staff;
 using MCI_Common.Communication;
+using SimulationRestaurant.Model;
 
 namespace Room.Model.Client
 {
@@ -47,14 +48,16 @@ namespace Room.Model.Client
         /// </summary>
         public void SpawnClientsGroup()
         {
+            
             new Thread(() =>
             {
+                Thread.Sleep(3000);
                 while (this.NbCltSinceStart < Global_Settings.nbCltPerShift)
                 {
-                      ClientGroup group = GenerateGroup();
-                      ThreadPool.QueueUserWorkItem(group.Start);
-                      //Wait 5 Sim min
-                      Thread.Sleep(5 * MCI_Common.Timer.Clock.Instance.Period);
+                    ClientGroup group = GenerateGroup();
+                    ThreadPool.QueueUserWorkItem(group.Start);
+                    //Wait 5 Sim min
+                    Thread.Sleep(5 * MCI_Common.Timer.Clock.Instance.Period);
                 }
             }).Start();
         }

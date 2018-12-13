@@ -11,6 +11,7 @@ using MCI_Common.Dishes;
 using MCI_Common.Behaviour;
 using Room.Model.Staff;
 using MCI_Common.Timer;
+using SimulationRestaurant.Model;
 
 namespace Room.Model.Client
 {
@@ -76,7 +77,7 @@ namespace Room.Model.Client
         {
             Id = id;
             ClientList = list;
-            this.Position = new Position(0, 0);
+            this.Position = new Position(80, 288);
             this.tableOrder = new Order();
 
             //adding subscriptions to events
@@ -84,7 +85,7 @@ namespace Room.Model.Client
             ReadyToOrder += StaffManager.Instance().OnReadyToOrder;
             ReadyToPay += StaffManager.Instance().OnReadyToPay;
 
-            
+            this.MoveEvent += Restaurant.Restaurant.Instance.UpdateMove;
             
 
 
@@ -109,19 +110,25 @@ namespace Room.Model.Client
 
         public void Start(object data)
         {
-            Console.WriteLine("New client group ({1} pax), thread ID : {0}", Thread.CurrentThread.ManagedThreadId, this.ClientList.Count());
-            //Spawns at inital position
-            MoveTo(80, 288);
+            LogWriter.GetInstance().Write("New client group "+this.ClientList.Count()+" pax), thread ID : " + Thread.CurrentThread.ManagedThreadId);
+            
             //Go to room master's counter
-            MoveTo(64, 240);
+            MoveTo(new Position(64, 240));
             Table table = StaffManager.Instance().Master.AssignTable(this);
-            //Follows the room master (or leaves)
 
-            MoveTo(table.TableLocation);
+            if (table == null)
+            {
+                MoveTo(new Position(80, 400));
+                return;
+            }
+            else
+            {
+                //Follows the room master (or leaves)
+                MoveTeleport(table.TableLocation);
 
-            Order();
-            //Gets seated -> set individual clients around table
-
+                Order();
+                //Gets seated -> set individual clients around table
+            }
         }
 
         /// <summary>
@@ -129,7 +136,7 @@ namespace Room.Model.Client
         /// </summary>
         public void Order()
         {
-            Console.WriteLine("Group {0} ordering...", Id);
+            LogWriter.GetInstance().Write("Group "+Id+" ordering...");
 
             foreach (Client clt in ClientList)
             {

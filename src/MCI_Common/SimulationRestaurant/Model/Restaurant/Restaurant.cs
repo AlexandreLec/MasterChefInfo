@@ -30,19 +30,47 @@ namespace Room.Model.Restaurant
         public List<ClientGroup> Clients { get; set; }
 
         /// <summary>
+        /// Servers list
+        /// </summary>
+        public List<Server> Servers { get; set; }
+
+        /// <summary>
+        /// Rankchiefs list
+        /// </summary>
+        public List<RankChief> Rankchiefs { get; set; }
+
+        public RoomMaster Master { get; set; }
+
+        public event EventHandler Change;
+
+        public static Restaurant Instance = null;
+
+        /// <summary>
         /// Instantiate a restaurant
         /// </summary>
         public Restaurant()
+        {
+            Instance = this;
+        }
+
+        public void UpdateMove(object sender, EventArgs e)
+        {
+            this.OnChange(EventArgs.Empty);
+        }
+
+        public void Start()
         {
             this.ListTables = new List<Table>();
             this.GenerateTable();
             //this.Squares = new SquareProcess().GetAll();
             Staff = StaffManager.Instance(ListTables);
             Console.WriteLine("Staff created");
+            this.Master = StaffManager.Instance().Master;
+            this.Rankchiefs = StaffManager.Instance().Rankchiefs;
+            this.Servers = StaffManager.Instance().Servers;
 
             CreateClientPool();
             Console.WriteLine("Clients created");
-            
         }
 
         /// <summary>
@@ -79,20 +107,16 @@ namespace Room.Model.Restaurant
                 i += 64;
                 if (i == 384)
                 {
-                    y = 32;
+                    y = 64;
                     i = 0;
                 }
             }
         }
 
-        /// <summary>
-        /// Apply user configuration
-        /// </summary>
-        /// <param name="Config"></param>
-        void ApplyConfig(IController Config)
+        protected virtual void OnChange(EventArgs e)
         {
-            
+            Change?.Invoke(this, e);
         }
-        
+
     }
 }

@@ -30,19 +30,6 @@ namespace SimulationKitchen
         Texture2D textureCooker;
         Texture2D textureWasher;
         // Affection des Vector
-        public static Vector2 positionKitchenChief { get; set; }
-
-        public static Vector2 positionWasher { get; set; }
-
-        public static int posXWasher { get; set; }
-
-        public static int posYWasher { get; set; }
-
-        public static int TimerUpdate { get; set; }
-
-        public static int locationX { get; set; }
-
-        public static int locationY { get; set; }
 
         public IModel Model { get; set; }
 
