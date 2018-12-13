@@ -28,7 +28,9 @@ namespace SimulationKitchen.Model
         {
             lock (LockLog)
             {
-                Logs.Add(log);
+                DateTime date = new DateTime();
+                // Display of the current date 
+                Logs.Add("[ " + date.ToString("F", new System.Globalization.CultureInfo("fr-FR")) + " ]" + log);
                 OnNewLogEvent(EventArgs.Empty);
             }
         }

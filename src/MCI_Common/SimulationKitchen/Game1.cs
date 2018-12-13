@@ -1,7 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MCI_Common.Behaviour;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationKitchen.Contract;
+using SimulationKitchen.Model;
 using System;
 using TiledSharp;
 
@@ -31,6 +33,8 @@ namespace SimulationKitchen
         Texture2D textureWasher;
         // Affection des Vector
 
+        public bool Aschanged { get; set; }
+
         public IModel Model { get; set; }
 
 
@@ -41,6 +45,11 @@ namespace SimulationKitchen
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+
+            foreach (var cooker in Model.Cookers)
+            {
+                cooker.MoveEvent += Update;
+            }
         }
 
         /// <summary>
@@ -110,37 +119,17 @@ namespace SimulationKitchen
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            TimerUpdate += 1;
-            locationX = 32;
-            locationY = 64;
-
-            if (TimerUpdate == 16)
-            {
-                if (posXWasher < locationX)
-                {
-                    posXWasher += 16;
-                }
-                if (posXWasher > locationX)
-                {
-                    posXWasher -= 16;
-                }
-                if (posYWasher < locationY)
-                {
-                    posYWasher += 16;
-                }
-                if (posYWasher > locationY)
-                {
-                    posYWasher -= 16;
-                }
-
-                TimerUpdate = 0;
-            }
-            
 
             // TODO: Add your update logic here
             positionWasher = new Vector2(posXWasher, posYWasher);
 
+
             base.Update(gameTime);
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            Aschanged = true;
         }
 
         /// <summary>
@@ -173,21 +162,26 @@ namespace SimulationKitchen
                         spriteBatch.Begin();
                         spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White); // On dessine la Tile
                         // on Draw les sprites des chara
+
                         spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
                         spriteBatch.Draw(textureWasher, positionWasher, Color.White);
 
-                        /*foreach (var cooker in this.Model.Cookers)
+                        foreach (var cooker in Model.Cookers)
                         {
-                            spriteBatch.Draw(textureCooker, cooker.Position, Color.White);
-                        }*/
+                            spriteBatch.Draw(textureCooker, PositionToVector(cooker.Position), Color.White);
+                        }
                         
                         //                       
                         spriteBatch.End();
                         base.Draw(gameTime);
-                        base.Draw(gameTime);
                     }
                 }
             }
+        }
+
+        private Vector2 PositionToVector(Position position)
+        {
+            return new Vector2(position.posX, position.posY);
         }
     }
 }

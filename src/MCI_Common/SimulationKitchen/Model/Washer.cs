@@ -1,4 +1,5 @@
-﻿using MCI_Common.Tools;
+﻿using MCI_Common.Behaviour;
+using MCI_Common.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SimulationKitchen.Model
 {
-    public class Washer
+    public class Washer : Movable
     {
         /// <summary>
         /// List of the tools to wash
@@ -27,12 +28,12 @@ namespace SimulationKitchen.Model
 
         private void WashTool(Tool tool)
         {
+            MoveTo(304, 80);
             LogWriter.GetInstance().Write("Washer start washing tool " + tool.Name);
             Thread.Sleep((int)Math.Round(tool.WashingTime * 60000) / 60);
             LogWriter.GetInstance().Write("Washer finished washing tool " + tool.Name);
             this.ToolsToWash.Remove(tool);
             ToolsManager.GetInstance().ReleaseTool(tool);
-            
         }
 
         public Thread StartWorking()

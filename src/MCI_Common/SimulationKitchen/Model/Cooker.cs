@@ -78,9 +78,13 @@ namespace SimulationKitchen.Model
                 {
                     if (dish.Recipe.BakeTime == 0)
                     {
+                        MoveTo(272, 272);
                         dish.Ready = true;
                     }
-                    else while (!this.OvenCook.PutInOven(dish)) { };
+                    else while (!this.OvenCook.PutInOven(dish))
+                        {
+                            MoveTo(208, 80);
+                        };
                 }
 
                 this.IsAvailable = true;
