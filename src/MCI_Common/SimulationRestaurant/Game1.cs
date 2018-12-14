@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SimulationRestaurant.Interfaces;
+using SimulationRestaurant.Model;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -176,6 +177,7 @@ namespace ProjectGameRestaurantNew
                         foreach (var chief in Model.Rankchiefs)
                         {
                             spriteBatch.Draw(textureRankChief, PositionToVector(chief.Position), Color.White);
+
                         }
                         foreach (var client in Model.Clients)
                         {

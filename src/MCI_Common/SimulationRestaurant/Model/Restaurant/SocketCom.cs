@@ -9,6 +9,7 @@ using System.Threading;
 using MCI_Common.Communication;
 using MCI_Common.Recipes;
 using MCI_Common.Dishes;
+using Room.Model.Staff;
 
 namespace Room.Model.Restaurant
 {
@@ -26,6 +27,8 @@ namespace Room.Model.Restaurant
 
         public event EventHandler OrderReadyReception;
 
+        public static SocketCom instance = null;
+
         /// <summary>
         /// Create a connection 
         /// </summary>
@@ -33,6 +36,12 @@ namespace Room.Model.Restaurant
         {
             this.Port = port;
             this.IpAdress = server;
+            instance = this;
+        }
+
+        public SocketCom GetInstance()
+        {
+            return instance;
         }
 
         public void SocketRequest(string msg)
@@ -62,7 +71,7 @@ namespace Room.Model.Restaurant
 
                         msg += "<EOF>";
                         // Encode the data string into a byte array.  
-                        byte[] inBuffer = Encoding.ASCII.GetBytes(msg);
+                        byte[] inBuffer = Encoding.UTF8.GetBytes(msg);
 
                         // Send the data through the socket.  
                         int bytesSent = sender.Send(inBuffer);

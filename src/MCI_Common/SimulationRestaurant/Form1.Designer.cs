@@ -59,11 +59,11 @@
             this.tabPage1.Controls.Add(this.btn_stop_sim);
             this.tabPage1.Controls.Add(this.LogDisplay);
             this.tabPage1.Controls.Add(this.btn_start_sim);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 10);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(700, 282);
+            this.tabPage1.Size = new System.Drawing.Size(700, 297);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -104,11 +104,11 @@
             this.tabPage2.Controls.Add(this.btn_conf_save);
             this.tabPage2.Controls.Add(this.txt_conf_nb_server);
             this.tabPage2.Controls.Add(this.label_nb_server);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 10);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(700, 282);
+            this.tabPage2.Size = new System.Drawing.Size(700, 297);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configuration";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@
             this.txt_conf_nb_server.Location = new System.Drawing.Point(165, 17);
             this.txt_conf_nb_server.Margin = new System.Windows.Forms.Padding(4);
             this.txt_conf_nb_server.Name = "txt_conf_nb_server";
-            this.txt_conf_nb_server.Size = new System.Drawing.Size(44, 22);
+            this.txt_conf_nb_server.Size = new System.Drawing.Size(44, 24);
             this.txt_conf_nb_server.TabIndex = 1;
             // 
             // label_nb_server
@@ -138,13 +138,13 @@
             this.label_nb_server.Location = new System.Drawing.Point(8, 21);
             this.label_nb_server.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_nb_server.Name = "label_nb_server";
-            this.label_nb_server.Size = new System.Drawing.Size(149, 17);
+            this.label_nb_server.Size = new System.Drawing.Size(0, 20);
             this.label_nb_server.TabIndex = 0;
             this.label_nb_server.Text = "Nombre de Serveur(s)";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(0F, 0F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 311);
             this.Controls.Add(this.tabControl1);

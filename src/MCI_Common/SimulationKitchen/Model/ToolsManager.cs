@@ -30,8 +30,8 @@ namespace SimulationKitchen.Model
             List<Tool> allTools = new ToolProcess().ListAll();
             foreach (var item in allTools)
             {
-                AvailableTools.Add(item.Name,item.Quantity);
-                LeasedTools.Add(item.Name, 0);
+                AvailableTools.Add(item.Id,item.Quantity);
+                LeasedTools.Add(item.Id, 0);
             }
 
         }
@@ -46,9 +46,10 @@ namespace SimulationKitchen.Model
         {
             lock (LockLeasing)
             {
-                if ((int)this.LeasedTools[tool.Name] < (int)this.AvailableTools[tool.Name])
+                Console.WriteLine(tool.Name);
+                if ((int)this.LeasedTools[tool.Id] < (int)this.AvailableTools[tool.Id])
                 {
-                    this.LeasedTools[tool.Name] = (int)this.LeasedTools[tool.Name] + 1;
+                    this.LeasedTools[tool.Id] = (int)this.LeasedTools[tool.Id] + 1;
                     return true;
                 }
                 return false;
@@ -59,7 +60,7 @@ namespace SimulationKitchen.Model
         {
             lock (LockReleasing)
             {
-                this.LeasedTools[tool.Name] = (int)this.LeasedTools[tool.Name] - 1;
+                this.LeasedTools[tool.Id] = (int)this.LeasedTools[tool.Id] - 1;
             }
         }
     }

@@ -79,6 +79,7 @@ namespace Room.Model.Client
             ClientList = list;
             this.Position = new Position(80, 288);
             this.tableOrder = new Order();
+            this.tableOrder.Id = this.Id;
 
             //adding subscriptions to events
             DishFinished += StaffManager.Instance().OnDishFinished;
@@ -118,6 +119,7 @@ namespace Room.Model.Client
 
             if (table == null)
             {
+                LogWriter.GetInstance().Write("Pas de table disponible");
                 MoveTo(new Position(80, 400));
                 return;
             }
@@ -127,6 +129,7 @@ namespace Room.Model.Client
                 MoveTeleport(table.TableLocation);
 
                 Order();
+                WaitMeal();
                 //Gets seated -> set individual clients around table
             }
         }

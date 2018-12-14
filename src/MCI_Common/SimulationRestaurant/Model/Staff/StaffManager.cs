@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCI_Common.Dishes;
 using MCI_Common.RoomMaterials;
+using SimulationRestaurant.Model;
 
 namespace Room.Model.Staff
 {
@@ -35,6 +36,11 @@ namespace Room.Model.Staff
         public ReadyCounter Counter { get; internal set; }
 
         /// <summary>
+        /// Clients group list
+        /// </summary>
+        public ClientPool ClientPool { get; set; }
+
+        /// <summary>
         /// Staff Manager thread safe Single instance
         /// </summary>
         private static StaffManager instance = null;
@@ -56,7 +62,7 @@ namespace Room.Model.Staff
                 Servers.Add(new Server());
             Master = new RoomMaster(tables);
 
-            //StaffManager.Instance.Counter.socket.OrderReadyReception += this.OnOrderReadyToServe;
+            SocketCom.instance.OrderReadyReception += this.OnOrderReadyToServe;
         }
 
         /// <summary>
@@ -69,7 +75,7 @@ namespace Room.Model.Staff
                     if (instance == null)
                     {
                         instance = new StaffManager(tables);
-                    }
+                }
                     return instance;
             }
             
@@ -78,7 +84,8 @@ namespace Room.Model.Staff
         public void OnOrderReadyToServe(object source, EventArgs args)
         {
             Order order = (Order)((ObjectEventArgs)args).receiveObject;
-            //this.Servers.Where(server => server.IsAvailable).First().ServeMeal();
+            ClientGroup cltgrp = this.ClientPool.ClientGroups.Where(clt => clt.Id == order.Id).First();
+            this.Servers.Where(server => server.IsAvailable).First().ServeMeal(cltgrp, order);
         }
 
         /// <summary>
@@ -87,11 +94,16 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void OnReadyToOrder(object source, OrderEventArgs args)
         {
-            int i = 0;
+            LogWriter.GetInstance().Write("Le client " + args.cltGroup.Id + " est prêt à commander");
 
-            Console.WriteLine("Le client {0} est prêt à commander", args.cltGroup.Id);
+            RankChief chief = Rankchiefs.Where(c => c.IsAvailable).First();
 
-            Rankchiefs[i].TakeOrderTable(args.cltGroup);
+            if (chief == null) LogWriter.GetInstance().Write("Pas de chef de rang disponible");
+            else
+            {
+                chief.TakeOrderTable(args.cltGroup);
+            }
+
 
         }
 
@@ -102,11 +114,10 @@ namespace Room.Model.Staff
         /// <param name="Id"></param>
         public void OnDishFinished(object source, OrderEventArgs args)
         {
-            int i = 0;
-
             Console.WriteLine("Le client {0} a fini", args.cltGroup.Id);
 
-            Servers[i].ClearMeal(args.cltGroup);
+            Server server = Servers.Where(c => c.IsAvailable).First();
+            server.ClearMeal(args.cltGroup);
         }
 
         /// <summary>

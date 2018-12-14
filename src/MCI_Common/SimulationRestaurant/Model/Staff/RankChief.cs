@@ -12,25 +12,21 @@ using System.Threading.Tasks;
 using MCI_Common.Communication;
 using Room.Model.Restaurant;
 using MCI_Common.Behaviour;
+using SimulationRestaurant.Model;
 
 namespace Room.Model.Staff
 {
     public class RankChief : Staff
     {
         /// <summary>
-        /// Square in the room
+        /// Availability of a rank chiefS
         /// </summary>
-        //private Square mySquare;
-
-        /// <summary>
-        /// Sprite of the rank chief
-        /// </summary>
-        private string Sprite;
+        public bool IsAvailable { get; set; }
 
         public RankChief()
         {
             this.Position = new Position(48,192);
-            Console.WriteLine("Rank chief created");
+            this.IsAvailable = true;
         }
 
         /// <summary>
@@ -76,14 +72,17 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void TakeOrderTable(ClientGroup clients)
         {
-            MoveTeleport(clients.Position);
-            if(clients.MealProgression == RecipeType.MAIN)
+            this.IsAvailable = false;
+            Position nextClient = new Position(clients.Position.posX - 20, clients.Position.posY);
+            MoveTeleport(nextClient);
+
+            if (clients.MealProgression == RecipeType.MAIN)
             {
                 //Takes dessert orders for those who order in two times
                 foreach (Client.Client clt in clients.ClientList)
                     if(clt.OrderMethod.Name == "two")
                     {
-                        Dish dish = new Dish(clients.tableOrder);
+                        Dish dish = new Dish();
                         dish.Recipe = clt.Order[2];
                         clients.tableOrder.Dishes.Add(dish);
                     }
@@ -95,19 +94,23 @@ namespace Room.Model.Staff
                 {
                     for (int i = 0; i < clt.Order.Length; i++)
                     {
-                        Dish dish = new Dish(clients.tableOrder);
-                        dish.Recipe = clt.Order[i];
-                        clients.tableOrder.Dishes.Add(dish);
+                        Dish dish = new Dish();
+                        if(clt.Order[i] != null)
+                        {
+                            dish.Recipe = clt.Order[i];
+                            clients.tableOrder.Dishes.Add(dish);
+                        }
+                        
                     }
                 }
 
                 
             }
 
-            Console.WriteLine("Commande du groupe {0} passée", clients.Id);
+            LogWriter.GetInstance().Write("Commande du groupe " + clients.Id + " passée");
 
-            //StaffManager.Instance().Counter.SendOrder(clients.tableOrder);
-
+            StaffManager.Instance().Counter.SendOrder(clients.tableOrder);
+            this.IsAvailable = true;
         }
 
         public override void WhoAmI()

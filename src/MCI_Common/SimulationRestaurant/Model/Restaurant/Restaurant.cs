@@ -82,6 +82,7 @@ namespace Room.Model.Restaurant
             Console.WriteLine("Create client pool");
             ClientPool CltPool = new ClientPool();
             Clients = CltPool.ClientGroups;
+            //StaffManager.Instance().ClientPool = CltPool;
         }
 
         /// <summary>

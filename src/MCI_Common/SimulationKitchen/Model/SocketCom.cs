@@ -87,20 +87,21 @@ namespace SimulationKitchen.Model
                 LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " connected");
 
                 // Data buffer for incoming data.  
-                byte[] bytes = new Byte[1024];
+                
 
                 while (this.RoomHandler.Connected)
                 {
+                    byte[] bytes = new Byte[10025];
                     int bytesRec = this.RoomHandler.Receive(bytes);
-                    this.Datas += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    this.Datas += Encoding.UTF8.GetString(bytes, 0, bytesRec);
                     if (this.Datas.IndexOf("<EOF>") > -1)
                     {
                         this.ProcessRecieveData(this.Datas);
                         this.Datas = "";
 
                     }
-                    LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " disconnected");
-                    this.RoomHandler.Close();
+                    /*LogWriter.GetInstance().Write("Client " + this.RoomHandler.LocalEndPoint.ToString() + " disconnected");
+                    this.RoomHandler.Close();*/
                 }
             }).Start();
         }
@@ -115,7 +116,9 @@ namespace SimulationKitchen.Model
             }
             else if (data.IndexOf("<ORDER>") > -1)
             {
+                Console.WriteLine("Hello");
                 LogWriter.GetInstance().Write("Order to prepare");
+                data = data.Substring(0, data.Length - "<ORDER>".Length);
                 OrderEventArgs OrderEvent = new OrderEventArgs(data);
                 this.OnNewOrderArrive(OrderEvent);
             }

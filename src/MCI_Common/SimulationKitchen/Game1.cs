@@ -61,10 +61,10 @@ namespace SimulationKitchen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            posXWasher = 128;
+            /*posXWasher = 128;
             posYWasher = 64;
             positionKitchenChief = new Vector2(32, 32);
-            positionWasher = new Vector2(posXWasher, posYWasher);
+            positionWasher = new Vector2(posXWasher, posYWasher);*/
 
             base.Initialize();
         }
@@ -121,7 +121,7 @@ namespace SimulationKitchen
         {
 
             // TODO: Add your update logic here
-            positionWasher = new Vector2(posXWasher, posYWasher);
+            //positionWasher = new Vector2(posXWasher, posYWasher);
 
 
             base.Update(gameTime);
@@ -163,8 +163,8 @@ namespace SimulationKitchen
                         spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White); // On dessine la Tile
                         // on Draw les sprites des chara
 
-                        spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
-                        spriteBatch.Draw(textureWasher, positionWasher, Color.White);
+                        //spriteBatch.Draw(textureKitchenChief, positionKitchenChief, Color.White);
+                        //spriteBatch.Draw(textureWasher, positionWasher, Color.White);
 
                         foreach (var cooker in Model.Cookers)
                         {

@@ -24,14 +24,11 @@ namespace MCI_Common.Dishes
         /// </summary>
         public bool Ready { get; set; }
 
-        public Order CurrentOrder { get; private set; }
-
         /// <summary>
         /// Instantiate a new dish
         /// </summary>
-        public Dish(Order order)
+        public Dish()
         {
-            this.CurrentOrder = order;
             this.Ready = false;
         }
     }

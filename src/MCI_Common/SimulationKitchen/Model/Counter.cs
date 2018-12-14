@@ -44,16 +44,12 @@ namespace SimulationKitchen.Model
         /// <summary>
         /// Send all the orders that are currently ready
         /// </summary>
-        public void SendOrderReady()
+        public void SendOrderReady(Order order)
         {
-            List<Order> listReadyOrders = new List<Order>(Orders.Where(o => o.Ready));
-            foreach (var order in listReadyOrders)
-            {
-                string msg = Serialization.SerializeAnObject(order);
-                msg += "<ORDER_READY>";
-                this.RoomCommunication.Send(msg);
-                this.Orders.Remove(order);
-            }
+            string msg = Serialization.SerializeAnObject(order);
+            msg += "<ORDER_READY>";
+            this.RoomCommunication.Send(msg);
+            this.Orders.Remove(order);
         }
 
         public static Counter GetInstance()

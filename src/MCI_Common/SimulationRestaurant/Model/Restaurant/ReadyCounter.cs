@@ -3,6 +3,7 @@ using MCI_Common.Dishes;
 using MCI_Common.Recipes;
 using Room.Model.Client;
 using Room.Model.Staff;
+using SimulationRestaurant.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,11 @@ namespace Room.Model.Restaurant
             Menu[2] = new List<Recipe>();
 
             s = "10.162.128.230";
+            //s = "192.168.5.53";
             p = 11000;
             socket = new SocketCom(s, p);
+
+
             
             Console.WriteLine("Socket created");
             
@@ -43,14 +47,10 @@ namespace Room.Model.Restaurant
 
         public void SendOrder(Order order)
         {
+            LogWriter.GetInstance().Write("Send order");
             string msg = Serialization.SerializeAnObject(order);
             msg += "<ORDER>";
             socket.Send(msg);
-        }
-
-        public void GetOrder(Order order)
-        {
-            socket.Send("<ORDER>");
         }
 
         public void UpdateMenu(object send, EventArgs e)

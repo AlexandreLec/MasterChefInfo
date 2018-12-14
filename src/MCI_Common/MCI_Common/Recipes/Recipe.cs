@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCI_Common.Recipes
 {
-    public class Recipe
+    public class Recipe 
     {
         /// <summary>
         /// ID of the recipe
@@ -52,5 +52,19 @@ namespace MCI_Common.Recipes
         {
             this.BakeTime = 0;
         }
+
+        /*object ICloneable.Clone()
+        {
+            return this.Clone();
+        }
+
+        private Recipe Clone()
+        {
+            Recipe clone = new Recipe();
+            clone.BakeTime = this.BakeTime;
+            clone.BreakTime = this.BreakTime;
+            clone.Id = this.Id;
+
+        }*/
     }
 }

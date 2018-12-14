@@ -41,6 +41,8 @@ namespace SimulationKitchen.Model
 
         public Oven OvenCook { get; private set; }
 
+        public event EventHandler OrderReady;
+
         /// <summary>
         /// Instantiate a cooker
         /// </summary>
@@ -73,18 +75,17 @@ namespace SimulationKitchen.Model
                 LogWriter.GetInstance().Write("Cooker " + this.Id + " step finished");
                 this.WasherEngine.AddToolsToWash(step.Tools);
                 this.DevicesStorage.ReleaseDevices(step.Devices);
-                this.MoveTo(this.Position.posX+16,this.Position.posY);                
+                              
                 if (dish != null)
                 {
                     if (dish.Recipe.BakeTime == 0)
                     {
-                        MoveTo(272, 272);
+                        //MoveTo(272, 272);
                         dish.Ready = true;
+                        this.OnOrderReady(EventArgs.Empty);
+
                     }
-                    else while (!this.OvenCook.PutInOven(dish))
-                        {
-                            MoveTo(208, 80);
-                        };
+                    else while (!this.OvenCook.PutInOven(dish)) { }
                 }
 
                 this.IsAvailable = true;
@@ -138,5 +139,11 @@ namespace SimulationKitchen.Model
             }
             return devices.All(device => device.IsAvailable);
         }
+
+        protected virtual void OnOrderReady(EventArgs e)
+        {
+            OrderReady?.Invoke(this, e);
+        }
+
     }
 }

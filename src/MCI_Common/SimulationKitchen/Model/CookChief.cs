@@ -25,26 +25,58 @@ namespace SimulationKitchen.Model
 
         public List<Cooker> Cookers { get; set; }
 
+        //public event EventHandler
+
         private readonly object LockCookers = new object();
+        private readonly object CarryingOrder = new object();
 
         public CookChief(List<Cooker> cookers, Counter counterplate = null)
         {
             this.CounterPlate = counterplate;
             this.Cookers = cookers;
             this.Menu = new List<Recipe>();
+            ToolsManager.GetInstance();
             this.GenerateMenu();
             this.CounterPlate.RoomCommunication.NewMenuDemand += this.SendMenuDel;
             this.CounterPlate.RoomCommunication.NewOrderArrive += this.CarryOrder;
+            this.SubscribeCooker();
+        }
+
+        private void SubscribeCooker()
+        {
+            foreach (var cook in Cookers)
+            {
+                cook.OrderReady += OrderReady;
+            }
+        }
+
+        private void OrderReady(object sender, EventArgs e)
+        {
+            lock (CarryingOrder)
+            {
+                foreach (var order in CounterPlate.Orders)
+                {
+                    if (order.Dishes.All(d => d.Ready))
+                    {
+                        order.Ready = true;
+                        CounterPlate.SendOrderReady(order);
+                    }
+                }
+            }  
         }
 
         public void CarryOrder(object sender, EventArgs e)
         {
-            OrderEventArgs order = (OrderEventArgs) e;
-            LogWriter.GetInstance().Write("Starting prepare order n° "+order.receiveOrder.Id);
-            foreach (var item in order.receiveOrder.Dishes)
+            lock (CarryingOrder)
             {
-                ThreadPool.QueueUserWorkItem(state => PrepareDish(item));
-            }
+                OrderEventArgs order = (OrderEventArgs)e;
+                LogWriter.GetInstance().Write("Starting prepare order n° " + order.receiveOrder.Id);
+                foreach (var item in order.receiveOrder.Dishes)
+                {
+                    Console.WriteLine(item.Recipe.Name);
+                    ThreadPool.QueueUserWorkItem(state => PrepareDish(item));
+                }
+            }   
         }
 
         /// <summary>
@@ -61,7 +93,6 @@ namespace SimulationKitchen.Model
                 if (step.Order == dish.Recipe.Steps.Count()) cooker.PrepareStep(step, dish);
                 else cooker.PrepareStep(step);
             }
-            if (dish.CurrentOrder.Dishes.All(o => o.Ready)) dish.CurrentOrder.Ready = true;
         }
 
         private void GenerateMenu()

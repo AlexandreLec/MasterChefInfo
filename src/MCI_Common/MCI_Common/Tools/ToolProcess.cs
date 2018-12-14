@@ -73,7 +73,6 @@ namespace MCI_Common.Tools
                 results.Add(tool);
                 
             }
-            Console.WriteLine(results);
             return results;
         }
 

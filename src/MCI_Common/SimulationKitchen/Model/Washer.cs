@@ -28,9 +28,9 @@ namespace SimulationKitchen.Model
 
         private void WashTool(Tool tool)
         {
-            MoveTo(304, 80);
+            //MoveTo(304, 80);
             LogWriter.GetInstance().Write("Washer start washing tool " + tool.Name);
-            Thread.Sleep((int)Math.Round(tool.WashingTime * 60000) / 60);
+            Thread.Sleep((int)Math.Round(tool.WashingTime * 6000));
             LogWriter.GetInstance().Write("Washer finished washing tool " + tool.Name);
             this.ToolsToWash.Remove(tool);
             ToolsManager.GetInstance().ReleaseTool(tool);
@@ -46,6 +46,7 @@ namespace SimulationKitchen.Model
                     lock (LockToolsToWashList)
                     {
                         List<Tool> tools = new List<Tool>(this.ToolsToWash);
+
                         if (tools.Count() > 0)
                         {
                             foreach (var item in tools)
@@ -54,6 +55,7 @@ namespace SimulationKitchen.Model
                             }
                         }
                     }
+                    Thread.Sleep(500);
                 }
             });
         }

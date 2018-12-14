@@ -29,9 +29,12 @@ namespace Room.Model.Staff
         /// <param name="clients"></param>
         public void ServeMeal(ClientGroup clts, Order order)
         {
-            //Gets meals on ready counter
-
+            this.IsAvailable = false;
             //Gives the meals
+            foreach (var clt in clts.ClientList)
+            {
+                clt.Served = true;
+            }
 
             //Update meal progression
             if(clts.MealProgression == RecipeType.UNKNOWN)
@@ -42,6 +45,8 @@ namespace Room.Model.Staff
                 clts.MealProgression = RecipeType.DESSERT;
             else if (clts.MealProgression == RecipeType.DESSERT)
                 clts.MealProgression = RecipeType.FINISHED;
+
+            this.IsAvailable = true;
         }
 
         /// <summary>
@@ -61,16 +66,6 @@ namespace Room.Model.Staff
 
             this.IsAvailable = true;
         }
-
-        /// <summary>
-        /// Add something on a table
-        /// </summary>
-        /// <param name="table"></param>
-        /* public void AddOnTable(Table table)
-        {
-            
-        }
-        */
 
         public override void WhoAmI()
         {

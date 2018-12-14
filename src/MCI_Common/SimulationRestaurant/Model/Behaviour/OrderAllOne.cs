@@ -50,9 +50,8 @@ namespace Room.Model.Behaviour
         /// <param name="clt"></param>
         public void OrderStarter(Client.Client clt)
         {
-            Console.WriteLine(StaffManager.Instance().Counter.Menu[0][0]);
             clt.Order[0] = StaffManager.Instance().Counter.Menu[0][Randomizer.Instance.R.Next(0, 5)];
-
+            Console.WriteLine(clt.Order[0].Name);
         }
 
         /// <summary>
