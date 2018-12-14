@@ -37,6 +37,13 @@ namespace SimulationKitchen
 
         public IModel Model { get; set; }
 
+        public Vector2 positionKitchenChief { get; set; }
+
+        public Vector2 positionWasher { get; set; }
+
+        public int posXWasher { get; set; }
+
+        public int posYWasher { get; set; }
 
         public Game1(IModel model)
         {
